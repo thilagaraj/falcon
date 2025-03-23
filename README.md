@@ -1,8 +1,38 @@
-# React + Vite
+# Falcon Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Getting Started
 
-Currently, two official plugins are available:
+Follow these steps to set up and run the project locally.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/thilagaraj/falcon.git
+cd falcon
+```
+
+### 2️⃣ Install Dependencies
+```sh
+npm install
+```
+
+### 3️⃣ Run the Development Server
+```sh
+npm run dev
+```
+
+## 📂 Project Structure
+- **`src/`** → Main source code.
+- **`public/`** → Static assets.
+- **`package.json`** → Dependencies & scripts.
+
+## 🛠 Requirements
+- **Node.js** (Latest LTS recommended)
+- **npm** (Installed with Node.js)
+
+## 📝 License
+This project is licensed under [MIT License](LICENSE).
+
+---
+
+🚀 Happy Coding! 🎉
+
