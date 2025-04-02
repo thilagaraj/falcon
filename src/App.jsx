@@ -9,6 +9,7 @@ import Alerts from "./components/common/Alerts";
 import { SpinnerProvider, useSpinner } from "./hook/SpinnerContext";
 import { AlertProvider } from "./hook/AlertContext";
 import ProtectedRoute from "./hook/ProtectedRoute";
+import GuestInformationForm from "./pages/GuestInformationForm";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route exact path="/sign-in" element={<SignInPage />} />
+            <Route path="/guest-registration" element={<GuestInformationForm />} />
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>

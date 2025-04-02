@@ -30,6 +30,7 @@
     "apexcharts": "^4.4.0",
     "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
+    "browser-image-compression": "^2.0.2",
     "datatables.net": "^2.1.8",
     "datatables.net-dt": "^2.1.8",
     "flatpickr": "^4.6.13",
