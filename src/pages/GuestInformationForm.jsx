@@ -13,6 +13,8 @@ const validationSchema = yup.object().shape({
   idNumber: yup.string().required("ID Number is required"),
 });
 
+const fileNameMaxLetter = 16;
+
 const initFormValues = {
   guestTitle: "",
   guestName: "",
@@ -83,7 +85,6 @@ const GuestInformationForm = () => {
   const handleFileChange = async (e) => {
     const name = e.target.name;
     const files = e.target.files;
-
     if (!files || files.length === 0) {
       setFieldErrors((prev) => ({
         ...prev,
@@ -93,19 +94,25 @@ const GuestInformationForm = () => {
       return;
     }
 
-    const file = files[0];
-    if (!file.type.startsWith("image/")) {
+    let file = files[0];
+    const supportedFiles = ['image/jpeg', 'image/png', 'image/webp', 'image/bmp']
+    if(!supportedFiles.includes(file.type)) {
       setFieldErrors((prev) => ({
         ...prev,
-        [name]: "Please upload a valid image file.",
+        [name]: "Image must be in a valid format (png, jpg, webp, bmp)",
       }));
       setFormData((prevData) => ({ ...prevData, [name]: null }));
       return;
     }
+
     if (file) {
       showLoading();
       const base64data = await processImage(file);
-      setFormData((prevData) => ({ ...prevData, [name]: base64data }));
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: base64data,
+        [`${name}FileName`]: file.name,
+      }));
       hideLoading();
       setFieldErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -480,7 +487,6 @@ const GuestInformationForm = () => {
             <input
               type="file"
               accept="image/*"
-              capture="environment"
               className={
                 fieldErrors.guestPhoto
                   ? "form-control is-invalid"
@@ -490,6 +496,13 @@ const GuestInformationForm = () => {
               name="guestPhoto"
               onChange={handleFileChange}
             />
+            {formData.guestPhotoFileName && (
+              <div className="mt-1 text-success">
+                {formData.guestPhotoFileName?.length > fileNameMaxLetter
+                  ? `${formData.guestPhotoFileName.substring(0, fileNameMaxLetter)}...`
+                  : formData.guestPhotoFileName}
+              </div>
+            )}
             {fieldErrors.guestPhoto && (
               <div className="text-danger mt-1">{fieldErrors.guestPhoto}</div>
             )}
@@ -501,8 +514,7 @@ const GuestInformationForm = () => {
             </label>
             <input
               type="file"
-              accept="image/*"
-              capture="environment"
+              accept="image/*"            
               className={
                 fieldErrors.frontIdProof
                   ? "form-control is-invalid"
@@ -512,6 +524,13 @@ const GuestInformationForm = () => {
               name="frontIdProof"
               onChange={handleFileChange}
             />
+            {formData.frontIdProofFileName && (
+              <div className="mt-1 text-success">
+                {formData.frontIdProofFileName?.length > fileNameMaxLetter
+                  ? `${formData.frontIdProofFileName.substring(0, fileNameMaxLetter)}...`
+                  : formData.frontIdProofFileName}
+              </div>
+            )}
             {fieldErrors.frontIdProof && (
               <div className="text-danger mt-1">{fieldErrors.frontIdProof}</div>
             )}
@@ -524,7 +543,6 @@ const GuestInformationForm = () => {
             <input
               type="file"
               accept="image/*"
-              capture="environment"
               className={
                 fieldErrors.backIdProof
                   ? "form-control is-invalid"
@@ -534,6 +552,13 @@ const GuestInformationForm = () => {
               name="backIdProof"
               onChange={handleFileChange}
             />
+            {formData.backIdProofFileName && (
+              <div className="mt-1 text-success">
+                {formData.backIdProofFileName?.length > fileNameMaxLetter
+                  ? `${formData.backIdProofFileName.substring(0, fileNameMaxLetter)}...`
+                  : formData.backIdProofFileName}
+              </div>
+            )}
             {fieldErrors.backIdProof && (
               <div className="text-danger mt-1">{fieldErrors.backIdProof}</div>
             )}
