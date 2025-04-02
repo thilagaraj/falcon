@@ -41,6 +41,7 @@ const GuestInformationForm = () => {
   const [branchCode, setBranchCode] = useState("HMS_1001");
   const [hotelId, setHotelId] = useState("THAI_1001");
   const [propertyId, setPropertyId] = useState("10001");
+  const [hotelName, setHotelName] =  useState('')
   const [guestGender, setGuestGender] = useState([]);
   const [guestTitles, setGuestTitles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,6 +58,7 @@ const GuestInformationForm = () => {
       setProofTypes(response?.GuestIdProof);
       setBranchCode(response?.BranchCode);
       setHotelId(response?.HotelId);
+      setHotelName(response?.HotelName)
       setPropertyId(response?.PropertyId);
       setGuestGender(response?.GuestGender);
       setGuestTitles(response?.GuestTittle);
@@ -207,7 +209,7 @@ const GuestInformationForm = () => {
           />
         </div>
         <h3 className="text-center mb-10 fs-2 text-black fw-bold">
-          Welcome To {"hotelName"}
+          Welcome To {hotelName}
         </h3>
         <h3 className="text-center mt-4 mb-4 fs-4 text-black">
           Guest Information Form
