@@ -217,7 +217,7 @@ const GuestInformationForm = () => {
         <form>
           <div className="mb-3">
             <label htmlFor="guestTitle" className="form-label">
-              Title: <span className="text-danger">*</span>
+              Title:
             </label>
             <select
               className={
@@ -259,7 +259,7 @@ const GuestInformationForm = () => {
           </div>
           <div className="mb-3">
             <label htmlFor="gender" className="form-label">
-              Gender: <span className="text-danger">*</span>
+              Gender:
             </label>
             <select
               className={
