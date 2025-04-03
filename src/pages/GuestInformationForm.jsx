@@ -3,7 +3,7 @@ import { useSpinner } from "../hook/SpinnerContext";
 import * as yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
 import $axios from "../utils/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { processImage } from "../utils/imageUtils";
 
 const validationSchema = yup.object().shape({
@@ -43,11 +43,12 @@ const initFormValues = {
 
 const GuestInformationForm = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [proofTypes, setProofTypes] = useState([]);
-  const [branchCode, setBranchCode] = useState("HMS_1001");
-  const [hotelId, setHotelId] = useState("THAI_1001");
-  const [propertyId, setPropertyId] = useState("10001");
-  const [hotelName, setHotelName] =  useState('')
+  const [branchCode, setBranchCode] = useState(searchParams.get("branchCode"));
+  const [hotelId, setHotelId] = useState(searchParams.get("hotelId"));
+  const [propertyId, setPropertyId] = useState(searchParams.get("propertyId"));
+  const [hotelName, setHotelName] = useState('');
   const [guestGender, setGuestGender] = useState([]);
   const [guestTitles, setGuestTitles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -207,7 +208,7 @@ const GuestInformationForm = () => {
   return (
     <div className="container d-flex justify-content-center align-items-center">
       <ToastContainer />
-      <div className="card p-24 form-card w-100 rounded-3 max-w-500-px">
+      <div className="card p-24 form-card w-100 rounded-3 max-w-500-px" style={{backgroundColor: '#ccc'}}>
         <div className="text-center mb-4">
           <img
             src="assets/images/logo.jpg"
