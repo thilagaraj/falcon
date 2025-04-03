@@ -7,8 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { processImage } from "../utils/imageUtils";
 
 const validationSchema = yup.object().shape({
-  guestName: yup.string().required("Guest Name is required"),
-  mobileNo: yup.string().required("Mobile No is required"),
+  guestName: yup
+    .string()
+    .required("Guest Name is required")
+    .min(3, "Guest Name must be at least 3 characters"),
+  mobileNo: yup
+    .string()
+    .required("Mobile No is required")
+    .matches(/^\d{10}$/, "Mobile No must be exactly 10 digits"),
   idProofType: yup.string().required("ID Proof Type is required"),
   idNumber: yup.string().required("ID Number is required"),
 });
