@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSpinner } from "../hook/SpinnerContext";
 import * as yup from "yup";
 import { toast, ToastContainer } from "react-toastify";
@@ -29,7 +29,7 @@ const initFormValues = {
   guestPhoto: null,
   frontIdProof: null,
   backIdProof: null,
-  boookingNo: "",
+  bookingNo: "",
   gstNumber: "",
   companyName: "",
   pinCode: "",
@@ -142,7 +142,7 @@ const GuestInformationForm = () => {
         GuestPhoto: formData.guestPhoto,
         FrontPhoto: formData.frontIdProof,
         BackPhoto: formData.backIdProof,
-        OnlineBookingNo: formData.boookingNo,
+        OnlineBookingNo: formData.bookingNo,
         GSTNO: formData.gstNumber,
         CompanyName: formData.companyName,
       };
@@ -169,13 +169,14 @@ const GuestInformationForm = () => {
   const verifyGST = async (event) => {
     event.preventDefault();
     const url = `https://api.gst.gov.in/v1/verify?gstin=${formData.gstNumber}`;
+    //it will be implemented later
   };
 
   const resetFormFields = () => {
     setFormData(initFormValues);
     setFieldErrors({})
-    const attachements = ["guestPhoto", "frontIdProof", "backIdProof"];
-    for (const attachment of attachements) {
+    const attachments = ["guestPhoto", "frontIdProof", "backIdProof"];
+    for (const attachment of attachments) {
       document.getElementById(attachment).value = null;
     }
   };
@@ -380,25 +381,25 @@ const GuestInformationForm = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="boookingNo" className="form-label">
+            <label htmlFor="bookingNo" className="form-label">
               Booking No:
             </label>
             <input
               type="text"
-              className={getInputClass("boookingNo")}
-              id="boookingNo"
-              name="boookingNo"
-              value={formData.boookingNo}
+              className={getInputClass("bookingNo")}
+              id="bookingNo"
+              name="bookingNo"
+              value={formData.bookingNo}
               onChange={handleChange}
             />
-            {fieldErrors.boookingNo && (
-              <div className="text-danger mt-1">{fieldErrors.boookingNo}</div>
+            {fieldErrors.bookingNo && (
+              <div className="text-danger mt-1">{fieldErrors.bookingNo}</div>
             )}
           </div>
 
           <div className="mb-3">
             <label htmlFor="companyName" className="form-label">
-              Comapany Name:
+              Company Name:
             </label>
             <input
               type="text"
