@@ -48,7 +48,7 @@ const GuestInformationForm = () => {
   const [branchCode, setBranchCode] = useState(searchParams.get("branchCode"));
   const [hotelId, setHotelId] = useState(searchParams.get("hotelId"));
   const [propertyId, setPropertyId] = useState(searchParams.get("propertyId"));
-  const [hotelName, setHotelName] = useState('');
+  const [hotelName, setHotelName] = useState("");
   const [guestGender, setGuestGender] = useState([]);
   const [guestTitles, setGuestTitles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,7 +65,7 @@ const GuestInformationForm = () => {
       setProofTypes(response?.GuestIdProof);
       setBranchCode(response?.BranchCode);
       setHotelId(response?.HotelId);
-      setHotelName(response?.HotelName)
+      setHotelName(response?.HotelName);
       setPropertyId(response?.PropertyId);
       setGuestGender(response?.GuestGender);
       setGuestTitles(response?.GuestTittle);
@@ -104,8 +104,13 @@ const GuestInformationForm = () => {
     }
 
     let file = files[0];
-    const supportedFiles = ['image/jpeg', 'image/png', 'image/webp', 'image/bmp']
-    if(!supportedFiles.includes(file.type)) {
+    const supportedFiles = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "image/bmp",
+    ];
+    if (!supportedFiles.includes(file.type)) {
       setFieldErrors((prev) => ({
         ...prev,
         [name]: "Image must be in a valid format (png, jpg, webp, bmp)",
@@ -116,14 +121,24 @@ const GuestInformationForm = () => {
 
     if (file) {
       showLoading();
-      const base64data = await processImage(file);
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: base64data,
-        [`${name}FileName`]: file.name,
-      }));
-      hideLoading();
-      setFieldErrors((prev) => ({ ...prev, [name]: null }));
+      try {
+        const base64data = await processImage(file);
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: base64data,
+          [`${name}FileName`]: file.name,
+        }));
+        hideLoading();
+        setFieldErrors((prev) => ({ ...prev, [name]: null }));
+      } catch (error) {
+        setFieldErrors((prev) => ({
+          ...prev,
+          [name]: "Failed to process image. Please try a different file.",
+        }));
+        console.error("Image processing error:", error);
+      } finally {
+        +hideLoading();
+      }
     }
   };
 
@@ -181,7 +196,7 @@ const GuestInformationForm = () => {
 
   const resetFormFields = () => {
     setFormData(initFormValues);
-    setFieldErrors({})
+    setFieldErrors({});
     const attachments = ["guestPhoto", "frontIdProof", "backIdProof"];
     for (const attachment of attachments) {
       document.getElementById(attachment).value = null;
@@ -208,7 +223,10 @@ const GuestInformationForm = () => {
   return (
     <div className="container d-flex justify-content-center align-items-center">
       <ToastContainer />
-      <div className="card p-24 form-card w-100 rounded-3 max-w-500-px" style={{backgroundColor: '#ccc'}}>
+      <div
+        className="card p-24 form-card w-100 rounded-3 max-w-500-px bg-light"
+        style={{ backgroundColor: "#ccc" }}
+      >
         <div className="text-center mb-4">
           <img
             src="assets/images/logo.jpg"
@@ -222,7 +240,12 @@ const GuestInformationForm = () => {
         <h3 className="text-center mt-4 mb-4 fs-4 text-black">
           Guest Information Form
         </h3>
-        <form>
+        <form
+          onSubmit={(e) => {
+            +e.preventDefault();
+            +handleSubmit();
+          }}
+        >
           <div className="mb-3">
             <label htmlFor="guestTitle" className="form-label">
               Title:
@@ -509,7 +532,10 @@ const GuestInformationForm = () => {
             {formData.guestPhotoFileName && (
               <div className="mt-1 text-success">
                 {formData.guestPhotoFileName?.length > fileNameMaxLetter
-                  ? `${formData.guestPhotoFileName.substring(0, fileNameMaxLetter)}...`
+                  ? `${formData.guestPhotoFileName.substring(
+                      0,
+                      fileNameMaxLetter
+                    )}...`
                   : formData.guestPhotoFileName}
               </div>
             )}
@@ -524,7 +550,7 @@ const GuestInformationForm = () => {
             </label>
             <input
               type="file"
-              accept="image/*"            
+              accept="image/*"
               className={
                 fieldErrors.frontIdProof
                   ? "form-control is-invalid"
@@ -537,7 +563,10 @@ const GuestInformationForm = () => {
             {formData.frontIdProofFileName && (
               <div className="mt-1 text-success">
                 {formData.frontIdProofFileName?.length > fileNameMaxLetter
-                  ? `${formData.frontIdProofFileName.substring(0, fileNameMaxLetter)}...`
+                  ? `${formData.frontIdProofFileName.substring(
+                      0,
+                      fileNameMaxLetter
+                    )}...`
                   : formData.frontIdProofFileName}
               </div>
             )}
@@ -565,7 +594,10 @@ const GuestInformationForm = () => {
             {formData.backIdProofFileName && (
               <div className="mt-1 text-success">
                 {formData.backIdProofFileName?.length > fileNameMaxLetter
-                  ? `${formData.backIdProofFileName.substring(0, fileNameMaxLetter)}...`
+                  ? `${formData.backIdProofFileName.substring(
+                      0,
+                      fileNameMaxLetter
+                    )}...`
                   : formData.backIdProofFileName}
               </div>
             )}
@@ -583,9 +615,9 @@ const GuestInformationForm = () => {
               Reset
             </button>
             <button
-              type="button"
+              type="submit"
               className="btn btn-warning mx-auto d-flex justify-content-center w-50"
-              onClick={handleSubmit}>
+            >
               Save
             </button>
           </div>
