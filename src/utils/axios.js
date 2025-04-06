@@ -30,20 +30,20 @@ $axios.interceptors.response.use(
   (error) => {
     if (error.response) {
       const status = error.response.status;
-      const { showAlert } = useAlert();
-      const navigate = useNavigate();
+   //   const { showAlert } = useAlert();
+     // const navigate = useNavigate();
 
       if (status === 401) {
-        showAlert("LOGIN");
+     //   showAlert("LOGIN");
         localStorage.removeItem("token");
-        navigate("/sign-in", { replace: true });
+    //    navigate("/sign-in", { replace: true });
       } else if (status >= 500) {
-        showAlert("DEFAULT");
+      //  showAlert("DEFAULT");
       } else {
-        showAlert("WARNING");
+     //   showAlert("WARNING");
       }
     } else {
-      showAlert("DEFAULT");
+    //  showAlert("DEFAULT");
     }
 
     return Promise.reject(error);
