@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import $axios from "../utils/axios";
 import { useSpinner } from "../hook/SpinnerContext";
 import { toast, ToastContainer } from "react-toastify";
+import { v4 as uuid } from "uuid";
 
-const Table = ({ rows }) => (
-  <table className="table table-bordered ">
+const Table = ({ rows, title }) => (
+  <table className="table table-bordered">
     <tbody>
-      {rows?.map((row, index) => (
-        <tr key={`r${index}`}>
+      <th colSpan={2} className="fs-6 border-0 p-10 w-100">
+        {title}
+      </th>
+      {rows?.map((row) => (
+        <tr key={uuid()}>
           {row?.map((cell, cellIndex) => (
             <td
-              className={cellIndex === 0 ? "w-50" : ""}
-              key={`r${index}c${cellIndex}`}
+              className={cellIndex === 0 ? "w-50 fs-6 fw-bold" : ""}
+              key={uuid()}
             >
               {cell}
             </td>
@@ -79,35 +83,23 @@ export const CheckoutDetails = () => {
     <div className="container py-4">
       <ToastContainer />
       <header className="text-center my-4">
-        <h4>Check Out</h4>
+        <p className="fs-4 fw-bold">Check Out</p>
       </header>
 
-      <div className="row mb-4">
-        <div className="col-12">
-          <h5>Customer Details</h5>
-          <Table rows={customerDetailsRows} />
-        </div>
+      <div className="mb-12 p-10 bg-white rounded-2">
+        <Table rows={customerDetailsRows} title="Customer Details" />
       </div>
 
-      <div className="row mb-4">
-        <div className="col-12">
-          <h5>Billing Details</h5>
-          <Table rows={billingDetailsRows} />
-        </div>
+      <div className="mb-12 p-10 bg-white rounded-2">
+        <Table rows={billingDetailsRows} title="Billing Details" />
       </div>
 
-      <div className="row mb-4">
-        <div className="col-12">
-          <h5>Bill Details</h5>
-          <Table rows={billDetailsRows} />
-        </div>
+      <div className="mb-12 p-10 bg-white rounded-2">
+        <Table rows={billDetailsRows} title="Bill Details" />
       </div>
 
-      <div className="row mb-4">
-        <div className="col-12">
-          <h5>Payments Details</h5>
-          <Table rows={paymentDetailsRows} />
-        </div>
+      <div className="mb-12 p-10 bg-white rounded-2">
+        <Table rows={paymentDetailsRows} title="Payment Details" />
       </div>
     </div>
   );
