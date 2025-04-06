@@ -7,7 +7,7 @@ const Table = ({ headers, rows }) => (
       {rows?.map((row, index) => (
         <tr key={`r${index}`}>
           {row?.map((cell, cellIndex) => (
-            <td className={cellIndex === 0 ? "w-25" : ""} key={`r${index}c${cellIndex}`}>{cell}</td>
+            <td className={cellIndex === 0 ? "w-50" : ""} key={`r${index}c${cellIndex}`}>{cell}</td>
           ))}
         </tr>
       ))}
@@ -51,9 +51,9 @@ export const CheckoutDetails = () => {
     ["Payable Rent Amt", `$${checkoutData.payableRentAmt}`],
   ];
 
-  const addtionalChargesRows = [
-    ["Additional Charges", checkoutData.name],
-    ["Comments", checkoutData.roomNo],
+  const paymentDetailsRows = [
+    ["Net Payable Amt", checkoutData.name],
+    ["Special Discount Amt", checkoutData.roomNo],
   ];
 
   const billDetailsRows = [
@@ -92,8 +92,8 @@ export const CheckoutDetails = () => {
 
       <div className="row mb-4">
         <div className="col-12">
-          <h5>Additional Charges</h5> 
-          <Table rows={addtionalChargesRows} />
+          <h5>Payments Details</h5> 
+          <Table rows={paymentDetailsRows} />
         </div>
       </div>
     </div>
