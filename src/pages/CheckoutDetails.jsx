@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import $axios from "../utils/axios";
 import { useSpinner } from "../hook/SpinnerContext";
 import { toast, ToastContainer } from "react-toastify";
-import { v4 as uuid } from "uuid";
 
 const Table = ({ rows, title }) => (
   <table className="table table-bordered">
@@ -10,12 +9,12 @@ const Table = ({ rows, title }) => (
       <th colSpan={2} className="fs-6 border-0 p-10 w-100">
         {title}
       </th>
-      {rows?.map((row) => (
-        <tr key={uuid()}>
+      {rows?.map((row, rowIndex) => (
+        <tr key={`row-${rowIndex}`}>
           {row?.map((cell, cellIndex) => (
             <td
-              className={cellIndex === 0 ? "w-50 fs-6 fw-bold" : ""}
-              key={uuid()}
+              className={`fs-6 ${cellIndex === 0 ? "w-50 fw-bold" : ""}`}
+              key={`cell-${rowIndex}-${cellIndex}`}
             >
               {cell}
             </td>
@@ -68,8 +67,8 @@ export const CheckoutDetails = () => {
   ];
 
   const paymentDetailsRows = [
-    ["Net Payable Amt", checkoutData.name],
-    ["Special Discount Amt", checkoutData.roomNo],
+    ["Net Payable Amt", checkoutData.netPayableAmt],
+    ["Special Discount Amt", checkoutData.specialDiscountAmt],
   ];
 
   const billDetailsRows = [
