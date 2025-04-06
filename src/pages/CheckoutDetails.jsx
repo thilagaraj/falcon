@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import $axios from "../utils/axios";
+import { useSpinner } from "../hook/SpinnerContext";
+import { toast, ToastContainer } from "react-toastify";
 
-const Table = ({ headers, rows }) => (
+const Table = ({ rows }) => (
   <table className="table table-bordered ">
     <tbody>
       {rows?.map((row, index) => (
         <tr key={`r${index}`}>
           {row?.map((cell, cellIndex) => (
-            <td className={cellIndex === 0 ? "w-50" : ""} key={`r${index}c${cellIndex}`}>{cell}</td>
+            <td
+              className={cellIndex === 0 ? "w-50" : ""}
+              key={`r${index}c${cellIndex}`}
+            >
+              {cell}
+            </td>
           ))}
         </tr>
       ))}
@@ -16,20 +23,25 @@ const Table = ({ headers, rows }) => (
 );
 
 export const CheckoutDetails = () => {
-  const [checkoutData, setCheckoutData] = useState(null);
+  const { showLoading, hideLoading } = useSpinner();
+  const [checkoutData, setCheckoutData] = useState({});
 
   useEffect(() => {
-    axios
-      .get("/api/checkout-details")
-      .then((response) => setCheckoutData(response.data))
-      .catch((error) =>
-        console.error("Error fetching checkout details:", error)
-      );
+    getCheckoutDetails();
   }, []);
 
-  if (!checkoutData) {
-    return <div>Loading...</div>;
-  }
+  const getCheckoutDetails = async () => {
+    showLoading();
+    try {
+      const response = await $axios.get(`/FalconQRScan/GetGuestEntry`);
+      setCheckoutData(response?.data);
+    } catch (error) {
+      console.error("Error fetching checkout details:", error);
+      toast.error("Failed to load checkout details. Please try again.");
+    } finally {
+      hideLoading();
+    }
+  };
 
   const customerDetailsRows = [
     ["Name", checkoutData.name],
@@ -65,34 +77,35 @@ export const CheckoutDetails = () => {
 
   return (
     <div className="container py-4">
+      <ToastContainer />
       <header className="text-center my-4">
-        <h4>Check Out</h4> 
+        <h4>Check Out</h4>
       </header>
 
       <div className="row mb-4">
         <div className="col-12">
-          <h5>Customer Details</h5> 
+          <h5>Customer Details</h5>
           <Table rows={customerDetailsRows} />
         </div>
       </div>
 
       <div className="row mb-4">
         <div className="col-12">
-          <h5>Billing Details</h5> 
+          <h5>Billing Details</h5>
           <Table rows={billingDetailsRows} />
         </div>
       </div>
 
       <div className="row mb-4">
         <div className="col-12">
-          <h5>Bill Details</h5> 
+          <h5>Bill Details</h5>
           <Table rows={billDetailsRows} />
         </div>
       </div>
 
       <div className="row mb-4">
         <div className="col-12">
-          <h5>Payments Details</h5> 
+          <h5>Payments Details</h5>
           <Table rows={paymentDetailsRows} />
         </div>
       </div>
