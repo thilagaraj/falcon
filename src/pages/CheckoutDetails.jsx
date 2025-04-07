@@ -6,9 +6,11 @@ import { toast, ToastContainer } from "react-toastify";
 const Table = ({ rows, title }) => (
   <table className="table table-bordered">
     <tbody>
-      <th colSpan={2} className="fs-6 border-0 p-10 w-100">
-        {title}
-      </th>
+      <tr className="border-0">
+        <th colSpan={2} className="border-0">
+          {title}
+        </th>
+      </tr>
       {rows?.map((row, rowIndex) => (
         <tr key={`row-${rowIndex}`}>
           {row?.map((cell, cellIndex) => (
