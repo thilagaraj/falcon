@@ -3,8 +3,16 @@ import $axios from "../utils/axios";
 import { useSpinner } from "../hook/SpinnerContext";
 import { toast, ToastContainer } from "react-toastify";
 
+const UI_STRINGS = {
+  CHECKOUT_TITLE: "Check Out",
+  CUSTOMER_DETAILS: "Customer Details",
+  BILLING_DETAILS: "Billing Details",
+  BILL_DETAILS: "Bill Details",
+  PAYMENT_DETAILS: "Payment Details",
+}
+
 const Table = ({ rows, title }) => (
-  <table className="table table-bordered">
+  <table className="table table-bordered" aria-labelledby={`table-title-${title?.replace(/\s+/g, '-')?.toLowerCase()}`}>
     <tbody>
       <tr className="border-0">
         <th colSpan={2} className="border-0">
@@ -84,23 +92,23 @@ export const CheckoutDetails = () => {
     <div className="container py-4">
       <ToastContainer />
       <header className="text-center my-4">
-        <p className="fs-4 fw-bold">Check Out</p>
+        <p className="fs-4 fw-bold">{UI_STRINGS.CHECKOUT_TITLE}</p>
       </header>
 
       <div className="mb-12 p-10 bg-white rounded-2">
-        <Table rows={customerDetailsRows} title="Customer Details" />
+        <Table rows={customerDetailsRows} title={UI_STRINGS.CUSTOMER_DETAILS} />
       </div>
 
       <div className="mb-12 p-10 bg-white rounded-2">
-        <Table rows={billingDetailsRows} title="Billing Details" />
+        <Table rows={billingDetailsRows} title={UI_STRINGS.BILLING_DETAILS} />
       </div>
 
       <div className="mb-12 p-10 bg-white rounded-2">
-        <Table rows={billDetailsRows} title="Bill Details" />
+        <Table rows={billDetailsRows} title={UI_STRINGS.BILL_DETAILS} />
       </div>
 
       <div className="mb-12 p-10 bg-white rounded-2">
-        <Table rows={paymentDetailsRows} title="Payment Details" />
+        <Table rows={paymentDetailsRows} title={UI_STRINGS.PAYMENT_DETAILS} />
       </div>
     </div>
   );

@@ -29,6 +29,13 @@ const readFileAsBase64 = (file) => {
     const reader = new FileReader();
     reader.onloadend = () => {
       const result = reader.result;
+      if (!result.includes(",")) {
+        return reject(
+          new Error(
+            "Unexpected format in FileReader result. Expected data URL format with a comma."
+          )
+        );
+      }
       if (result && typeof result === "string") {
         const base64Data = result.split(",")[1];
         if (base64Data) {
