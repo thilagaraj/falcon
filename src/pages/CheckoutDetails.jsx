@@ -15,13 +15,13 @@ const Table = ({ rows, title }) => (
   <table className="table table-bordered" aria-labelledby={`table-title-${title?.replace(/\s+/g, '-')?.toLowerCase()}`}>
     <tbody>
       <tr className="border-0">
-        <th colSpan={2} className="border-0">
+        <th colSpan={2} className="border-0" id={`table-title-${title?.replace(/\s+/g, '-')?.toLowerCase()}`}>
           {title}
         </th>
       </tr>
-      {rows?.map((row, rowIndex) => (
+      {rows.map((row, rowIndex) => (
         <tr key={`row-${rowIndex}`}>
-          {row?.map((cell, cellIndex) => (
+          {row.map((cell, cellIndex) => (
             <td
               className={`fs-6 ${cellIndex === 0 ? "w-50 fw-bold" : ""}`}
               key={`cell-${rowIndex}-${cellIndex}`}
