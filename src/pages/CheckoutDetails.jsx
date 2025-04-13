@@ -7,10 +7,11 @@ import { useSearchParams } from "react-router-dom";
 const UI_STRINGS = {
   CHECKOUT_TITLE: "Check Out",
   CUSTOMER_DETAILS: "Customer Details",
-  BILL_INFOMATION: "Billing Details",
+  BILLING_SUMMARY: "Billing Details",
+  BILL_DETAILS: "Bill Details",
 };
 
-const RoomData = ({ rows, title }) => (
+const Table = ({ rows, title }) => (
   <table
     className="table table-bordered"
     aria-labelledby={`table-title-${title
@@ -43,14 +44,11 @@ const RoomData = ({ rows, title }) => (
   </table>
 );
 
-const BillInfomration = ({title, rows, summary }) => (
+const BillInfomration = ({ title, rows, summary }) => (
   <table className="table table-bordered">
     <thead>
-    <tr className="border-0">
-        <th
-          colSpan={2}
-          className="border-0 bg-success text-white"
-        >
+      <tr className="border-0">
+        <th colSpan={16} className="border-0 bg-primary text-white">
           {title}
         </th>
       </tr>
@@ -59,7 +57,7 @@ const BillInfomration = ({title, rows, summary }) => (
         <th>Date</th>
         <th>Pax</th>
         <th>Rate</th>
-        <th>Tax</th>
+        <th>Room Tax</th>
         <th>Plan</th>
         <th>Food</th>
         <th>Post Bill</th>
@@ -68,7 +66,7 @@ const BillInfomration = ({title, rows, summary }) => (
         <th>Tri Bill</th>
         <th>Advance</th>
         <th>Discount</th>
-        <th>NetAmount</th>
+        <th>Net</th>
         <th>Balance</th>
         <th>Room No</th>
       </tr>
@@ -82,20 +80,22 @@ const BillInfomration = ({title, rows, summary }) => (
         </tr>
       ))}
       <tr>
-        <td colSpan={3}>Total</td>
-        <td>{summary?.Rate}</td>
-        <td>{summary?.RoomTax}</td>
-        <td>{summary?.Plan}</td>
-        <td>{summary?.FoodBill}</td>
-        <td>{summary?.PostBill}</td>
-        <td>{summary?.TeleBill}</td>
-        <td>{summary?.ExtraBed}</td>
-        <td>{summary?.TrBill}</td>
-        <td>{summary?.Advance}</td>
-        <td>{summary?.Discount}</td>
-        <td>{summary?.NetAmt}</td>
-        <td>{summary?.Balance}</td>
-        <td>{summary?.StayIn}</td>
+        <td colSpan={3} className="border-0 bg-success text-white">
+          Total Amount
+        </td>
+        <td className="bg-success text-white">{summary?.Rate}</td>
+        <td className="bg-success text-white">{summary?.RoomTax}</td>
+        <td className="bg-success text-white">{summary?.PlanAmount}</td>
+        <td className="bg-success text-white">{summary?.FoodBill}</td>
+        <td className="bg-success text-white">{summary?.PostBill}</td>
+        <td className="bg-success text-white">{summary?.TeleBill}</td>
+        <td className="bg-success text-white">{summary?.ExtraBed}</td>
+        <td className="bg-success text-white">{summary?.TrBill}</td>
+        <td className="bg-success text-white">{summary?.Advance}</td>
+        <td className="bg-success text-white">{summary?.Discount}</td>
+        <td className="bg-success text-white">{summary?.NetAmt}</td>
+        <td className="bg-success text-white">{summary?.Balance}</td>
+        <td className="bg-success text-white"></td>
       </tr>
     </tbody>
   </table>
@@ -110,6 +110,7 @@ export const CheckoutDetails = () => {
   const { showLoading, hideLoading } = useSpinner();
   const [checkoutData, setCheckoutData] = useState({});
   const [billData, setBillData] = useState([]);
+  const [summary, setSummary] = useState({});
 
   useEffect(() => {
     getCheckoutDetails();
@@ -123,6 +124,7 @@ export const CheckoutDetails = () => {
       );
       setCheckoutData(response);
       setBillData(response.Details);
+      setSummary(response.Summary);
     } catch (error) {
       console.error("Error fetching checkout details:", error);
       toast.error("Failed to load checkout details. Please try again.");
@@ -135,21 +137,28 @@ export const CheckoutDetails = () => {
     ["Name", `${checkoutData.GuestTittle}. ${checkoutData.GuestName}`],
     ["Room No", roomNo],
     ["Room Code", checkoutData.RoomCode],
-    ["Org CheckIn No", checkoutData.OrgCheckInNo],
-    [
-      "Arrival Date / TIme",
-      `${checkoutData.ArrivalDate?.split("T")[0]} / ${
-        checkoutData.ArrivalTime
-      }`,
-    ],
-    [
-      "DepartureDate / TIme",
-      `${checkoutData.DepartureDate?.split("T")[0]} / ${
-        checkoutData.DepartureTime
-      }`,
-    ],
-    ["Plan Name", checkoutData.PlanId],
-    ["Pax", checkoutData.Pax],
+    ["Booking No", checkoutData.OrgCheckInNo],
+    ["Arrival Date", checkoutData.ArrivalDate?.split("T")[0]],
+    ["Arrival TIme", checkoutData.ArrivalTime],
+    ["Departure Date", checkoutData.DepartureDate?.split("T")[0]],
+    ["Departure Time", checkoutData.DepartureTime],
+    ["Plan", checkoutData.PlanId],
+  ];
+
+  const billingSummaryRows = [
+    ["Rate", summary.Rate],
+    ["Room Tax", summary.RoomTax],
+    ["Plan", summary.PlanAmount],
+    ["Food Bill", summary.FoodBill],
+    ["Post Bill", summary.PostBill],
+    ["Tele Bill", summary.TeleBill],
+    ["Extra Bed", summary.ExtraBed],
+    ["TrBill", summary.TrBill],
+    ["Advance", summary.Advance],
+    ["Discount", summary.Discount],
+    ["Net Amount", summary.NetAmt],
+    ["Balance", summary.Balance],
+    ["No Of Days", summary.Day],
   ];
 
   const billingDetailsRows = Array.from({ length: billData.length }, (_, i) => [
@@ -158,35 +167,40 @@ export const CheckoutDetails = () => {
     billData[i]["Pax"],
     billData[i]["Rate"],
     billData[i]["RoomTax"],
-    billData[i]["Plan"],
+    billData[i]["PlanAmount"],
     billData[i]["FoodBill"],
     billData[i]["PostBill"],
     billData[i]["TeleBill"],
     billData[i]["ExtraBed"],
     billData[i]["TrBill"],
-    billData[i]['Advance'],
-    billData[i]['Discount'],
-    billData[i]['NetAmt'],
-    billData[i]['Balance'],
-    billData[i]['StayIn'],
+    billData[i]["Advance"],
+    billData[i]["Discount"],
+    billData[i]["NetAmt"],
+    billData[i]["Balance"],
+    billData[i]["StayIn"],
   ]);
 
   return (
     <div className="container py-4">
       <ToastContainer />
-      <header className="text-center my-4">
+      <header className="text-center my-4 bg-secondary text-white p-3 rounded">
         <p className="fs-4 fw-bold">{UI_STRINGS.CHECKOUT_TITLE}</p>
       </header>
 
       <div className="mb-12 p-10 bg-white rounded-2">
-        <RoomData
-          rows={customerDetailsRows}
-          title={UI_STRINGS.CUSTOMER_DETAILS}
-        />
+        <Table rows={customerDetailsRows} title={UI_STRINGS.CUSTOMER_DETAILS} />
       </div>
 
       <div className="mb-12 p-10 bg-white rounded-2">
-        <BillInfomration rows={billingDetailsRows} title={UI_STRINGS.BILL_INFOMATION} summary={checkoutData.Summary} />
+        <Table rows={billingSummaryRows} title={UI_STRINGS.BILLING_SUMMARY} />
+      </div>
+
+      <div className="mb-12 p-10 bg-white rounded-2">
+        <BillInfomration
+          rows={billingDetailsRows}
+          title={UI_STRINGS.BILL_DETAILS}
+          summary={checkoutData.Summary}
+        />
       </div>
     </div>
   );
