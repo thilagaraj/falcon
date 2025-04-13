@@ -12,93 +12,97 @@ const UI_STRINGS = {
 };
 
 const Table = ({ rows, title }) => (
-  <table
-    className="table table-bordered"
-    aria-labelledby={`table-title-${title
-      ?.replace(/\s+/g, "-")
-      ?.toLowerCase()}`}
-  >
-    <tbody>
-      <tr className="border-0">
-        <th
-          colSpan={2}
-          className="border-0 bg-primary text-white"
-          id={`table-title-${title?.replace(/\s+/g, "-")?.toLowerCase()}`}
-        >
-          {title}
-        </th>
-      </tr>
-      {rows.map((row, rowIndex) => (
-        <tr key={`row-${rowIndex}`}>
-          {row.map((cell, cellIndex) => (
-            <td
-              className={`fs-6 ${cellIndex === 0 ? "w-50 fw-bold" : ""}`}
-              key={`cell-${rowIndex}-${cellIndex}`}
-            >
-              {cell}
-            </td>
-          ))}
+  <div className="table-responsive mb-4">
+    <table
+      className="table table-bordered"
+      aria-labelledby={`table-title-${title
+        ?.replace(/\s+/g, "-")
+        ?.toLowerCase()}`}
+    >
+      <tbody>
+        <tr className="border-0">
+          <th
+            colSpan={2}
+            className="border-0 bg-primary text-white text-center"
+            id={`table-title-${title?.replace(/\s+/g, "-")?.toLowerCase()}`}
+          >
+            {title}
+          </th>
         </tr>
-      ))}
-    </tbody>
-  </table>
+        {rows.map((row, rowIndex) => (
+          <tr key={`row-${rowIndex}`}>
+            {row.map((cell, cellIndex) => (
+              <td
+                className={`fs-6 ${cellIndex === 0 ? "w-50 fw-bold" : ""}`}
+                key={`cell-${rowIndex}-${cellIndex}`}
+              >
+                {cell}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 );
 
 const BillInfomration = ({ title, rows, summary }) => (
-  <table className="table table-bordered">
-    <thead>
-      <tr className="border-0">
-        <th colSpan={16} className="border-0 bg-primary text-white">
-          {title}
-        </th>
-      </tr>
-      <tr>
-        <th>Day</th>
-        <th>Date</th>
-        <th>Pax</th>
-        <th>Rate</th>
-        <th>Room Tax</th>
-        <th>Plan</th>
-        <th>Food</th>
-        <th>Post Bill</th>
-        <th>Tele Bill</th>
-        <th>Extra Bed</th>
-        <th>Tri Bill</th>
-        <th>Advance</th>
-        <th>Discount</th>
-        <th>Net</th>
-        <th>Balance</th>
-        <th>Room No</th>
-      </tr>
-    </thead>
-    <tbody>
-      {rows.map((row, rowIndex) => (
-        <tr key={`row-${rowIndex}`}>
-          {row.map((cell, cellIndex) => (
-            <td key={`cell-${rowIndex}-${cellIndex}`}>{cell}</td>
-          ))}
+  <div className="table-responsive">
+    <table className="table table-bordered">
+      <thead>
+        <tr className="border-0">
+          <th colSpan={16} className="border-0 bg-primary text-white text-center">
+            {title}
+          </th>
         </tr>
-      ))}
-      <tr>
-        <td colSpan={3} className="border-0 bg-success text-white">
-          Total Amount
-        </td>
-        <td className="bg-success text-white">{summary?.Rate}</td>
-        <td className="bg-success text-white">{summary?.RoomTax}</td>
-        <td className="bg-success text-white">{summary?.PlanAmount}</td>
-        <td className="bg-success text-white">{summary?.FoodBill}</td>
-        <td className="bg-success text-white">{summary?.PostBill}</td>
-        <td className="bg-success text-white">{summary?.TeleBill}</td>
-        <td className="bg-success text-white">{summary?.ExtraBed}</td>
-        <td className="bg-success text-white">{summary?.TrBill}</td>
-        <td className="bg-success text-white">{summary?.Advance}</td>
-        <td className="bg-success text-white">{summary?.Discount}</td>
-        <td className="bg-success text-white">{summary?.NetAmt}</td>
-        <td className="bg-success text-white">{summary?.Balance}</td>
-        <td className="bg-success text-white"></td>
-      </tr>
-    </tbody>
-  </table>
+        <tr>
+          <th>Day</th>
+          <th>Date</th>
+          <th>Pax</th>
+          <th>Rate</th>
+          <th>Room Tax</th>
+          <th>Plan</th>
+          <th>Food</th>
+          <th>Post Bill</th>
+          <th>Tele Bill</th>
+          <th>Extra Bed</th>
+          <th>Tri Bill</th>
+          <th>Advance</th>
+          <th>Discount</th>
+          <th>Net</th>
+          <th>Balance</th>
+          <th>Room No</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, rowIndex) => (
+          <tr key={`row-${rowIndex}`}>
+            {row.map((cell, cellIndex) => (
+              <td key={`cell-${rowIndex}-${cellIndex}`}>{cell}</td>
+            ))}
+          </tr>
+        ))}
+        <tr>
+          <td colSpan={3} className="border-0 bg-success text-white">
+            Total Amount
+          </td>
+          <td className="bg-success text-white">{summary?.Rate}</td>
+          <td className="bg-success text-white">{summary?.RoomTax}</td>
+          <td className="bg-success text-white">{summary?.PlanAmount}</td>
+          <td className="bg-success text-white">{summary?.FoodBill}</td>
+          <td className="bg-success text-white">{summary?.PostBill}</td>
+          <td className="bg-success text-white">{summary?.TeleBill}</td>
+          <td className="bg-success text-white">{summary?.ExtraBed}</td>
+          <td className="bg-success text-white">{summary?.TrBill}</td>
+          <td className="bg-success text-white">{summary?.Advance}</td>
+          <td className="bg-success text-white">{summary?.Discount}</td>
+          <td className="bg-success text-white">{summary?.NetAmt}</td>
+          <td className="bg-success text-white">{summary?.Balance}</td>
+          <td className="bg-success text-white"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 );
 
 export const CheckoutDetails = () => {
@@ -181,26 +185,30 @@ export const CheckoutDetails = () => {
   ]);
 
   return (
-    <div className="container py-4">
+    <div className="container-fluid py-4">
       <ToastContainer />
       <header className="text-center my-4 bg-secondary text-white p-3 rounded">
         <p className="fs-4 fw-bold">{UI_STRINGS.CHECKOUT_TITLE}</p>
       </header>
 
-      <div className="mb-12 p-10 bg-white rounded-2">
-        <Table rows={customerDetailsRows} title={UI_STRINGS.CUSTOMER_DETAILS} />
+      <div className="row">
+        <div className="col-12 col-lg-6 mb-4">
+          <Table rows={customerDetailsRows} title={UI_STRINGS.CUSTOMER_DETAILS} />
+        </div>
+
+        <div className="col-12 col-lg-6 mb-4">
+          <Table rows={billingSummaryRows} title={UI_STRINGS.BILLING_SUMMARY} />
+        </div>
       </div>
 
-      <div className="mb-12 p-10 bg-white rounded-2">
-        <Table rows={billingSummaryRows} title={UI_STRINGS.BILLING_SUMMARY} />
-      </div>
-
-      <div className="mb-12 p-10 bg-white rounded-2">
-        <BillInfomration
-          rows={billingDetailsRows}
-          title={UI_STRINGS.BILL_DETAILS}
-          summary={checkoutData.Summary}
-        />
+      <div className="row">
+        <div className="col-12">
+          <BillInfomration
+            rows={billingDetailsRows}
+            title={UI_STRINGS.BILL_DETAILS}
+            summary={checkoutData.Summary}
+          />
+        </div>
       </div>
     </div>
   );
