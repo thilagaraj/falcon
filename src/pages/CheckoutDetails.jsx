@@ -71,7 +71,7 @@ const BillInformation = ({ title, rows, summary }) => (
           <th>Post Bill</th>
           <th>Tele Bill</th>
           <th>Extra Bed</th>
-          <th>Tri Bill</th>
+          <th>TrBill</th>
           <th>Advance</th>
           <th>Discount</th>
           <th>Net</th>
