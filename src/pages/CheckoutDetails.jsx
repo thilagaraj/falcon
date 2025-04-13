@@ -10,20 +10,15 @@ const UI_STRINGS = {
   CUSTOMER_DETAILS: "Customer Details",
   BILLING_SUMMARY: "Bill Summary",
   BILL_DETAILS: "Bill Details",
-  Total_Amount: "Total Amount",
+  TOTAL_AMOUNT: "Total Amount",
 };
 
 const Table = ({ rows, title }) => (
   <div className="table-responsive mb-4">
-    <table
-      className="table table-bordered"
-    >
+    <table className="table table-bordered">
       <tbody>
         <tr className="border-0">
-          <th
-            colSpan={2}
-            className="border-0 bg-primary text-white text-center"
-          >
+          <th colSpan={2} className="border-0 bg-primary text-white text-center">
             {title}
           </th>
         </tr>
@@ -46,7 +41,7 @@ const Table = ({ rows, title }) => (
 
 Table.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)).isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 const BillInformation = ({ title, rows, summary }) => (
@@ -87,30 +82,32 @@ const BillInformation = ({ title, rows, summary }) => (
         ))}
         <tr>
           <td colSpan={3} className="border-0 bg-success text-white">
-            {UI_STRINGS.Total_Amount}
+            {UI_STRINGS.TOTAL_AMOUNT}
           </td>
-          <td className="bg-success text-white">{summary?.Rate}</td>
-          <td className="bg-success text-white">{summary?.RoomTax}</td>
-          <td className="bg-success text-white">{summary?.PlanAmount}</td>
-          <td className="bg-success text-white">{summary?.FoodBill}</td>
-          <td className="bg-success text-white">{summary?.PostBill}</td>
-          <td className="bg-success text-white">{summary?.TeleBill}</td>
-          <td className="bg-success text-white">{summary?.ExtraBed}</td>
-          <td className="bg-success text-white">{summary?.TrBill}</td>
-          <td className="bg-success text-white">{summary?.Advance}</td>
-          <td className="bg-success text-white">{summary?.Discount}</td>
-          <td className="bg-success text-white">{summary?.NetAmt}</td>
-          <td className="bg-success text-white">{summary?.Balance}</td>
+          <td className="bg-success text-white">{summary.Rate}</td>
+          <td className="bg-success text-white">{summary.RoomTax}</td>
+          <td className="bg-success text-white">{summary.PlanAmount}</td>
+          <td className="bg-success text-white">{summary.FoodBill}</td>
+          <td className="bg-success text-white">{summary.PostBill}</td>
+          <td className="bg-success text-white">{summary.TeleBill}</td>
+          <td className="bg-success text-white">{summary.ExtraBed}</td>
+          <td className="bg-success text-white">{summary.TrBill}</td>
+          <td className="bg-success text-white">{summary.Advance}</td>
+          <td className="bg-success text-white">{summary.Discount}</td>
+          <td className="bg-success text-white">{summary.NetAmt}</td>
+          <td className="bg-success text-white">{summary.Balance}</td>
           <td className="bg-success text-white"></td>
         </tr>
       </tbody>
     </table>
   </div>
 );
+
 BillInformation.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)).isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
+
 export const CheckoutDetails = () => {
   const [searchParams] = useSearchParams();
   const branchCode = searchParams.get("branchCode");
@@ -144,7 +141,7 @@ export const CheckoutDetails = () => {
   };
 
   const customerDetailsRows = [
-    ["Name", `${checkoutData?.GuestTittle}. ${checkoutData?.GuestName}`],
+    ["Name", `${checkoutData.GuestTittle}${checkoutData.GuestTittle ? ". " : ""}${checkoutData.GuestName}`],
     ["Room No", roomNo],
     ["Room Code", checkoutData.RoomCode],
     ["Booking No", checkoutData.OrgCheckInNo],
@@ -156,7 +153,7 @@ export const CheckoutDetails = () => {
   ];
 
   const billingSummaryRows = [
-    ["Rate", summary?.Rate],
+    ["Rate", summary.Rate],
     ["Room Tax", summary.RoomTax],
     ["Plan", summary.PlanAmount],
     ["Food Bill", summary.FoodBill],
@@ -212,7 +209,7 @@ export const CheckoutDetails = () => {
           <BillInformation
             rows={billingDetailsRows}
             title={UI_STRINGS.BILL_DETAILS}
-            summary={checkoutData.Summary}
+            summary={summary}
           />
         </div>
       </div>
