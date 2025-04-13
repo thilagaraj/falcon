@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import $axios from "../utils/axios";
 import { useSpinner } from "../hook/SpinnerContext";
 import { toast, ToastContainer } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const UI_STRINGS = {
   CHECKOUT_TITLE: "Check Out",
   CUSTOMER_DETAILS: "Customer Details",
-  BILLING_SUMMARY: "Billing Details",
+  BILLING_SUMMARY: "Bill Summary",
   BILL_DETAILS: "Bill Details",
+  Total_Amount: "Total Amount",
 };
 
 const Table = ({ rows, title }) => (
   <div className="table-responsive mb-4">
     <table
       className="table table-bordered"
-      aria-labelledby={`table-title-${title
-        ?.replace(/\s+/g, "-")
-        ?.toLowerCase()}`}
     >
       <tbody>
         <tr className="border-0">
           <th
             colSpan={2}
             className="border-0 bg-primary text-white text-center"
-            id={`table-title-${title?.replace(/\s+/g, "-")?.toLowerCase()}`}
           >
             {title}
           </th>
@@ -46,7 +44,12 @@ const Table = ({ rows, title }) => (
   </div>
 );
 
-const BillInfomration = ({ title, rows, summary }) => (
+Table.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)).isRequired,
+  title: PropTypes.string.isRequired
+};
+
+const BillInformation = ({ title, rows, summary }) => (
   <div className="table-responsive">
     <table className="table table-bordered">
       <thead>
@@ -84,7 +87,7 @@ const BillInfomration = ({ title, rows, summary }) => (
         ))}
         <tr>
           <td colSpan={3} className="border-0 bg-success text-white">
-            Total Amount
+            {UI_STRINGS.Total_Amount}
           </td>
           <td className="bg-success text-white">{summary?.Rate}</td>
           <td className="bg-success text-white">{summary?.RoomTax}</td>
@@ -104,7 +107,10 @@ const BillInfomration = ({ title, rows, summary }) => (
     </table>
   </div>
 );
-
+BillInformation.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)).isRequired,
+  title: PropTypes.string.isRequired
+};
 export const CheckoutDetails = () => {
   const [searchParams] = useSearchParams();
   const branchCode = searchParams.get("branchCode");
@@ -138,7 +144,7 @@ export const CheckoutDetails = () => {
   };
 
   const customerDetailsRows = [
-    ["Name", `${checkoutData.GuestTittle}. ${checkoutData.GuestName}`],
+    ["Name", `${checkoutData?.GuestTittle}. ${checkoutData?.GuestName}`],
     ["Room No", roomNo],
     ["Room Code", checkoutData.RoomCode],
     ["Booking No", checkoutData.OrgCheckInNo],
@@ -150,7 +156,7 @@ export const CheckoutDetails = () => {
   ];
 
   const billingSummaryRows = [
-    ["Rate", summary.Rate],
+    ["Rate", summary?.Rate],
     ["Room Tax", summary.RoomTax],
     ["Plan", summary.PlanAmount],
     ["Food Bill", summary.FoodBill],
@@ -203,7 +209,7 @@ export const CheckoutDetails = () => {
 
       <div className="row">
         <div className="col-12">
-          <BillInfomration
+          <BillInformation
             rows={billingDetailsRows}
             title={UI_STRINGS.BILL_DETAILS}
             summary={checkoutData.Summary}
