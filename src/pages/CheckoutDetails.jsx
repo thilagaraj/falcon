@@ -18,7 +18,10 @@ const Table = ({ rows, title }) => (
     <table className="table table-bordered">
       <tbody>
         <tr className="border-0">
-          <th colSpan={2} className="border-0 bg-primary text-white text-center">
+          <th
+            colSpan={2}
+            className="border-0 bg-primary text-white text-center"
+          >
             {title}
           </th>
         </tr>
@@ -49,7 +52,10 @@ const BillInformation = ({ title, rows, summary }) => (
     <table className="table table-bordered">
       <thead>
         <tr className="border-0">
-          <th colSpan={16} className="border-0 bg-primary text-white text-center">
+          <th
+            colSpan={16}
+            className="border-0 bg-primary text-white text-center"
+          >
             {title}
           </th>
         </tr>
@@ -104,8 +110,9 @@ const BillInformation = ({ title, rows, summary }) => (
 );
 
 BillInformation.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.any)).isRequired,
   title: PropTypes.string.isRequired,
+  rows: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
+  summary: PropTypes.object.isRequired
 };
 
 export const CheckoutDetails = () => {
@@ -141,7 +148,12 @@ export const CheckoutDetails = () => {
   };
 
   const customerDetailsRows = [
-    ["Name", `${checkoutData.GuestTittle}${checkoutData.GuestTittle ? ". " : ""}${checkoutData.GuestName}`],
+    [
+      "Name",
+      `${checkoutData.GuestTittle}${checkoutData.GuestTittle ? ". " : ""}${
+        checkoutData.GuestName
+      }`,
+    ],
     ["Room No", roomNo],
     ["Room Code", checkoutData.RoomCode],
     ["Booking No", checkoutData.OrgCheckInNo],
@@ -196,7 +208,10 @@ export const CheckoutDetails = () => {
 
       <div className="row">
         <div className="col-12 col-lg-6 mb-4">
-          <Table rows={customerDetailsRows} title={UI_STRINGS.CUSTOMER_DETAILS} />
+          <Table
+            rows={customerDetailsRows}
+            title={UI_STRINGS.CUSTOMER_DETAILS}
+          />
         </div>
 
         <div className="col-12 col-lg-6 mb-4">
