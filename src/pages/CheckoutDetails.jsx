@@ -4,6 +4,7 @@ import { useSpinner } from "../hook/SpinnerContext";
 import { toast, ToastContainer } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
+import {formatDate} from "../utils/dateUtils";
 
 const UI_STRINGS = {
   CHECKOUT_TITLE: "Check Out",
@@ -157,9 +158,9 @@ export const CheckoutDetails = () => {
     ["Room No", roomNo],
     ["Room Code", checkoutData.RoomCode],
     ["Booking No", checkoutData.OrgCheckInNo],
-    ["Arrival Date", checkoutData.ArrivalDate?.split("T")[0]],
+    ["Arrival Date", formatDate(checkoutData.ArrivalDate?.split("T")?.[0])],
     ["Arrival TIme", checkoutData.ArrivalTime],
-    ["Departure Date", checkoutData.DepartureDate?.split("T")[0]],
+    ["Departure Date", formatDate(checkoutData.DepartureDate?.split("T")?.[0])],
     ["Departure Time", checkoutData.DepartureTime],
     ["Plan", checkoutData.PlanId],
   ];
@@ -182,7 +183,7 @@ export const CheckoutDetails = () => {
 
   const billingDetailsRows = Array.from({ length: billData.length }, (_, i) => [
     `${i + 1}`,
-    billData[i]["Date"].split("T")[0],
+    formatDate(billData[i]["Date"]?.split("T")?.[0]),
     billData[i]["Pax"],
     billData[i]["Rate"],
     billData[i]["RoomTax"],
