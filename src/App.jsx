@@ -4,6 +4,7 @@ import SignInPage from "./pages/SignInPage";
 import PropertySelectionPage from "./pages/PropertySelection";
 import ErrorPage from "./pages/ErrorPage";
 import FormValidationPage from "./pages/FormValidationPage";
+import DashboardPage from "./pages/DashboardPage";
 import Spinner from "./components/common/Spinner";
 import Alerts from "./components/common/Alerts";
 import { SpinnerProvider, useSpinner } from "./hook/SpinnerContext";
@@ -19,7 +20,6 @@ function App() {
       <AlertProvider>
         <BrowserRouter>
           <RouteScrollToTop />
-          <Alerts />
           <Routes>
             {/* Public Routes */}
             <Route exact path="/sign-in" element={<SignInPage />} />
@@ -34,7 +34,7 @@ function App() {
                 path="/property-selection"
                 element={<PropertySelectionPage />}
               />
-              <Route exact path="/" element={<SignInPage />} />
+              <Route exact path="/" element={<DashboardPage />} />
               <Route
                 exact
                 path="/form-validation"

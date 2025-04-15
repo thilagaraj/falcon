@@ -282,7 +282,7 @@
   --purple-light-white: rgba(132, 90, 223, 0.25);
   --pink-light-white: rgba(250, 54, 230, 0.25);
   --base: #fff;
-  --brand: var(--primary-600);
+  --brand: var(--warning-900);
   --button-secondary: var(--primary-50);
   --black: var(--dark-2);
   --white: var(--base);

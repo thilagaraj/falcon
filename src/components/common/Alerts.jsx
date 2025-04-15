@@ -1,4 +1,5 @@
 import { useAlert } from "../../hook/AlertContext";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const GlobalAlert = () => {
   const { alert, hideAlert } = useAlert();
@@ -17,7 +18,7 @@ const GlobalAlert = () => {
       <div className="d-flex align-items-center justify-content-between text-lg">
         {alert.title && <span>{alert.title}</span>}
         <button className="remove-button text-xxl line-height-1" onClick={hideAlert}>
-          <iconify-icon icon="iconamoon:sign-times-light" className="icon"></iconify-icon>
+          <Icon icon="iconamoon:sign-times-light" className="icon"></Icon>
         </button>
       </div>
       <p className="fw-medium text-sm mt-8">{alert.message}</p>

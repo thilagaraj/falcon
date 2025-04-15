@@ -4,13 +4,16 @@ import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Formik } from "formik";
+import Alerts from "./Alerts";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useSpinner } from "../../hook/SpinnerContext";
+import { useAlert } from "../../hook/AlertContext";
 
 const SignInLayer = () => {
   const navigate = useNavigate();
   const { showLoading, hideLoading } = useSpinner();
+  const { showAlert } = useAlert();
 
   const schema = yup.object().shape({
     username: yup.string().required(),
@@ -41,7 +44,7 @@ const SignInLayer = () => {
       }
       throw response;
     } catch (error) {
-      console.error(error);
+      showAlert('LOGIN');
     } finally {
       hideLoading();
     }
@@ -79,6 +82,11 @@ const SignInLayer = () => {
           >
             {({ handleSubmit, handleChange, values, touched, errors }) => (
               <Form noValidate onSubmit={handleSubmit} autoComplete="off">
+                <Row className="mb-3">
+                  <Col>
+                    <Alerts />
+                  </Col>
+                </Row>
                 <Row className="mb-3">
                   <Col>
                     <Form.Group as={Col} controlId="username">
