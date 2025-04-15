@@ -24,7 +24,7 @@ export const AlertProvider = ({ children }) => {
       message,
     });
 
-    setTimeout(() => hideAlert(), 3000);
+    //setTimeout(() => hideAlert(), 3000);
   };
 
   const hideAlert = () => setAlert({ show: false, type: "", title: "", message: "" });

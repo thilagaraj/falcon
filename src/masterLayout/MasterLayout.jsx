@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggleButton from "../helper/ThemeToggleButton";
+import Alerts from '../components/common/Alerts';
 
 const MasterLayout = ({ children }) => {
   let [sidebarActive, seSidebarActive] = useState(false);
@@ -1953,17 +1954,24 @@ const MasterLayout = ({ children }) => {
         </div>
 
         {/* dashboard-main-body */}
-        <div className='dashboard-main-body'>{children}</div>
+        <div className='dashboard-main-body'>
+          <div>
+            <Alerts />
+          </div>
+          <div>
+            {children}
+          </div>
+        </div>
 
         {/* Footer section */}
         <footer className='d-footer'>
           <div className='row align-items-center justify-content-between'>
             <div className='col-auto'>
-              <p className='mb-0'>© 2025 WowDash. All Rights Reserved.</p>
+              <p className='mb-0'>© 2025 Falcon software. All Rights Reserved.</p>
             </div>
             <div className='col-auto'>
               <p className='mb-0'>
-                Made by <span className='text-primary-600'>wowtheme7</span>
+                Made by <span className='text-primary-600'>Falcom team</span>
               </p>
             </div>
           </div>
