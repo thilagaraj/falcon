@@ -1,24 +1,17 @@
 import { Icon } from '@iconify/react';
 const items = [
-  // Financial items - blue colors
   { icon: 'mdi:file-document', label: 'Bill Detail', bg: 'bg-info-gradient' },
   { icon: 'mdi:cash', label: 'Pay Advance', bg: 'bg-info' },
-
-  // Service items - green colors
   { icon: 'mdi:food', label: 'View Menu', bg: 'bg-success-gradient' },
   { icon: 'mdi:bed', label: 'Extrabed Request', bg: 'bg-success' },
-  { icon: 'mdi:room-service-outline', label: 'Facilities', bg: 'bg-success-600' },
-
-  // Information items - purple/pink colors
   { icon: 'mdi:comment', label: 'Feedback', bg: 'bg-purple' },
+  { icon: 'mdi:room-service-outline', label: 'Facilities', bg: 'bg-success-600' },
   { icon: 'mdi:magnify', label: 'Enquiry Detail', bg: 'bg-indigo' },
-
-  // Booking - orange/yellow color
   { icon: 'mdi:calendar-check', label: 'Reservation', bg: 'bg-warning-gradient' },
 ];
 const ReportListPage = () => {
   return (
-    <div>
+    <>
       <header className="d-flex flex-column align-items-center bg-success p-3">
         <h1 className="fs-4 text-center text-white">Online Report List</h1>
       </header>
@@ -49,8 +42,7 @@ const ReportListPage = () => {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
-
 export default ReportListPage;
