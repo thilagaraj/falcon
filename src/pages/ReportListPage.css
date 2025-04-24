@@ -29,10 +29,10 @@
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-.feature-card.disabled {
+/* .feature-card.disabled {
   opacity: 0.7;
   filter: grayscale(30%);
-}
+} */
 
 .feature-card .card-icon {
   font-size: 24px;

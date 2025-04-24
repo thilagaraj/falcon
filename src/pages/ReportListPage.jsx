@@ -58,9 +58,9 @@ const dashboardList = [
 const ReportListPage = () => {
   const [dashboard, setDashboard] = useState({});
   const [searchParams] = useSearchParams();
-  const branchCode = searchParams.get("branchCode");
-  const hotelId = searchParams.get("hotelId");
-  const propertyId = searchParams.get("propertyId");
+  const branchCode = searchParams.get("BranchCode");
+  const hotelId = searchParams.get("HotelId");
+  const propertyId = searchParams.get("PropertyId");
   const checkinNo = searchParams.get("CheckinNo");
   const mobileNo = searchParams.get("MobileNo");
   const { showLoading, hideLoading } = useSpinner();
@@ -97,9 +97,7 @@ const ReportListPage = () => {
   };
 
   const handleCardClick = (item) => {
-    // Handle the click event for enabled cards
     console.log('Card clicked:', item);
-    // Add your navigation or action logic here
   };
 
   return (
