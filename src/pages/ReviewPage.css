@@ -1,0 +1,199 @@
+/* ReviewPage.css */
+.review-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-form {
+  background-image: linear-gradient(135deg, #8e44ad, #9b59b6);
+  border-radius: 15px;
+  padding: 30px;
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.review-form h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.form-section {
+  margin-bottom: 25px;
+}
+
+.form-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 8px;
+}
+
+.input-field {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white !important;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-field:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px 15px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.radio-option:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.radio-option input[type="radio"] {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  outline: none;
+  margin-right: 5px;
+}
+
+.radio-option input[type="radio"]:checked {
+  border-color: #2ecc71;
+  background-color: rgba(46, 204, 113, 0.2);
+}
+
+.radio-option input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #2ecc71;
+}
+
+.radio-option label {
+  cursor: pointer;
+  margin: 0;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.comments-area {
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.comments-area::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.comments-area:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+}
+
+.submit-btn {
+  background-image: linear-gradient(135deg, #2ecc71, #27ae60);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 14px 30px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 30px auto 0;
+  min-width: 250px;
+  box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .review-container {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .review-form {
+    padding: 20px;
+    margin-top: 50px;
+    width: 100%;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .radio-option {
+    width: 100%;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-section h2 {
+    font-size: 1.1rem;
+  }
+}
