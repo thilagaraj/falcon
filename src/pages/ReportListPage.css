@@ -1,56 +1,4 @@
-@keyframes float {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-
-
-
-.pill-feature {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 25px;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.pill-feature:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
-.btn-primary-gradient {
-  background: linear-gradient(270deg, #70e396 0%, #45b369 100%);
-  border-radius: 25px;
-  padding: 10px 24px;
-  font-weight: 600;
-  border: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.btn-primary-gradient:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-}
-
-.btn-outline-white {
-  background: transparent;
-  border-radius: 25px;
-  padding: 10px 24px;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transition: all 0.3s ease;
-}
-
-.btn-outline-white:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-}
-
 .header-gradient {
-  background: linear-gradient(135deg, #8252e9 0%, #a485fd 100%);
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(130, 82, 233, 0.3);
@@ -59,7 +7,6 @@
   padding-bottom: 25px;
 }
 
-/* Card styles based on the attachment */
 .feature-card {
   border-radius: 16px;
   padding: 25px 20px;
@@ -68,56 +15,29 @@
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
   position: relative;
+  transition: all 0.3s ease;
   overflow: hidden;
-  cursor: pointer;
-  width: 100%;
-  min-width: 140px;
 }
 
-.feature-card:hover {
+.feature-card.enabled {
+  cursor: pointer;
+}
+
+.feature-card.enabled:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
+.feature-card.disabled {
+  opacity: 0.7;
+  filter: grayscale(30%);
+}
+
 .feature-card .card-icon {
   font-size: 24px;
-  margin-bottom: 10px;
-  z-index: 2;
 }
 
-.feature-card .card-title {
-  font-weight: 600;
-  font-size: 16px;
-  z-index: 2;
-}
-
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  z-index: 1;
-}
-
-.feature-card::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  right: -15px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.15);
-  z-index: 1;
-}
-
-/* Add subtle pattern to cards */
 .card-teal {
   background-image:
     radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
@@ -146,6 +66,8 @@
     linear-gradient(135deg, #ff922b, #f76707);
 }
 
-.card-teal, .card-blue, .card-purple, .card-orange {
-  color: white;
+@media (max-width: 768px) {
+  .header-gradient {
+    margin-top: 50px;
+  }
 }
