@@ -53,25 +53,27 @@ const ReportListPage = () => {
   };
 
   return (
-      <div className="container d-flex flex-column justify-content-center align-items-center min-vw-100 min-vh-100">
-      <header className="header-gradient">
-        <div className="container">
-          <h1 className="fs-4 text-center text-white mb-0 mt-2">{dashboard?.HeaderTittle}</h1>
-        </div>
-      </header>
-        <div className="row g-3 w-100  d-flex justify-content-center align-items-center">
-          {guestInfoDashboard.map((item, index) => (
-            <div className="col-6 col-md-4 col-lg-3" key={index}>
-              <div className={`feature-card ${item.bg}`}>
-                <div className="card-icon">
-                  <div className="bg-white bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                    <Icon icon={item.icon} width="24" style={{ color: 'white' }} />
+      <div className="d-flex flex-column justify-content-center align-items-center min-vw-100 min-vh-100">
+        <div className="container px-4 d-flex flex-column">
+          <header className="header-gradient w-100">
+            <h1 className="fs-4 text-center text-white mb-0 mt-2">{dashboard?.HeaderTittle}</h1>
+          </header>
+          <div className="dashboard-conatiner mt-4">
+            <div className="row g-3 d-flex justify-content-center align-items-center">
+              {guestInfoDashboard.map((item, index) => (
+                <div className="col-6 col-md-4 col-lg-3" key={index}>
+                  <div className={`feature-card ${item.bg}`}>
+                    <div className="card-icon">
+                      <div className="bg-white bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
+                        <Icon icon={item.icon} width="24" style={{ color: 'white' }} />
+                      </div>
+                    </div>
+                    <div className="card-title">{item.label}</div>
                   </div>
                 </div>
-                <div className="card-title">{item.label}</div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
   );
