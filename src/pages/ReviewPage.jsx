@@ -7,45 +7,16 @@ import $axios from "../utils/axios";
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState({});
-  const [reviewCategories, setReviewCategories] = useState([
-    {
-      "Id": 1,
-      "Code": "HO1",
-      "Description": "HOTEL FACILITY",
-      "BranchCode": "HMS_1001",
-      "GroupCode": "Front Office"
-    },
-    {
-      "Id": 2,
-      "Code": "HO2",
-      "Description": "ROOM COMFORT",
-      "BranchCode": "HMS_1001",
-      "GroupCode": "Front Office"
-    },
-    {
-      "Id": 3,
-      "Code": "HO3",
-      "Description": "STAFF SERVICE",
-      "BranchCode": "HMS_1001",
-      "GroupCode": "Front Office"
-    },
-    {
-      "Id": 4,
-      "Code": "HO4",
-      "Description": "FOOD QUALITY",
-      "BranchCode": "HMS_1001",
-      "GroupCode": "Front Office"
-    }
-  ]);
-
-  // Initialize formData with dynamic fields based on review categories
-  const [formData, setFormData] = useState({
+  const [reviewCategories, setReviewCategories] = useState([]);
+  const initialFormData = {
     guestName: "",
     roomNumber: "",
     dateOfStay: "",
     recommend: "",
     suggestions: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
   const [searchParams] = useSearchParams();
   const branchCode = searchParams.get("BranchCode");
   const hotelId = searchParams.get("HotelId");
@@ -56,14 +27,6 @@ const ReviewPage = () => {
 
   useEffect(() => {
     getReview();
-
-    // Initialize ratings and comments for each category
-    const initialFormData = {...formData};
-    reviewCategories.forEach(category => {
-      initialFormData[`rating_${category.Code}`] = "";
-      initialFormData[`comments_${category.Code}`] = "";
-    });
-    setFormData(initialFormData);
   }, []);
 
   const handleInputChange = (e) => {
@@ -79,30 +42,26 @@ const ReviewPage = () => {
     try {
       showLoading();
 
-      // Prepare the data for submission
       const reviewData = {
         guestName: formData.guestName,
-        roomNumber: formData.roomNumber,
+        roomNumber: formData.RoomNo,
         dateOfStay: formData.dateOfStay,
         recommend: formData.recommend,
         suggestions: formData.suggestions,
-        categoryRatings: []
+        categoryRatings: [],
       };
 
-      // Add all category ratings and comments
-      reviewCategories.forEach(category => {
+      reviewCategories.forEach((category) => {
         reviewData.categoryRatings.push({
           categoryId: category.Id,
           categoryCode: category.Code,
           rating: formData[`rating_${category.Code}`],
-          comments: formData[`comments_${category.Code}`] || ''
+          comments: formData[`comments_${category.Code}`] || "",
         });
       });
 
-      // Log the data that would be submitted
-      console.log('Submitting review data:', reviewData);
+      console.log("Submitting review data:", reviewData);
 
-      // Here you would make the actual API call to submit the data
       // const response = await $axios.post('/api/submitReview', reviewData);
 
       alert("Thank you for your feedback!");
@@ -117,7 +76,7 @@ const ReviewPage = () => {
       };
 
       // Reset all category ratings and comments
-      reviewCategories.forEach(category => {
+      reviewCategories.forEach((category) => {
         resetFormData[`rating_${category.Code}`] = "";
         resetFormData[`comments_${category.Code}`] = "";
       });
@@ -139,6 +98,13 @@ const ReviewPage = () => {
       );
       console.log(response);
       setReviews(response);
+
+      const categories = response?.Review;
+      categories.forEach((category) => {
+        initialFormData[`rating_${category.Code}`] = "";
+        initialFormData[`comments_${category.Code}`] = "";
+      });
+      setReviewCategories(categories);
     } catch (error) {
       console.error("Error fetching review details:", error);
     } finally {
@@ -148,7 +114,7 @@ const ReviewPage = () => {
 
   return (
     <div className="review-container">
-      <form className="review-form" onSubmit={handleSubmit}>
+      <form className="review-form">
         <h1>Hotel Guest Feedback Form</h1>
 
         <div className="form-section">
@@ -190,7 +156,7 @@ const ReviewPage = () => {
         </div>
 
         {/* Dynamic Review Categories */}
-        {reviewCategories.map((category, index) => (
+        {reviewCategories?.map((category, index) => (
           <div key={category.Code} className="form-section">
             <h2>
               {index + 1}. {category.Description}
@@ -247,7 +213,7 @@ const ReviewPage = () => {
               id={`comments_${category.Code}`}
               name={`comments_${category.Code}`}
               className="comments-area"
-              value={formData[`comments_${category.Code}`] || ''}
+              value={formData[`comments_${category.Code}`]}
               onChange={handleInputChange}
               placeholder={`Please share your comments about ${category.Description.toLowerCase()}...`}
             ></textarea>
@@ -256,7 +222,6 @@ const ReviewPage = () => {
 
         {/* Overall Experience Section */}
         <div className="form-section">
-          <h2>Overall Experience</h2>
           <div className="mt-4">
             <p>Would you recommend us to others?</p>
             <div className="radio-group">
@@ -299,7 +264,7 @@ const ReviewPage = () => {
           </div>
         </div>
 
-        <button type="submit" className="submit-btn">
+        <button className="submit-btn" onClick={handleSubmit}>
           Submit Feedback
         </button>
       </form>
