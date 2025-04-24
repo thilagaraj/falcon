@@ -7,15 +7,42 @@ import $axios from "../utils/axios";
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState({});
+  const [reviewCategories, setReviewCategories] = useState([
+    {
+      "Id": 1,
+      "Code": "HO1",
+      "Description": "HOTEL FACILITY",
+      "BranchCode": "HMS_1001",
+      "GroupCode": "Front Office"
+    },
+    {
+      "Id": 2,
+      "Code": "HO2",
+      "Description": "ROOM COMFORT",
+      "BranchCode": "HMS_1001",
+      "GroupCode": "Front Office"
+    },
+    {
+      "Id": 3,
+      "Code": "HO3",
+      "Description": "STAFF SERVICE",
+      "BranchCode": "HMS_1001",
+      "GroupCode": "Front Office"
+    },
+    {
+      "Id": 4,
+      "Code": "HO4",
+      "Description": "FOOD QUALITY",
+      "BranchCode": "HMS_1001",
+      "GroupCode": "Front Office"
+    }
+  ]);
+
+  // Initialize formData with dynamic fields based on review categories
   const [formData, setFormData] = useState({
     guestName: "",
     roomNumber: "",
     dateOfStay: "",
-    staffBehavior: "",
-    staffComments: "",
-    foodQuality: "",
-    foodComments: "",
-    overallExperience: "",
     recommend: "",
     suggestions: "",
   });
@@ -29,6 +56,14 @@ const ReviewPage = () => {
 
   useEffect(() => {
     getReview();
+
+    // Initialize ratings and comments for each category
+    const initialFormData = {...formData};
+    reviewCategories.forEach(category => {
+      initialFormData[`rating_${category.Code}`] = "";
+      initialFormData[`comments_${category.Code}`] = "";
+    });
+    setFormData(initialFormData);
   }, []);
 
   const handleInputChange = (e) => {
@@ -43,21 +78,51 @@ const ReviewPage = () => {
     e.preventDefault();
     try {
       showLoading();
-      // Submit form data to API
+
+      // Prepare the data for submission
+      const reviewData = {
+        guestName: formData.guestName,
+        roomNumber: formData.roomNumber,
+        dateOfStay: formData.dateOfStay,
+        recommend: formData.recommend,
+        suggestions: formData.suggestions,
+        categoryRatings: []
+      };
+
+      // Add all category ratings and comments
+      reviewCategories.forEach(category => {
+        reviewData.categoryRatings.push({
+          categoryId: category.Id,
+          categoryCode: category.Code,
+          rating: formData[`rating_${category.Code}`],
+          comments: formData[`comments_${category.Code}`] || ''
+        });
+      });
+
+      // Log the data that would be submitted
+      console.log('Submitting review data:', reviewData);
+
+      // Here you would make the actual API call to submit the data
+      // const response = await $axios.post('/api/submitReview', reviewData);
 
       alert("Thank you for your feedback!");
 
-      // Reset form
-      setFormData({
+      // Reset form - keep guest name and room number as they're read-only
+      const resetFormData = {
+        guestName: formData.guestName,
+        roomNumber: formData.roomNumber,
         dateOfStay: "",
-        staffBehavior: "",
-        staffComments: "",
-        foodQuality: "",
-        foodComments: "",
-        overallExperience: "",
         recommend: "",
         suggestions: "",
+      };
+
+      // Reset all category ratings and comments
+      reviewCategories.forEach(category => {
+        resetFormData[`rating_${category.Code}`] = "";
+        resetFormData[`comments_${category.Code}`] = "";
       });
+
+      setFormData(resetFormData);
     } catch (error) {
       console.error("Error submitting feedback:", error);
       alert("There was an error submitting your feedback. Please try again.");
@@ -124,71 +189,115 @@ const ReviewPage = () => {
           </div>
         </div>
 
-        {reviews?.Review?.map((item, index) => (
-          <div key={item.Code}>
-            <div className="form-section">
-              <h5>
-                {index + 1}. {item.Description}
-              </h5>
-              <div className="radio-group">
-                <div className="radio-option">
-                  <input
-                    type="radio"
-                    id={item.Code}
-                    name={item.Code}
-                    value="Excellent"
-                    checked={formData.staffBehavior === "Excellent"}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <label htmlFor="staffExcellent">Excellent</label>
-                </div>
-                <div className="radio-option">
-                  <input
-                    type="radio"
-                    id="staffGood"
-                    name="staffBehavior"
-                    value="Good"
-                    checked={formData.staffBehavior === "Good"}
-                    onChange={handleInputChange}
-                  />
-                  <label htmlFor="staffGood">Good</label>
-                </div>
-                <div className="radio-option">
-                  <input
-                    type="radio"
-                    id="staffAverage"
-                    name="staffBehavior"
-                    value="Average"
-                    checked={formData.staffBehavior === "Average"}
-                    onChange={handleInputChange}
-                  />
-                  <label htmlFor="staffAverage">Average</label>
-                </div>
-                <div className="radio-option">
-                  <input
-                    type="radio"
-                    id="staffPoor"
-                    name="staffBehavior"
-                    value="Poor"
-                    checked={formData.staffBehavior === "Poor"}
-                    onChange={handleInputChange}
-                  />
-                  <label htmlFor="staffPoor">Poor</label>
-                </div>
+        {/* Dynamic Review Categories */}
+        {reviewCategories.map((category, index) => (
+          <div key={category.Code} className="form-section">
+            <h2>
+              {index + 1}. {category.Description}
+            </h2>
+            <div className="radio-group">
+              <div className="radio-option">
+                <input
+                  type="radio"
+                  id={`excellent_${category.Code}`}
+                  name={`rating_${category.Code}`}
+                  value="Excellent"
+                  checked={formData[`rating_${category.Code}`] === "Excellent"}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label htmlFor={`excellent_${category.Code}`}>Excellent</label>
               </div>
-              <label htmlFor="staffComments">Comments:</label>
-              <textarea
-                id="staffComments"
-                name="staffComments"
-                className="comments-area"
-                value={formData.staffComments}
-                onChange={handleInputChange}
-                placeholder="Please share your comments about our staff..."
-              ></textarea>
+              <div className="radio-option">
+                <input
+                  type="radio"
+                  id={`good_${category.Code}`}
+                  name={`rating_${category.Code}`}
+                  value="Good"
+                  checked={formData[`rating_${category.Code}`] === "Good"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor={`good_${category.Code}`}>Good</label>
+              </div>
+              <div className="radio-option">
+                <input
+                  type="radio"
+                  id={`average_${category.Code}`}
+                  name={`rating_${category.Code}`}
+                  value="Average"
+                  checked={formData[`rating_${category.Code}`] === "Average"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor={`average_${category.Code}`}>Average</label>
+              </div>
+              <div className="radio-option">
+                <input
+                  type="radio"
+                  id={`poor_${category.Code}`}
+                  name={`rating_${category.Code}`}
+                  value="Poor"
+                  checked={formData[`rating_${category.Code}`] === "Poor"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor={`poor_${category.Code}`}>Poor</label>
+              </div>
             </div>
+            <label htmlFor={`comments_${category.Code}`}>Comments:</label>
+            <textarea
+              id={`comments_${category.Code}`}
+              name={`comments_${category.Code}`}
+              className="comments-area"
+              value={formData[`comments_${category.Code}`] || ''}
+              onChange={handleInputChange}
+              placeholder={`Please share your comments about ${category.Description.toLowerCase()}...`}
+            ></textarea>
           </div>
         ))}
+
+        {/* Overall Experience Section */}
+        <div className="form-section">
+          <h2>Overall Experience</h2>
+          <div className="mt-4">
+            <p>Would you recommend us to others?</p>
+            <div className="radio-group">
+              <div className="radio-option">
+                <input
+                  type="radio"
+                  id="recommendYes"
+                  name="recommend"
+                  value="Yes"
+                  checked={formData.recommend === "Yes"}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label htmlFor="recommendYes">Yes</label>
+              </div>
+              <div className="radio-option">
+                <input
+                  type="radio"
+                  id="recommendNo"
+                  name="recommend"
+                  value="No"
+                  checked={formData.recommend === "No"}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="recommendNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <label htmlFor="suggestions">Suggestions for Improvement:</label>
+            <textarea
+              id="suggestions"
+              name="suggestions"
+              className="comments-area"
+              value={formData.suggestions}
+              onChange={handleInputChange}
+              placeholder="Please share your suggestions to help us improve..."
+            ></textarea>
+          </div>
+        </div>
 
         <button type="submit" className="submit-btn">
           Submit Feedback
