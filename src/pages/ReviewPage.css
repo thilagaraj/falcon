@@ -10,49 +10,92 @@
 }
 
 .review-form {
-  background-image: linear-gradient(135deg, #8e44ad, #9b59b6);
+  width: 100%;
   border-radius: 15px;
   padding: 30px;
-  color: white;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: #333;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eaeaea;
 }
 
 .review-form h1 {
   text-align: center;
   margin-bottom: 30px;
-  font-weight: 600;
+  font-weight: 700;
+  color: #000;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.review-form h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
 }
 
 .form-section {
   margin-bottom: 25px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.form-section:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .form-section h2 {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding-bottom: 8px;
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 6px;
 }
 
 .input-field {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: white;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  color: white !important;
+  color: #333 !important;
   padding: 10px 15px;
   margin-bottom: 15px;
   width: 100%;
+  transition: all 0.3s ease;
+}
+
+.input-field[readOnly] {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  cursor: default;
+  pointer-events: none;
+}
+
+.input-field[readOnly]:focus {
+  border-color: #ddd;
+  box-shadow: none;
+  outline: none;
 }
 
 .input-field::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: #aaa;
 }
 
 .input-field:focus {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+  background-color: white;
+  border-color: #333;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.05);
+  outline: none;
 }
 
 .radio-group {
@@ -66,14 +109,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: white;
   padding: 8px 15px;
   border-radius: 30px;
   transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
 }
 
 .radio-option:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #f5f5f5;
+  border-color: #333;
 }
 
 .radio-option input[type="radio"] {
@@ -83,17 +128,17 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border: 2px solid #d1d1d1;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: white;
   position: relative;
   outline: none;
   margin-right: 5px;
 }
 
 .radio-option input[type="radio"]:checked {
-  border-color: #2ecc71;
-  background-color: rgba(46, 204, 113, 0.2);
+  border-color: #333;
+  background-color: white;
 }
 
 .radio-option input[type="radio"]:checked::after {
@@ -105,40 +150,50 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #2ecc71;
+  background-color: #333;
 }
 
 .radio-option label {
   cursor: pointer;
   margin: 0;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: #555;
+  display: inline;
+}
+
+.review-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #555;
 }
 
 .comments-area {
   width: 100%;
   min-height: 80px;
   resize: vertical;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: white;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  color: white;
+  color: #333;
   padding: 10px 15px;
   margin-bottom: 15px;
+  transition: all 0.3s ease;
 }
 
 .comments-area::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: #aaa;
 }
 
 .comments-area:focus {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+  background-color: white;
+  border-color: #333;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.05);
+  outline: none;
 }
 
 .submit-btn {
-  background-image: linear-gradient(135deg, #2ecc71, #27ae60);
+  background-color: #333;
   border: none;
   border-radius: 25px;
   color: white;
@@ -150,7 +205,7 @@
   display: block;
   margin: 30px auto 0;
   min-width: 250px;
-  box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .submit-btn:hover {
@@ -173,6 +228,12 @@
     padding: 20px;
     margin-top: 50px;
     width: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .form-section {
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   }
 
   .radio-group {
@@ -189,11 +250,13 @@
     padding: 12px 20px;
   }
 
-  h1 {
+  .review-form h1 {
     font-size: 1.5rem;
+    font-weight: 700;
   }
 
   .form-section h2 {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
   }
 }
