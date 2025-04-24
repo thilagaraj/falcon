@@ -217,6 +217,11 @@
   transform: translateY(0);
 }
 
+/* Utility classes */
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .review-container {
