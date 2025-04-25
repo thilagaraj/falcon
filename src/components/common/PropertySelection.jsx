@@ -35,8 +35,8 @@ const PropertySelection = () => {
     }
   };
 
-  const onPropertySelect = (property) => {
-    localStorage.setItem("FALCON_HOTEL_ID", property.HotelId);
+  const onPropertySelect = (hotelId) => {
+    localStorage.setItem("FALCON_HOTEL_ID", hotelId);
     navigate("/dashboard");
   };
 

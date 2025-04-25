@@ -1,7 +1,7 @@
 import moment from "moment";
 
 // Formatters
-const formatDateForDisplay = (dateValue, format = "MM/DD/YYYY") => {
+const formatDateForDisplay = (dateValue, format = "DD/MM/YYYY") => {
   return moment(dateValue).format(format);
 };
 
@@ -10,7 +10,7 @@ const formatDateForDb = (dateValue, format = "YYYY-MM-DD") => {
 };
 
 // Date Utils
-const getCurrentDate = () => moment();
+const getCurrentDate = (format = 'DD/MM/YYYY') => moment().format(format);
 
 const getYesterdayDate = () => moment().subtract(1, "day");
 

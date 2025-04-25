@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggleButton from "../helper/ThemeToggleButton";
-import Alerts from "../components/common/Alerts";
+import Alerts from "../components/Common/Alerts";
 
 const MasterLayout = ({ children }) => {
   let [sidebarActive, seSidebarActive] = useState(false);
@@ -150,14 +150,14 @@ const MasterLayout = ({ children }) => {
             <li className="sidebar-menu-group-title">Reports</li>
             <li>
               <NavLink
-                to="/email"
+                to="/sales-report"
                 className={(navData) => (navData.isActive ? "active-page" : "")}
               >
                 <Icon
                   icon="fluent-mdl2:reservation-orders"
                   className="menu-icon"
                 />
-                <span>Reservation report</span>
+                <span>Sales report</span>
               </NavLink>
             </li>
             <li>

@@ -13,7 +13,13 @@ $axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("FALCON_TOKEN");
     if (token) {
-      config.headers.Authorization = token;
+      config.headers.Authorization = `Bearer ${token}`;
+      config.params = {
+        ...config.params,
+        BranchCode: localStorage.getItem("FALCON_BRANCH_CODE"),
+        PropertyId: localStorage.getItem("FALCON_PROPERTY_ID"),
+        HotelId: localStorage.getItem("FALCON_HOTEL_ID"),
+      };
     }
     return config;
   },

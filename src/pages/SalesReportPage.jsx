@@ -1,15 +1,15 @@
 import MasterLayout from "../masterLayout/MasterLayout";
-import Dashboard from "../components/Dashboard";
+import SalesReport from "../components/SalesReport";
 
-const DashboardPage = () => {
+const SalesReportPage = () => {
   return (
     <>
       {/* MasterLayout */}
       <MasterLayout>
-        <Dashboard />
+        <SalesReport />
       </MasterLayout>
     </>
   );
 };
 
-export default DashboardPage;
+export default SalesReportPage;

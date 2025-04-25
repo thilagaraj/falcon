@@ -5,8 +5,9 @@ import PropertySelectionPage from "./pages/PropertySelection";
 import ErrorPage from "./pages/ErrorPage";
 import FormValidationPage from "./pages/FormValidationPage";
 import DashboardPage from "./pages/DashboardPage";
-import Spinner from "./components/common/Spinner";
-import Alerts from "./components/common/Alerts";
+import SalesReportPage from "./pages/SalesReportPage";
+import Spinner from "./components/Common/Spinner";
+import Alerts from "./components/Common/Alerts";
 import { SpinnerProvider, useSpinner } from "./hook/SpinnerContext";
 import { AlertProvider } from "./hook/AlertContext";
 import ProtectedRoute from "./hook/ProtectedRoute";
@@ -29,11 +30,8 @@ function App() {
                 element={<PropertySelectionPage />}
               />
               <Route exact path="/" element={<DashboardPage />} />
-              <Route
-                exact
-                path="/form-validation"
-                element={<FormValidationPage />}
-              />
+              <Route exact path="/dashboard" element={<DashboardPage />} />
+              <Route exact path="/sales-report" element={<SalesReportPage />} />
             </Route>
 
             {/* Catch-all for 404 */}

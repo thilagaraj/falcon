@@ -15781,3 +15781,7 @@ body .form-control.is-valid,
 .ml-auto {
   margin-left: auto !important;
 }
+
+.apexcharts-canvas {
+  margin: auto !important;
+}
