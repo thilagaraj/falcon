@@ -43,8 +43,8 @@ const ReviewPage = () => {
       showLoading();
 
       const reviewData = {
-        guestName: formData.guestName,
-        roomNumber: formData.RoomNo,
+        guestName: reviews.GuetName,
+        roomNumber: reviews.RoomNo,
         dateOfStay: formData.dateOfStay,
         recommend: formData.recommend,
         suggestions: formData.suggestions,
@@ -66,7 +66,6 @@ const ReviewPage = () => {
 
       alert("Thank you for your feedback!");
 
-      // Reset form - keep guest name and room number as they're read-only
       const resetFormData = {
         guestName: formData.guestName,
         roomNumber: formData.roomNumber,
@@ -75,7 +74,6 @@ const ReviewPage = () => {
         suggestions: "",
       };
 
-      // Reset all category ratings and comments
       reviewCategories.forEach((category) => {
         resetFormData[`rating_${category.Code}`] = "";
         resetFormData[`comments_${category.Code}`] = "";
@@ -113,11 +111,10 @@ const ReviewPage = () => {
   };
 
   return (
-    <div className="review-container">
-      <form className="review-form">
-        <h1>Hotel Guest Feedback Form</h1>
-
-        <div className="form-section">
+    <div className="d-flex justify-content-center align-items-center">
+      <form className="review-form shadow bg-white rounded-4 p-28">
+        <h4 className="text-center mb-3">Hotel Guest Feedback Form</h4>
+        <div className="p-20 rounded-4 mb-5 shadow bg-light">
           <div className="row">
             <div className="col-md-12">
               <label>Guest Name:</label>
@@ -155,12 +152,11 @@ const ReviewPage = () => {
           </div>
         </div>
 
-        {/* Dynamic Review Categories */}
         {reviewCategories?.map((category, index) => (
-          <div key={category.Code} className="form-section">
-            <h2>
+          <div key={category.Code} className="p-20 rounded-4 mb-5 shadow bg-light">
+            <h6>
               {index + 1}. {category.Description}
-            </h2>
+            </h6>
             <div className="radio-group">
               <div className="radio-option">
                 <input
@@ -221,8 +217,8 @@ const ReviewPage = () => {
         ))}
 
         {/* Overall Experience Section */}
-        <div className="form-section">
-          <div className="mt-4">
+        <div className="p-20 rounded-4 mb-5 shadow bg-light ">
+          <div className="mt-6">
             <p>Would you recommend us to others?</p>
             <div className="radio-group">
               <div className="radio-option">
@@ -264,7 +260,7 @@ const ReviewPage = () => {
           </div>
         </div>
 
-        <button className="submit-btn" onClick={handleSubmit}>
+        <button className="submit-btn text-center" onClick={handleSubmit}>
           Submit Feedback
         </button>
       </form>
