@@ -112,11 +112,11 @@ const ReviewPage = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center">
-      <form className="review-form shadow bg-white rounded-4 p-28">
+      <form className="shadow bg-white rounded-4 p-13 sm:p-28">
         <h4 className="text-center mb-3">Hotel Guest Feedback Form</h4>
-        <div className="p-20 rounded-4 mb-5 shadow bg-light">
+        <div className="p-13 sm:p-20 rounded-4 mb-5 shadow bg-light">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-sm-12">
               <label>Guest Name:</label>
               <input
                 type="text"
@@ -128,7 +128,7 @@ const ReviewPage = () => {
           </div>
 
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-sm-6">
               <label>Room Number:</label>
               <input
                 type="text"
@@ -137,7 +137,7 @@ const ReviewPage = () => {
                 readOnly
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-sm-6">
               <label htmlFor="dateOfStay">Date of Stay:</label>
               <input
                 type="date"
@@ -153,11 +153,14 @@ const ReviewPage = () => {
         </div>
 
         {reviewCategories?.map((category, index) => (
-          <div key={category.Code} className="p-20 rounded-4 mb-5 shadow bg-light">
+          <div
+            key={category.Code}
+            className="p-13 sm:p-20 rounded-4 mb-5 shadow bg-light"
+          >
             <h6>
               {index + 1}. {category.Description}
             </h6>
-            <div className="radio-group">
+            <div className="mb-3 d-flex flex-column flex-sm-row gap-2 gap-sm-3">
               <div className="radio-option">
                 <input
                   type="radio"
@@ -204,63 +207,68 @@ const ReviewPage = () => {
                 <label htmlFor={`poor_${category.Code}`}>Poor</label>
               </div>
             </div>
-            <label htmlFor={`comments_${category.Code}`}>Comments:</label>
-            <textarea
-              id={`comments_${category.Code}`}
-              name={`comments_${category.Code}`}
-              className="comments-area"
-              value={formData[`comments_${category.Code}`]}
-              onChange={handleInputChange}
-              placeholder={`Please share your comments about ${category.Description.toLowerCase()}...`}
-            ></textarea>
+            {category.Code !== "OV" ? (
+              <>
+                <label htmlFor={`comments_${category.Code}`}>Comments:</label>
+                <textarea
+                  id={`comments_${category.Code}`}
+                  name={`comments_${category.Code}`}
+                  className="comments-area"
+                  value={formData[`comments_${category.Code}`]}
+                  onChange={handleInputChange}
+                  placeholder={`Please share your comments about ${category.Description.toLowerCase()}...`}
+                ></textarea>
+              </>
+            ) : (
+              <>
+                <div className="mt-6">
+                  <p>Would you recommend us to others?</p>
+                  <div className="radio-group d-flex gap-3">
+                    <div className="radio-option bg-white rounded-5 d-flex px-16 py-8 align-items-center border-1 border-secondary-subtle">
+                      <input
+                        type="radio"
+                        id="recommendYes"
+                        name="recommend"
+                        value="Yes"
+                        checked={formData.recommend === "Yes"}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <label htmlFor="recommendYes">Yes</label>
+                    </div>
+                    <div className="radio-option bg-white rounded-5 d-flex px-16 py-8 align-items-center border-1 border-secondary-subtle">
+                      <input
+                        type="radio"
+                        id="recommendNo"
+                        name="recommend"
+                        value="No"
+                        checked={formData.recommend === "No"}
+                        onChange={handleInputChange}
+                      />
+                      <label htmlFor="recommendNo">No</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-12">
+                  <label htmlFor="suggestions">
+                    Suggestions for Improvement:
+                  </label>
+                  <textarea
+                    id="suggestions"
+                    name="suggestions"
+                    className="comments-area"
+                    value={formData.suggestions}
+                    onChange={handleInputChange}
+                    placeholder="Please share your suggestions to help us improve..."
+                  ></textarea>
+                </div>
+              </>
+            )}
           </div>
         ))}
 
-        {/* Overall Experience Section */}
-        <div className="p-20 rounded-4 mb-5 shadow bg-light ">
-          <div className="mt-6">
-            <p>Would you recommend us to others?</p>
-            <div className="radio-group">
-              <div className="radio-option">
-                <input
-                  type="radio"
-                  id="recommendYes"
-                  name="recommend"
-                  value="Yes"
-                  checked={formData.recommend === "Yes"}
-                  onChange={handleInputChange}
-                  required
-                />
-                <label htmlFor="recommendYes">Yes</label>
-              </div>
-              <div className="radio-option">
-                <input
-                  type="radio"
-                  id="recommendNo"
-                  name="recommend"
-                  value="No"
-                  checked={formData.recommend === "No"}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="recommendNo">No</label>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <label htmlFor="suggestions">Suggestions for Improvement:</label>
-            <textarea
-              id="suggestions"
-              name="suggestions"
-              className="comments-area"
-              value={formData.suggestions}
-              onChange={handleInputChange}
-              placeholder="Please share your suggestions to help us improve..."
-            ></textarea>
-          </div>
-        </div>
-
-        <button className="submit-btn text-center" onClick={handleSubmit}>
+        <button className="submit-btn p-28 py-13 py rounded-5 px bg-dark fw-semibold d-block border-0 text-white text-center mx-auto shadow" onClick={handleSubmit}>
           Submit Feedback
         </button>
       </form>
