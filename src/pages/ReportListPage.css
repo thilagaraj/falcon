@@ -1,43 +1,3 @@
-.header-gradient {
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(130, 82, 233, 0.3);
-  border-radius: 10px;
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-
-.feature-card {
-  border-radius: 16px;
-  padding: 25px 20px;
-  height: 130px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  position: relative;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.feature-card.enabled {
-  cursor: pointer;
-}
-
-.feature-card.enabled:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* .feature-card.disabled {
-  opacity: 0.7;
-  filter: grayscale(30%);
-} */
-
-.feature-card .card-icon {
-  font-size: 24px;
-}
-
 .card-teal {
   background-image:
     radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
@@ -64,10 +24,4 @@
     radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
     radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
     linear-gradient(135deg, #ff922b, #f76707);
-}
-
-@media (max-width: 768px) {
-  .header-gradient {
-    margin-top: 50px;
-  }
 }

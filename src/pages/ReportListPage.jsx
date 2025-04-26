@@ -103,7 +103,7 @@ const ReportListPage = () => {
   return (
     <div className="d-flex flex-column justify-content-center align-items-center min-vw-100 min-vh-100">
       <div className="container px-4 d-flex flex-column">
-        <header className="header-gradient w-100">
+        <header className="py-24 rounded-3 shadow-lg w-100 mt-5 mt-md-2">
           <h1 className="fs-4 text-center text-white mb-0 mt-2 px-3 text-black">
             {dashboard?.HeaderTittle}
           </h1>
@@ -113,7 +113,7 @@ const ReportListPage = () => {
             {guestInfoDashboard.map((item, index) => (
               <div className="col-6 col-md-4 col-lg-3 mb-3" key={index}>
                 <div
-                  className={`feature-card ${item.bg} ${item.enabled ? 'enabled' : 'disabled'}`}
+                  className={`h-120-px shadow d-flex flex-column justify-content-between py-24 px-20 rounded-4 ${item.bg} ${item.enabled ? 'cursor-pointer' : 'disabled'}`}
                   onClick={item.enabled ? () => handleCardClick(item) : undefined}
                 >
                   <div className="card-icon">
