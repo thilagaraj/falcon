@@ -94,33 +94,10 @@
   transition: all 0.3s ease;
 }
 
-.comments-area::placeholder {
-  color: #aaa;
-}
-
-.comments-area:focus {
-  background-color: white;
-  border-color: #333;
-  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.05);
-  outline: none;
-}
-
 
  
 @media screen and (max-width: 575px) {
-  
-
   .submit-btn {
     width: 100%;
   }
-/*
-  .review-form h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-
-  .form-section h2 {
-    font-size: 0.9rem;
-    font-weight: 700;
-  }*/
 } 
