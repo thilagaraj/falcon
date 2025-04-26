@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react";
-import "./ReportListPage.css";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSpinner } from "../hook/SpinnerContext";
@@ -9,49 +8,49 @@ const dashboardList = [
   {
     icon: "mdi:file-document",
     label: "Bill Detail",
-    bg: "card-teal",
+    bg: "linear-gradient(135deg, #20c997, #0ca678)",
     value: "BillDetail",
   },
   {
     icon: "mdi:cash",
     label: "Pay Advance",
-    bg: "card-blue",
+    bg: "linear-gradient(135deg, #339af0, #1971c2)",
     value: "PayAdvance",
   },
   {
     icon: "mdi:food",
     label: "View Menu",
-    bg: "card-purple",
+    bg: "linear-gradient(135deg, #9775fa, #7048e8)",
     value: "ViewMenu",
   },
   {
     icon: "mdi:bed",
     label: "Extrabed Request",
-    bg: "card-orange",
+    bg: "linear-gradient(135deg, #ff922b, #f76707)",
     value: "ExtrabedRequest",
   },
   {
     icon: "mdi:comment",
     label: "Feedback",
-    bg: "card-teal",
+    bg: "linear-gradient(135deg, #20c997, #0ca678)",
     value: "Feedback",
   },
   {
     icon: "mdi:room-service-outline",
     label: "Facilities",
-    bg: "card-blue",
+    bg: "linear-gradient(135deg, #339af0, #1971c2)",
     value: "Facilities",
   },
   {
     icon: "mdi:magnify",
     label: "Enquiry Detail",
-    bg: "card-purple",
+    bg: "linear-gradient(135deg, #9775fa, #7048e8)",
     value: "EnquiryDetail",
   },
   {
     icon: "mdi:calendar-check",
     label: "Reservation",
-    bg: "card-orange",
+    bg: "linear-gradient(135deg, #ff922b, #f76707)",
     value: "Reservation",
   },
 ];
@@ -97,7 +96,7 @@ const ReportListPage = () => {
   };
 
   const handleCardClick = (item) => {
-    console.log('Card clicked:', item);
+    console.log("Card clicked:", item);
   };
 
   return (
@@ -113,8 +112,13 @@ const ReportListPage = () => {
             {guestInfoDashboard.map((item, index) => (
               <div className="col-6 col-md-4 col-lg-3 mb-3" key={index}>
                 <div
-                  className={`h-120-px shadow d-flex flex-column justify-content-between py-24 px-20 rounded-4 ${item.bg} ${item.enabled ? 'cursor-pointer' : 'disabled'}`}
-                  onClick={item.enabled ? () => handleCardClick(item) : undefined}
+                  style={{ background: item.bg }}
+                  className={`h-120-px shadow d-flex flex-column justify-content-between py-24 px-20 rounded-4  ${
+                    item.enabled ? "cursor-pointer" : "disabled"
+                  }`}
+                  onClick={
+                    item.enabled ? () => handleCardClick(item) : undefined
+                  }
                 >
                   <div className="card-icon">
                     <div
