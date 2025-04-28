@@ -116,23 +116,14 @@ const ReviewPage = () => {
           <div className="row">
             <div className="col-sm-12">
               <label>Guest Name:</label>
-              <input
-                type="text"
-                className="form-control"
-                value={reviews.GuetName}
-                readOnly
-              />
+              <div className="form-control"><span className="text-muted user-select-none">{reviews.GuetName}</span></div>
             </div>
           </div>
           <div className="row">
             <div className="col-sm-6">
               <label>Room Number:</label>
-              <input
-                type="text"
-                className="form-control"
-                value={reviews.RoomNo}
-                readOnly
-              />
+              <div className="form-control">
+                <span className="text-muted user-select-none">{reviews.RoomNo}</span></div>
             </div>
             <div className="col-sm-6">
               <label htmlFor="dateOfStay">Date of Stay:</label>
@@ -160,7 +151,7 @@ const ReviewPage = () => {
             <div className="mb-3 d-flex flex-column flex-sm-row gap-2 gap-sm-3">
               <div>
                 <input
-                  className="form-check-input"
+                  className="form-check-input border-dark-3"
                   type="radio"
                   id={`excellent_${category.Code}`}
                   name={`rating_${category.Code}`}
@@ -176,7 +167,7 @@ const ReviewPage = () => {
               <div>
                 <input
                   type="radio"
-                  className="form-check-input"
+                  className="form-check-input border-dark-3"
                   id={`good_${category.Code}`}
                   name={`rating_${category.Code}`}
                   value="Good"
@@ -190,7 +181,7 @@ const ReviewPage = () => {
               <div>
                 <input
                   type="radio"
-                  className="form-check-input"
+                  className="form-check-input border-dark-3"
                   id={`average_${category.Code}`}
                   name={`rating_${category.Code}`}
                   value="Average"
@@ -204,7 +195,7 @@ const ReviewPage = () => {
               <div>
                 <input
                   type="radio"
-                  className="form-check-input"
+                  className="form-check-input border-dark-3"
                   id={`poor_${category.Code}`}
                   name={`rating_${category.Code}`}
                   value="Poor"
@@ -238,7 +229,7 @@ const ReviewPage = () => {
                     <div className="radio-option bg-white rounded-5 d-flex px-16 py-8 align-items-center border-1 border-secondary-subtle">
                       <input
                         type="radio"
-                        className="form-check-input"
+                        className="form-check-input border-dark-3"
                         id="recommendYes"
                         name="recommend"
                         value="Yes"
@@ -253,7 +244,7 @@ const ReviewPage = () => {
                     <div className="radio-option bg-white rounded-5 d-flex px-16 py-8 align-items-center border-1 border-secondary-subtle">
                       <input
                         type="radio"
-                        className="form-check-input"
+                        className="form-check-input border-dark-3"
                         id="recommendNo"
                         name="recommend"
                         value="No"
@@ -285,9 +276,9 @@ const ReviewPage = () => {
             )}
           </div>
         ))}
-        <div class="d-grid d-sm-flex justify-content-sm-center">
+        <div className="d-grid d-sm-flex justify-content-sm-center">
           <button
-            class="p-3 rounded-5 bg-dark fw-semibold border-0 text-white text-center shadow"
+            className="p-3 rounded-5 bg-dark fw-semibold border-0 text-white text-center shadow"
             onClick={handleSubmit}
           >
             Submit Feedback
