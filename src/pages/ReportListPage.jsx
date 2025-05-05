@@ -1,48 +1,147 @@
-import { Icon } from '@iconify/react';
-const items = [
-  { icon: 'mdi:file-document', label: 'Bill Detail', bg: 'bg-info-gradient' },
-  { icon: 'mdi:cash', label: 'Pay Advance', bg: 'bg-info' },
-  { icon: 'mdi:food', label: 'View Menu', bg: 'bg-success-gradient' },
-  { icon: 'mdi:bed', label: 'Extrabed Request', bg: 'bg-success' },
-  { icon: 'mdi:comment', label: 'Feedback', bg: 'bg-purple' },
-  { icon: 'mdi:room-service-outline', label: 'Facilities', bg: 'bg-success-600' },
-  { icon: 'mdi:magnify', label: 'Enquiry Detail', bg: 'bg-indigo' },
-  { icon: 'mdi:calendar-check', label: 'Reservation', bg: 'bg-warning-gradient' },
+import { Icon } from "@iconify/react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useSpinner } from "../hook/SpinnerContext";
+import $axios from "../utils/axios";
+
+const dashboardList = [
+  {
+    icon: "mdi:file-document",
+    label: "Bill Detail",
+    bg: "linear-gradient(135deg, #20c997, #0ca678)",
+    value: "BillDetail",
+  },
+  {
+    icon: "mdi:cash",
+    label: "Pay Advance",
+    bg: "linear-gradient(135deg, #339af0, #1971c2)",
+    value: "PayAdvance",
+  },
+  {
+    icon: "mdi:food",
+    label: "View Menu",
+    bg: "linear-gradient(135deg, #9775fa, #7048e8)",
+    value: "ViewMenu",
+  },
+  {
+    icon: "mdi:bed",
+    label: "Extrabed Request",
+    bg: "linear-gradient(135deg, #ff922b, #f76707)",
+    value: "ExtrabedRequest",
+  },
+  {
+    icon: "mdi:comment",
+    label: "Feedback",
+    bg: "linear-gradient(135deg, #20c997, #0ca678)",
+    value: "Feedback",
+  },
+  {
+    icon: "mdi:room-service-outline",
+    label: "Facilities",
+    bg: "linear-gradient(135deg, #339af0, #1971c2)",
+    value: "Facilities",
+  },
+  {
+    icon: "mdi:magnify",
+    label: "Enquiry Detail",
+    bg: "linear-gradient(135deg, #9775fa, #7048e8)",
+    value: "EnquiryDetail",
+  },
+  {
+    icon: "mdi:calendar-check",
+    label: "Reservation",
+    bg: "linear-gradient(135deg, #ff922b, #f76707)",
+    value: "Reservation",
+  },
 ];
 const ReportListPage = () => {
+  const [dashboard, setDashboard] = useState({});
+  const [searchParams] = useSearchParams();
+  const branchCode = searchParams.get("BranchCode");
+  const hotelId = searchParams.get("HotelId");
+  const propertyId = searchParams.get("PropertyId");
+  const checkinNo = searchParams.get("CheckinNo");
+  const mobileNo = searchParams.get("MobileNo");
+  const { showLoading, hideLoading } = useSpinner();
+  const [guestInfoDashboard, setGuestInfoDashboard] = useState([]);
+
+  useEffect(() => {
+    getGuestDashboard();
+  }, []);
+
+  const getGuestDashboard = async () => {
+    try {
+      showLoading();
+      const response = await $axios.get(
+        `/FalconQRScan/GetGuestDashboard?BranchCode=${branchCode}&PropertyId=${propertyId}&HotelId=${hotelId}&CheckinNo=${checkinNo}&MobileNo=${mobileNo}`
+      );
+      console.log(response);
+      setDashboard(response);
+      const arr = Object.entries(response?.GuestInfoDashboard).map(
+        ([key, enabled]) => ({ key, enabled })
+      );
+      const updatedArr = arr.map((item) => {
+        const dashboardItem = dashboardList.find(
+          (dashboardItem) => dashboardItem.value === item.key
+        );
+        item = { ...item, ...dashboardItem };
+        return item;
+      });
+      setGuestInfoDashboard(updatedArr);
+    } catch (error) {
+      console.error("Error fetching checkout details:", error);
+    } finally {
+      hideLoading();
+    }
+  };
+
+  const handleCardClick = (item) => {
+    console.log("Card clicked:", item);
+  };
+
   return (
-    <>
-      <header className="d-flex flex-column align-items-center bg-success p-3">
-        <h1 className="fs-4 text-center text-white">Online Report List</h1>
-      </header>
-      <div className="container py-4 d-flex justify-content-center align-items-center" style={{ height: '90vh' }}>
-        <div className="row g-4">
-          {items.map((item, index) => (
-            <div className="col-6 col-lg-3" key={index}>
-              <div
-                className={`py-4 px-3 d-flex flex-column justify-content-center align-items-center text-white rounded text-center ${item.bg}`}
-                style={{
-                  height: '120px',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                  transition: 'transform 0.3s, box-shadow 0.3s'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.boxShadow = '0 6px 10px rgba(0, 0, 0, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                }}
-              >
-                <Icon icon={item.icon} width="48" />
-                <div className="fs-5">{item.label}</div>
+    <div className="d-flex flex-column justify-content-center align-items-center min-vw-100 min-vh-100">
+      <div className="container px-4 d-flex flex-column">
+        <header className="py-24 rounded-3 shadow-lg w-100 mt-5 mt-md-2">
+          <h1 className="fs-4 text-center text-white mb-0 mt-2 px-3 text-black">
+            {dashboard?.HeaderTittle}
+          </h1>
+        </header>
+        <div className="mt-3 mx-1">
+          <div className="row d-flex justify-content-center align-items-center">
+            {guestInfoDashboard.map((item, index) => (
+              <div className="col-6 col-md-4 col-lg-3 mb-3" key={index}>
+                <div
+                  style={{ background: item.bg }}
+                  className={`h-120-px shadow d-flex flex-column justify-content-between py-24 px-20 rounded-4  ${
+                    item.enabled ? "cursor-pointer" : "disabled"
+                  }`}
+                  onClick={
+                    item.enabled ? () => handleCardClick(item) : undefined
+                  }
+                >
+                  <div className="card-icon">
+                    <div
+                      className="bg-white bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center"
+                      style={{ width: "40px", height: "40px" }}
+                    >
+                      <Icon
+                        icon={item.icon}
+                        width="24"
+                        style={{ color: "white" }}
+                      />
+                    </div>
+                  </div>
+                  <div className="card-title fw-bold text-white">
+                    {item.label}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default ReportListPage;
