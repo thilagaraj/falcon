@@ -14,6 +14,7 @@ import ProtectedRoute from "./hook/ProtectedRoute";
 import GuestInformationForm from "./pages/GuestInformationForm";
 import { CheckoutDetails } from "./pages/CheckoutDetails";
 import ReportListPage from "./pages/ReportListPage";
+import HMSDashboardPage from "./pages/HMSDashboardPage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
               />
               <Route exact path="/" element={<DashboardPage />} />
               <Route exact path="/dashboard" element={<DashboardPage />} />
+              <Route exact path="/hms-dashboard" element={<HMSDashboardPage />} />
               <Route exact path="/sales-report" element={<SalesReportPage />} />
             </Route>
 

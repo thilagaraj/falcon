@@ -100,7 +100,7 @@ const TotalCollections = ({ data }) => {
           </div>
 
           <div className="card-body p-24">
-            <div className="row row-cols-xxxl-3 row-cols-lg-5 row-cols-sm-1 row-cols-1 gy-4">
+            <div className="row row-cols-xxxl-5 row-cols-xxl-3 row-cols-lg-3 row-cols-sm-1 row-cols-1 gy-4">
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4">
                   <div className="card-body p-20">

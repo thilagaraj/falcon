@@ -15785,3 +15785,24 @@ body .form-control.is-valid,
 .apexcharts-canvas {
   margin: auto !important;
 }
+.w-150-px {
+  width: 9rem !important;
+}
+
+.floors-grid {
+  display: grid;
+  gap: 0.75rem; 
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.line-bg-danger::before {
+  background-color: var(--danger-600);
+  box-shadow: 2px 1px 7px 0px rgb(255 59 48 / 64%);
+}
+.line-bg-neutral::before {
+  background-color: var(--neutral-600);
+  box-shadow: 2px 1px 7px 0px rgb(0 0 0 / 54%);
+}
+.line-bg-cyan::before {
+  background-color: var(--cyan-700);
+  box-shadow: 2px 1px 7px 0px rgb(13 202 240 / 54%);
+}
