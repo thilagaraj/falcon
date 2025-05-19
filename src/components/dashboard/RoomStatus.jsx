@@ -19,11 +19,10 @@ const RoomStatus = ({ data }) => {
     options: {
       chart: {
         type: "donut",
-        height: 100,
-        width: 100,
       },
       legend: {
-        position: "left",
+        position: "bottom",
+        width: '100%',
       },
       labels,
       responsive: [
@@ -45,6 +44,7 @@ const RoomStatus = ({ data }) => {
             },
           },
         },
+        
         {
           breakpoint: 390,
           options: {
@@ -70,9 +70,9 @@ const RoomStatus = ({ data }) => {
       plotOptions: {
         pie: {
           donut: {
-            size: "55%",
+            size: "25%",
             labels: {
-              show: true,
+              show: false,
               total: {
                 show: true,
                 label: "Total",
@@ -281,13 +281,12 @@ const RoomStatus = ({ data }) => {
             <h6 className="text-lg fw-semibold mb-0">Overall room status</h6>
           </div>
 
-          <div className="card-body p-24">
+          <div className="card-body p-10">
             <div className="mx-auto">
               <ReactApexChart
                 options={chartOptions.options}
                 series={chartOptions.series}
                 type="donut"
-                width={400}
               />
             </div>
           </div>

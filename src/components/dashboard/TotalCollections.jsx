@@ -37,8 +37,6 @@ const TotalCollections = ({ data }) => {
     options: {
       chart: {
         type: "donut",
-        height: 100,
-        width: 100,
       },
       colors: [
         "#1E88E5",
@@ -53,8 +51,8 @@ const TotalCollections = ({ data }) => {
         "#F06292",
         "#00E676",
       ],
-      legend: {
-        position: "left",
+    legend: {
+        position: "bottom",
       },
       labels,
       responsive: [
@@ -66,6 +64,7 @@ const TotalCollections = ({ data }) => {
             },
             legend: {
               position: "bottom",
+               width: '100%',
             },
             plotOptions: {
               pie: {
@@ -76,11 +75,32 @@ const TotalCollections = ({ data }) => {
             },
           },
         },
+        {
+          breakpoint: 390,
+          options: {
+            chart: {
+              width: "100%",
+            },
+            legend: {
+              position: "bottom",
+            },
+            plotOptions: {
+              pie: {
+                donut: {
+                  size: "25%",
+                  labels: {
+                    show: false,
+                  },
+                },
+              },
+            },
+          },
+        },
       ],
       plotOptions: {
         pie: {
           donut: {
-            size: "55%",
+            size: "25%",
             labels: {
               show: true,
             },
@@ -398,13 +418,12 @@ const TotalCollections = ({ data }) => {
             <h6 className="text-lg fw-semibold mb-0">Overall Collections</h6>
           </div>
 
-          <div className="card-body p-24">
+          <div className="card-body p-10">
             <div className="mx-auto">
               <ReactApexChart
                 options={chartOptions.options}
                 series={chartOptions.series}
                 type="donut"
-                width={450}
               />
             </div>
           </div>
