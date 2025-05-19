@@ -45,7 +45,7 @@ const PropertySelection = () => {
   }, []);
 
   return (
-    <section className="auth bg-base d-flex align-items-center justify-content-center">
+    <section className="auth bg-base d-flex align-items-center justify-content-center p-28">
       <div className="auth-right">
         <div className="max-w-500-px m-auto w-100">
           <div className="mb-40">

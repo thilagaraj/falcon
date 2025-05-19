@@ -45,7 +45,27 @@ const RoomStatus = ({ data }) => {
             },
           },
         },
-        
+        {
+          breakpoint: 390,
+          options: {
+            chart: {
+              width: "100%",
+            },
+            legend: {
+              position: "bottom",
+            },
+            plotOptions: {
+              pie: {
+                donut: {
+                  size: "25%",
+                  labels: {
+                    show: false,
+                  },
+                },
+              },
+            },
+          },
+        },
       ],
       plotOptions: {
         pie: {
@@ -77,18 +97,26 @@ const RoomStatus = ({ data }) => {
           </div>
 
           <div className="card-body p-24">
-            <div className="row row-cols-xxxl-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-5 row-cols-sm-1 row-cols-1 gy-4">
+            <div className="row row-cols-xxxl-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 row-cols-2 gy-4">
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5">
+                <div className="card shadow-none border bg-gradient-start-5 left-line line-bg-danger position-relative overflow-hidden">
                   <div className="card-body p-20">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Vacant rooms
+                          Vacant
                         </p>
-                        <h6 className="mb-0">{Vacant}</h6>
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="ri:hotel-bed-line"
+                              className="text-danger text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{Vacant}</span>
+                        </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="material-symbols:hotel"
                           className="text-base text-2xl mb-0"
@@ -99,16 +127,25 @@ const RoomStatus = ({ data }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5">
+                <div className="card shadow-none border bg-gradient-start-5  left-line line-bg-danger position-relative overflow-hidden">
                   <div className="card-body p-20">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Occupied rooms
+                          Occupied
                         </p>
-                        <h6 className="mb-0">{Occupied}</h6>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="ri:hotel-bed-line"
+                              className="text-danger text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{Occupied}</span>
+                        </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="material-symbols:hotel"
                           className="text-base text-2xl mb-0"
@@ -119,16 +156,25 @@ const RoomStatus = ({ data }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5">
+                <div className="card shadow-none border bg-gradient-start-5  left-line line-bg-danger position-relative overflow-hidden">
                   <div className="card-body p-20">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Unsettled rooms
+                          Unsettled
                         </p>
-                        <h6 className="mb-0">{Unsettled}</h6>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="ri:hotel-bed-line"
+                              className="text-danger text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{Unsettled}</span>
+                        </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="material-symbols:hotel"
                           className="text-base text-2xl mb-0"
@@ -139,16 +185,25 @@ const RoomStatus = ({ data }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5">
+                <div className="card shadow-none border bg-gradient-start-5  left-line line-bg-danger position-relative overflow-hidden">
                   <div className="card-body p-20">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Dirty rooms
+                          Dirty
                         </p>
-                        <h6 className="mb-0">{Dirty}</h6>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="ri:hotel-bed-line"
+                              className="text-danger text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{Dirty}</span>
+                        </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="material-symbols:hotel"
                           className="text-base text-2xl mb-0"
@@ -159,16 +214,25 @@ const RoomStatus = ({ data }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5">
+                <div className="card shadow-none border bg-gradient-start-5  left-line line-bg-danger position-relative overflow-hidden">
                   <div className="card-body p-20">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Blocked rooms
+                          Blocked
                         </p>
-                        <h6 className="mb-0">{Blocked}</h6>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="ri:hotel-bed-line"
+                              className="text-danger text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{Blocked}</span>
+                        </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="material-symbols:hotel"
                           className="text-base text-2xl mb-0"
@@ -179,16 +243,25 @@ const RoomStatus = ({ data }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-5">
+                <div className="card shadow-none border bg-gradient-start-5  left-line line-bg-danger position-relative overflow-hidden">
                   <div className="card-body p-20">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Mgment blocked
+                          Mgment
                         </p>
-                        <h6 className="mb-0">{ManagementBlocked}</h6>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="ri:hotel-bed-line"
+                              className="text-danger text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{ManagementBlocked}</span>
+                        </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="material-symbols:hotel"
                           className="text-base text-2xl mb-0"
@@ -214,7 +287,7 @@ const RoomStatus = ({ data }) => {
                 options={chartOptions.options}
                 series={chartOptions.series}
                 type="donut"
-                width={400}               
+                width={400}
               />
             </div>
           </div>

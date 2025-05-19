@@ -35,7 +35,7 @@ const Floors = ({ data, floorIndex }) => {
   const statusMapping = {
     O: "Occupied",
     V: "Vacant",
-    M: "Management",
+    M: "Mangmnt",
     U: "Unsettled",
     D: "Dirty",
     B: "Blocked",
@@ -71,7 +71,7 @@ const Floors = ({ data, floorIndex }) => {
               {data?.rooms?.map((room, index) => {
                 const styles = statusStyles[room.Status] || statusStyles["D"];
                 return (
-                  <div className="w-150-px"  key={index}>
+                  <div  key={index}>
                     <div className="card border cursor-pointer">
                       <div className="card-body p-0">
                         <div className="text-center p-16">
@@ -79,14 +79,14 @@ const Floors = ({ data, floorIndex }) => {
                           <div className={`text-xs  mt-0`}>{room.RoomCode}</div>
                         </div>
                         <div
-                          className={`w-full h-40-px ${styles.bg} d-flex justify-content-center align-items-center`}
+                          className={`w-full h-36-px ${styles.bg} d-flex justify-content-center align-items-center`}
                         >
                           <p
-                            className={`text-sm ${styles.text} d-flex align-items-center gap-2 mb-2`}
+                            className={`text-xs ${styles.text} d-flex align-items-center gap-2 pt-2 mb-2`}
                           >
                             <Icon
                               icon="material-symbols:hotel"
-                              className={`${styles.text} text-xl`}
+                              className={`${styles.text} text-l`}
                             />
                             <span>{statusMapping[room.Status]}</span>
                           </p>

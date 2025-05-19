@@ -15715,6 +15715,11 @@ td.fc-header-center {
     margin-inline-start: 5.375rem;
   }
 }
+@media (max-width: 576px) {
+  .dashboard-collections h6 {
+    font-size: var(--size-13) !important;
+  }
+}
 /* === dashboard body css end === */
 /* === footer css start === */
 .d-footer {
@@ -15789,10 +15794,14 @@ body .form-control.is-valid,
   width: 9rem !important;
 }
 
+.w-140-px {
+  width: 7rem !important;
+}
+
 .floors-grid {
   display: grid;
   gap: 0.75rem; 
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
 }
 .line-bg-danger::before {
   background-color: var(--danger-600);
@@ -15805,4 +15814,10 @@ body .form-control.is-valid,
 .line-bg-cyan::before {
   background-color: var(--cyan-700);
   box-shadow: 2px 1px 7px 0px rgb(13 202 240 / 54%);
+}
+.top-bill-pin {
+  right: 10px !important;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  height: 20px !important;
 }

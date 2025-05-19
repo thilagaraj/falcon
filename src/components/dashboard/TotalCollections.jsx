@@ -83,7 +83,6 @@ const TotalCollections = ({ data }) => {
             size: "55%",
             labels: {
               show: true,
-              
             },
           },
         },
@@ -99,33 +98,39 @@ const TotalCollections = ({ data }) => {
             <h6 className="text-lg fw-semibold mb-0">Collections</h6>
           </div>
 
-          <div className="card-body p-24">
-            <div className="row row-cols-xxxl-5 row-cols-xxl-3 row-cols-lg-3 row-cols-sm-1 row-cols-1 gy-4">
+          <div className="card-body p-24 dashboard-collections">
+            <div className="row row-cols-xxxl-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 row-cols-2 gy-4">
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20  position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
-                          Total Collection
+                          Total
                         </p>
-                        <h6 className="mb-0">
-                          {formatCurrency(TotalCollection)}
+                        <h6 className="mb-0 ">
+                          {formatCurrency(TotalCollection + 100000)}
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="majesticons:rupee-circle"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -133,19 +138,25 @@ const TotalCollections = ({ data }) => {
                         </p>
                         <h6 className="mb-0">{formatCurrency(Cash)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="bi:cash"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -153,19 +164,25 @@ const TotalCollections = ({ data }) => {
                         </p>
                         <h6 className="mb-0">{formatCurrency(Card)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="ion:card-sharp"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -173,19 +190,25 @@ const TotalCollections = ({ data }) => {
                         </p>
                         <h6 className="mb-0">{formatCurrency(Online)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="material-symbols:shopping-cart-checkout"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -193,19 +216,25 @@ const TotalCollections = ({ data }) => {
                         </p>
                         <h6 className="mb-0">{formatCurrency(Wallet)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="tabler:wallet"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -213,39 +242,51 @@ const TotalCollections = ({ data }) => {
                         </p>
                         <h6 className="mb-0">{formatCurrency(Cheque)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="mdi:cheque-book"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
-                          Bills on hold
+                          On-hold
                         </p>
                         <h6 className="mb-0">{formatCurrency(BillsOnHold)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="si:info-fill"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -253,19 +294,25 @@ const TotalCollections = ({ data }) => {
                         </p>
                         <h6 className="mb-0">{formatCurrency(Refund)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="mingcute:card-refund-line"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -273,19 +320,25 @@ const TotalCollections = ({ data }) => {
                         </p>
                         <h6 className="mb-0">{formatCurrency(CashExpense)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="mdi:cash-minus"
+                        className="text-base text-l mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -293,32 +346,44 @@ const TotalCollections = ({ data }) => {
                         </p>
                         <h6 className="mb-0">{formatCurrency(OtherExpense)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
                     </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="solar:cart-4-bold"
+                        className="text-base text-sm mb-0"
+                      ></Icon>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="col">
-                <div className="card shadow-none border bg-gradient-start-4">
-                  <div className="card-body p-20">
+                <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
+                  <div className="card-body p-20 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
-                          Cash in hand
+                          Hand Cash
                         </p>
                         <h6 className="mb-0">{formatCurrency(CashInHand)}</h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center">
+                      <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="mynaui:rupee-square-solid"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
+                    </div>
+                    <div className="top-bill-pin w-28-px h-28-px bg-success  d-flex justify-content-center align-items-center d-block d-sm-none position-absolute top-0 end-0">
+                      <Icon
+                        icon="mdi:cash-check"
+                        className="text-base text-l mb-0"
+                      ></Icon>
                     </div>
                   </div>
                 </div>
