@@ -54,8 +54,14 @@ const Floors = ({ data, floorIndex }) => {
           onClick={() => setIsAccordionOpen(!isAccordionOpen)}
         >
           <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
-            <h6 className="text-lg fw-semibold mb-0">
-              {toSentenceCase(data.FloorName)}
+            <h6 className="text-lg fw-semibold mb-0 d-flex align-items-center gap-2">
+              <span>
+                <Icon
+                  icon="carbon:hotel"
+                  className="text-danger-800 text-xl mb-0"
+                ></Icon>
+              </span>
+              <span> {toSentenceCase(data.FloorName)}</span>
             </h6>
             <Icon
               icon={isAccordionOpen ? "mdi:chevron-up" : "mdi:chevron-down"}
@@ -71,7 +77,7 @@ const Floors = ({ data, floorIndex }) => {
               {data?.rooms?.map((room, index) => {
                 const styles = statusStyles[room.Status] || statusStyles["D"];
                 return (
-                  <div  key={index}>
+                  <div key={index}>
                     <div className="card border cursor-pointer">
                       <div className="card-body p-0">
                         <div className="text-center p-16">
