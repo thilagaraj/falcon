@@ -10,7 +10,6 @@ const ReviewPage = () => {
     guestName: "",
     roomNumber: "",
     dateOfStay: "",
-    recommend: "",
     suggestions: "",
   };
 
@@ -39,36 +38,46 @@ const ReviewPage = () => {
     e.preventDefault();
     try {
       showLoading();
-
       const reviewData = {
-        guestName: reviews.GuetName,
-        roomNumber: reviews.RoomNo,
-        dateOfStay: formData.dateOfStay,
-        recommend: formData.recommend,
-        suggestions: formData.suggestions,
-        categoryRatings: [],
+        Feedbackratinglist: [],
       };
 
       reviewCategories.forEach((category) => {
-        reviewData.categoryRatings.push({
-          categoryId: category.Id,
-          categoryCode: category.Code,
-          rating: formData[`rating_${category.Code}`],
-          comments: formData[`comments_${category.Code}`] || "",
-        });
+        category?.Code !== "OV" &&
+          reviewData.Feedbackratinglist.push({
+            Id: category.Id,
+            Code: category.Code,
+            GroupCode: category.GroupCode,
+            Description: category.Description,
+            FeedBackResponse: formData[`rating_${category.Code}`],
+            FeedBackComments: formData[`comments_${category.Code}`] || "",
+          });
       });
 
       console.log("Submitting review data:", reviewData);
-
-      // const response = await $axios.post('/api/submitReview', reviewData);
-
+      const payload = {
+        ...reviewData,
+        BranchCode: branchCode,
+        PropertyId: propertyId,
+        HotelId: hotelId,
+        CheckinNo: checkinNo,
+        MobileNo: mobileNo,
+        Remarks: formData.suggestions,
+        GuestName: formData.GuetName,
+        Emaild: reviews.EmailId,
+        GuestName: reviews.GuetName,
+      };
+      const response = await $axios.post(
+        "/FalconQRScan/PostGetReview",
+        payload
+      );
+      console.log(response);
       alert("Thank you for your feedback!");
 
       const resetFormData = {
         guestName: formData.guestName,
         roomNumber: formData.roomNumber,
         dateOfStay: "",
-        recommend: "",
         suggestions: "",
       };
 
@@ -95,7 +104,9 @@ const ReviewPage = () => {
       console.log(response);
       setReviews(response);
 
-      const categories = response?.Review;
+      const categories = response?.Review.filter(
+        (category) => category.Code !== "OV"
+      );
       categories.forEach((category) => {
         initialFormData[`rating_${category.Code}`] = "";
         initialFormData[`comments_${category.Code}`] = "";
@@ -116,14 +127,21 @@ const ReviewPage = () => {
           <div className="row">
             <div className="col-sm-12">
               <label>Guest Name:</label>
-              <div className="form-control"><span className="text-muted user-select-none">{reviews.GuetName}</span></div>
+              <div className="form-control">
+                <span className="text-muted user-select-none">
+                  {reviews.GuetName}
+                </span>
+              </div>
             </div>
           </div>
           <div className="row">
             <div className="col-sm-6">
               <label>Room Number:</label>
               <div className="form-control">
-                <span className="text-muted user-select-none">{reviews.RoomNo}</span></div>
+                <span className="text-muted user-select-none">
+                  {reviews.RoomNo}
+                </span>
+              </div>
             </div>
             <div className="col-sm-6">
               <label htmlFor="dateOfStay">Date of Stay:</label>
@@ -207,23 +225,22 @@ const ReviewPage = () => {
                 </label>
               </div>
             </div>
-            {category.Code !== "OV" ? (
-              <>
-                <label htmlFor={`comments_${category.Code}`}>Comments:</label>
-                <textarea
-                  id={`comments_${category.Code}`}
-                  name={`comments_${category.Code}`}
-                  className="form-control border border-neutral-200 radius-8"
-                  rows={3}
-                  // cols={50}
-                  value={formData[`comments_${category.Code}`]}
-                  onChange={handleInputChange}
-                  placeholder={`Please share your comments about ${category.Description.toLowerCase()}...`}
-                ></textarea>
-              </>
-            ) : (
-              <>
-                <div className="mt-6">
+
+            <>
+              <label htmlFor={`comments_${category.Code}`}>Comments:</label>
+              <textarea
+                id={`comments_${category.Code}`}
+                name={`comments_${category.Code}`}
+                className="form-control radius-8"
+                rows={3}
+                value={formData[`comments_${category.Code}`]}
+                onChange={handleInputChange}
+                placeholder={`Please share your comments about ${category.Description.toLowerCase()}...`}
+              ></textarea>
+            </>
+
+            <>
+              {/* <div className="mt-6">
                   <p>Would you recommend us to others?</p>
                   <div className="radio-group d-flex gap-3">
                     <div className="radio-option bg-white rounded-5 d-flex px-16 py-8 align-items-center border-1 border-secondary-subtle">
@@ -256,26 +273,25 @@ const ReviewPage = () => {
                       </label>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="mt-12 d-flex flex-column">
-                  <label htmlFor="suggestions">
-                    Suggestions for Improvement:
-                  </label>
-                  <textarea
-                    id="suggestions"
-                    name="suggestions"
-                    value={formData.suggestions}
-                    rows={3}
-                    onChange={handleInputChange}
-                    className="form-control border border-neutral-200 radius-8"
-                    placeholder="Please share your suggestions to help us improve..."
-                  ></textarea>
-                </div>
-              </>
-            )}
+              {/*  */}
+            </>
           </div>
         ))}
+
+        <div className="mt-12 d-flex flex-column mb-3">
+          <label htmlFor="suggestions">Suggestions for Improvement:</label>
+          <textarea
+            id="suggestions"
+            name="suggestions"
+            value={formData.suggestions}
+            rows={3}
+            onChange={handleInputChange}
+            className="form-control radius-8"
+            placeholder="Please share your suggestions to help us improve..."
+          ></textarea>
+        </div>
         <div className="d-grid d-sm-flex justify-content-sm-center">
           <button
             className="p-3 rounded-5 bg-dark fw-semibold border-0 text-white text-center shadow"
