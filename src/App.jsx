@@ -15,6 +15,7 @@ import GuestInformationForm from "./pages/GuestInformationForm";
 import { CheckoutDetails } from "./pages/CheckoutDetails";
 import ReportListPage from "./pages/ReportListPage";
 import ReviewPage from "./pages/ReviewPage";
+import MenuCard from "./pages/MenuCard";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/checkout-details" element={<CheckoutDetails />} />
             <Route path="/report-list" element={<ReportListPage />} />
             <Route path="/review" element={<ReviewPage />} />
+            <Route path="/menuCard" element={<MenuCard />} />
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
