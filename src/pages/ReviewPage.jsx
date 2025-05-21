@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSpinner } from "../hook/SpinnerContext";
 import $axios from "../utils/axios";
+import { formatDateForDisplay } from "../utils/date";
+import { ToastContainer, toast } from "react-toastify";
 
 const ReviewPage = () => {
   const [reviews, setReviews] = useState({});
@@ -36,6 +38,17 @@ const ReviewPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.suggestions || formData.suggestions.trim() === "") {
+      toast.error("Please provide your suggestions for improvement before submitting.");
+      return;
+    }
+    const missingRatings = reviewCategories.filter(
+      (category) => !formData[`rating_${category.Code}`]
+    );
+    if (missingRatings.length > 0) {
+      toast.error("Please select a rating for all categories before submitting.");
+      return;
+    }
     try {
       showLoading();
       const reviewData = {
@@ -72,7 +85,7 @@ const ReviewPage = () => {
         payload
       );
       console.log(response);
-      alert("Thank you for your feedback!");
+      toast.success("Thank you for your feedback!");
 
       const resetFormData = {
         guestName: formData.guestName,
@@ -89,7 +102,7 @@ const ReviewPage = () => {
       setFormData(resetFormData);
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      alert("There was an error submitting your feedback. Please try again.");
+      toast.error("There was an error submitting your feedback. Please try again.");
     } finally {
       hideLoading();
     }
@@ -121,6 +134,8 @@ const ReviewPage = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center">
+            <ToastContainer />
+      
       <form className="shadow bg-white rounded-4 p-13 sm:p-28">
         <h4 className="text-center mb-3">Hotel Guest Feedback Form</h4>
         <div className="p-13 sm:p-20 rounded-4 mb-5 shadow bg-light">
@@ -144,16 +159,12 @@ const ReviewPage = () => {
               </div>
             </div>
             <div className="col-sm-6">
-              <label htmlFor="dateOfStay">Date of Stay:</label>
-              <input
-                type="date"
-                id="dateOfStay"
-                name="dateOfStay"
-                className="form-control"
-                value={formData.dateOfStay}
-                onChange={handleInputChange}
-                required
-              />
+              <label>Date of Stay:</label>
+                <div className="form-control">
+                <span className="text-muted user-select-none">
+                  {reviews.StayDate ? formatDateForDisplay(reviews.StayDate): ""}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -164,7 +175,8 @@ const ReviewPage = () => {
             className="p-13 sm:p-20 rounded-4 mb-5 shadow bg-light"
           >
             <h6>
-              {index + 1}. {category.Description}
+              {index + 1}. {category.Description}{" "}
+              <span style={{ color: "red" }}>*</span>
             </h6>
             <div className="mb-3 d-flex flex-column flex-sm-row gap-2 gap-sm-3">
               <div>
@@ -225,7 +237,6 @@ const ReviewPage = () => {
                 </label>
               </div>
             </div>
-
             <>
               <label htmlFor={`comments_${category.Code}`}>Comments:</label>
               <textarea
@@ -238,50 +249,14 @@ const ReviewPage = () => {
                 placeholder={`Please share your comments about ${category.Description.toLowerCase()}...`}
               ></textarea>
             </>
-
-            <>
-              {/* <div className="mt-6">
-                  <p>Would you recommend us to others?</p>
-                  <div className="radio-group d-flex gap-3">
-                    <div className="radio-option bg-white rounded-5 d-flex px-16 py-8 align-items-center border-1 border-secondary-subtle">
-                      <input
-                        type="radio"
-                        className="form-check-input border-dark-3"
-                        id="recommendYes"
-                        name="recommend"
-                        value="Yes"
-                        checked={formData.recommend === "Yes"}
-                        onChange={handleInputChange}
-                        required
-                      />
-                      <label className="ms-10" htmlFor="recommendYes">
-                        Yes
-                      </label>
-                    </div>
-                    <div className="radio-option bg-white rounded-5 d-flex px-16 py-8 align-items-center border-1 border-secondary-subtle">
-                      <input
-                        type="radio"
-                        className="form-check-input border-dark-3"
-                        id="recommendNo"
-                        name="recommend"
-                        value="No"
-                        checked={formData.recommend === "No"}
-                        onChange={handleInputChange}
-                      />
-                      <label className="ms-10" htmlFor="recommendNo">
-                        No
-                      </label>
-                    </div>
-                  </div>
-                </div> */}
-
-              {/*  */}
-            </>
           </div>
         ))}
 
         <div className="mt-12 d-flex flex-column mb-3">
-          <label htmlFor="suggestions">Suggestions for Improvement:</label>
+          <label htmlFor="suggestions">
+            Suggestions for Improvement:{" "}
+            <span style={{ color: "red" }}>*</span>
+          </label>
           <textarea
             id="suggestions"
             name="suggestions"
@@ -290,6 +265,7 @@ const ReviewPage = () => {
             onChange={handleInputChange}
             className="form-control radius-8"
             placeholder="Please share your suggestions to help us improve..."
+            required
           ></textarea>
         </div>
         <div className="d-grid d-sm-flex justify-content-sm-center">
