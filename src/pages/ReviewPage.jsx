@@ -270,10 +270,10 @@ const ReviewPage = () => {
         </div>
         <div className="d-grid d-sm-flex justify-content-sm-center">
           <button
-            className="p-3 rounded-5 bg-dark fw-semibold border-0 text-white text-center shadow"
+            className="btn bg-dark mx-auto d-flex justify-content-center w-50 text-white"
             onClick={handleSubmit}
           >
-            Submit Feedback
+            Submit
           </button>
         </div>
       </form>
