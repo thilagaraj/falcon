@@ -15,16 +15,16 @@ const Floors = ({ data, floorIndex }) => {
       text: "text-success",
     },
     D: {
-      bg: "bg-info-50",
-      text: "text-info-800",
+      bg: "bg-neutral-50",
+      text: "text-neutral",
     },
     U: {
       bg: "bg-warning-50",
       text: "text-warning-900",
     },
     B: {
-      bg: "bg-neutral-50",
-      text: "text-neutral",
+      bg: "bg-info-50",
+      text: "text-info-800",
     },
     M: {
       bg: "bg-cyan-50",
@@ -78,17 +78,19 @@ const Floors = ({ data, floorIndex }) => {
                 const styles = statusStyles[room.Status] || statusStyles["D"];
                 return (
                   <div key={index}>
-                    <div className="card border cursor-pointer">
-                      <div className="card-body p-0">
-                        <div className="text-center p-16">
-                          <h6 className={`mb-4 `}>{room.RoomNo}</h6>
-                          <div className={`text-xs  mt-0`}>{room.RoomCode}</div>
+                    <div className={`card border cursor-pointer ${styles.bg} `}>
+                      <div className="card-body p-8">
+                        <div className="text-center">
+                          <h6 className={`mb-4 text-md `}>{room.RoomNo}</h6>
+                          <div className={`text-xxs mt-0 p-6`}>
+                            {room.RoomCode}
+                          </div>
                         </div>
                         <div
-                          className={`w-full h-36-px ${styles.bg} d-flex justify-content-center align-items-center`}
+                          className={`w-full  d-flex justify-content-center align-items-center  mt-2 border-top pt-2`}
                         >
                           <p
-                            className={`text-xs ${styles.text} d-flex align-items-center gap-2 pt-2 mb-2`}
+                            className={`text-xxs ${styles.text} d-flex align-items-center gap-1 mb-0 pt-2`}
                           >
                             <Icon
                               icon="material-symbols:hotel"
