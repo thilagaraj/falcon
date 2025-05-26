@@ -100,7 +100,7 @@ const TotalCollections = ({ data }) => {
       plotOptions: {
         pie: {
           donut: {
-            size: "25%",
+            size: "55%",
             labels: {
               show: true,
             },
@@ -122,7 +122,7 @@ const TotalCollections = ({ data }) => {
             <div className="row row-cols-xxxl-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 row-cols-2 gy-4">
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20  position-relative">
+                  <div className="card-body  position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -150,7 +150,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -160,7 +160,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="bi:cash"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -176,7 +176,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -186,7 +186,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="ion:card-sharp"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -202,7 +202,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -212,7 +212,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="material-symbols:shopping-cart-checkout"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -228,7 +228,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -238,7 +238,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="tabler:wallet"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -254,7 +254,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -264,7 +264,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="mdi:cheque-book"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -280,7 +280,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -290,7 +290,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="si:info-fill"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -306,7 +306,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -316,7 +316,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="mingcute:card-refund-line"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -332,7 +332,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -342,7 +342,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="mdi:cash-minus"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -358,7 +358,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -368,7 +368,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="solar:cart-4-bold"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
@@ -384,7 +384,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body p-20 position-relative">
+                  <div className="card-body position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -394,7 +394,7 @@ const TotalCollections = ({ data }) => {
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
-                          icon="mynaui:rupee-square-solid"
+                          icon="mdi:cash-check"
                           className="text-base text-2xl mb-0"
                         ></Icon>
                       </div>
