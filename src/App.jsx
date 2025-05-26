@@ -31,7 +31,7 @@ function App() {
             <Route path="/checkout-details" element={<CheckoutDetails />} />
             <Route path="/report-list" element={<ReportListPage />} />
             <Route path="/review" element={<ReviewPage />} />
-            <Route path="/menuCard" element={<MenuCard />} />
+            <Route path="/menu-card" element={<MenuCard />} />
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
