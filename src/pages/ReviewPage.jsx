@@ -67,7 +67,6 @@ const ReviewPage = () => {
         ...reviewData,
         ...Object.fromEntries(searchParams.entries()),
         Remarks: formData.suggestions,
-        GuestName: formData.GuetName,
         Emaild: reviews.EmailId,
         GuestName: reviews.GuetName,
       };
