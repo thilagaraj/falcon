@@ -45,9 +45,6 @@ const GuestInformationForm = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [proofTypes, setProofTypes] = useState([]);
-  const [branchCode, setBranchCode] = useState(searchParams.get("BranchCode"));
-  const [hotelId, setHotelId] = useState(searchParams.get("HotelId"));
-  const [propertyId, setPropertyId] = useState(searchParams.get("PropertyId"));
   const [hotelName, setHotelName] = useState("");
   const [guestGender, setGuestGender] = useState([]);
   const [guestTitles, setGuestTitles] = useState([]);
@@ -60,13 +57,10 @@ const GuestInformationForm = () => {
     showLoading();
     try {
       const response = await $axios.get(
-        `/FalconQRScan/GetGuestEntry?BranchCode=${branchCode}&PropertyId=${propertyId}&HotelId=${hotelId}`
+        `/FalconQRScan/GetGuestEntry?${searchParams.toString()}`
       );
       setProofTypes(response?.GuestIdProof);
-      setBranchCode(response?.BranchCode);
-      setHotelId(response?.HotelId);
       setHotelName(response?.HotelName);
-      setPropertyId(response?.PropertyId);
       setGuestGender(response?.GuestGender);
       setGuestTitles(response?.GuestTittle);
     } catch (error) {
@@ -147,9 +141,7 @@ const GuestInformationForm = () => {
     try {
       await validationSchema.validate(formData, { abortEarly: false });
       const updatedFormData = {
-        BranchCode: branchCode,
-        PropertyId: propertyId,
-        HotelId: hotelId,
+        ...Object.fromEntries(searchParams.entries()),
         GuestTitle: formData.guestTitle,
         GuestName: formData.guestName,
         Gender: formData.gender,

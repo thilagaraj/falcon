@@ -118,10 +118,6 @@ BillInformation.propTypes = {
 
 export const CheckoutDetails = () => {
   const [searchParams] = useSearchParams();
-  const branchCode = searchParams.get("BranchCode");
-  const hotelId = searchParams.get("HotelId");
-  const propertyId = searchParams.get("PropertyId");
-  const roomNo = searchParams.get("RoomNo");
   const { showLoading, hideLoading } = useSpinner();
   const [checkoutData, setCheckoutData] = useState({});
   const [billData, setBillData] = useState([]);
@@ -135,7 +131,7 @@ export const CheckoutDetails = () => {
     showLoading();
     try {
       const response = await $axios.get(
-        `/FalconQRScan/GetGuestBillInformation?BranchCode=${branchCode}&PropertyId=${propertyId}&HotelId=${hotelId}&RoomNo=${roomNo}`
+        `/FalconQRScan/GetGuestBillInformation?${searchParams.toString()}`
       );
       setCheckoutData(response);
       setBillData(response.Details);
@@ -152,7 +148,7 @@ export const CheckoutDetails = () => {
     [
       "Name",checkoutData?.GuestTittle ? `${checkoutData.GuestTittle}. ${checkoutData?.GuestName || ""}` : checkoutData.GuestName || "",
     ],
-    ["Room No", roomNo],
+    ["Room No", searchParams.get("RoomNo")],
     ["Room Code", checkoutData.RoomCode],
     ["Booking No", checkoutData.OrgCheckInNo],
     ["Arrival Date", formatDateForDisplay(checkoutData.ArrivalDate, 'DD/MM/yyyy'),],
