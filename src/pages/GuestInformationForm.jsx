@@ -45,9 +45,9 @@ const GuestInformationForm = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [proofTypes, setProofTypes] = useState([]);
-  const [branchCode, setBranchCode] = useState(searchParams.get("branchCode"));
-  const [hotelId, setHotelId] = useState(searchParams.get("hotelId"));
-  const [propertyId, setPropertyId] = useState(searchParams.get("propertyId"));
+  const [branchCode, setBranchCode] = useState(searchParams.get("BranchCode"));
+  const [hotelId, setHotelId] = useState(searchParams.get("HotelId"));
+  const [propertyId, setPropertyId] = useState(searchParams.get("PropertyId"));
   const [hotelName, setHotelName] = useState("");
   const [guestGender, setGuestGender] = useState([]);
   const [guestTitles, setGuestTitles] = useState([]);

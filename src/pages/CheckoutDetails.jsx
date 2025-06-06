@@ -118,9 +118,9 @@ BillInformation.propTypes = {
 
 export const CheckoutDetails = () => {
   const [searchParams] = useSearchParams();
-  const branchCode = searchParams.get("branchCode");
-  const hotelId = searchParams.get("hotelId");
-  const propertyId = searchParams.get("propertyId");
+  const branchCode = searchParams.get("BranchCode");
+  const hotelId = searchParams.get("HotelId");
+  const propertyId = searchParams.get("PropertyId");
   const roomNo = searchParams.get("RoomNo");
   const { showLoading, hideLoading } = useSpinner();
   const [checkoutData, setCheckoutData] = useState({});
