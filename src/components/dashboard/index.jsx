@@ -75,8 +75,8 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-main-body">
-      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-        <h6 className="fw-semibold mb-0">Dashboard</h6>
+      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <h6 className="fw-semibold mb-0 mob-title">Dashboard</h6>
       </div>
       <RoomStatus data={roomStatusData} />
       <TotalCollections data={collectionsData} />

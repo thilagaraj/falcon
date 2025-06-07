@@ -15704,7 +15704,14 @@ td.fc-header-center {
 .dashboard-main-body {
   padding: 0.9375rem;
 }
-
+@media (max-width: 600px) {
+  .dashboard-main-body {
+    padding: 0;
+    .mob-title {
+      padding: 12px 24px;
+    }
+  }
+}
 @media (min-width: 1400px) {
   .dashboard-main-body {
     padding: 1.5rem;

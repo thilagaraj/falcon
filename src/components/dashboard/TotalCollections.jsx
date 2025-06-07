@@ -111,18 +111,18 @@ const TotalCollections = ({ data }) => {
   };
 
   return (
-    <div className="row gy-4 mt-16">
+    <div className="row gy-4 gx-4 mt-16">
       <div className="col col-lg-9">
         <div className="card h-100 p-0 radius-12 ">
           <div className="card-header border-bottom bg-base py-16 px-24">
             <h6 className="text-lg fw-semibold mb-0">Collections</h6>
           </div>
 
-          <div className="card-body p-24 dashboard-collections">
-            <div className="row row-cols-xxxl-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 row-cols-2 gy-4">
+          <div className="card-body p-24 px-10 dashboard-collections">
+            <div className="row row-cols-xxxl-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 row-cols-3 gy-4 gx-2">
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body  position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -150,7 +150,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -176,7 +176,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -202,7 +202,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -228,7 +228,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -254,7 +254,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -280,7 +280,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -306,7 +306,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -332,7 +332,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -358,7 +358,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -384,7 +384,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body position-relative">
+                  <div className="card-body px-10 position-relative">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">

@@ -96,11 +96,11 @@ const RoomStatus = ({ data }) => {
             <h6 className="text-lg fw-semibold mb-0">Room status</h6>
           </div>
 
-          <div className="card-body p-24">
-            <div className="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-4 row-cols-sm-2 row-cols-2 gy-4">
+          <div className="card-body p-24 px-10">
+            <div className="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-4 row-cols-sm-2 row-cols-3 gy-3 gx-2">
               <div className="col">
                 <div className="card shadow-none border bg-success-50 left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body px-20">
+                  <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -128,7 +128,7 @@ const RoomStatus = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card border bg-danger-50 left-line line-bg-danger position-relative overflow-hidden">
-                  <div className="card-body px-20">
+                  <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -156,7 +156,7 @@ const RoomStatus = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card  border bg-neutral-200 left-line line-bg-neutral position-relative overflow-hidden">
-                  <div className="card-body px-20">
+                  <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -186,7 +186,7 @@ const RoomStatus = ({ data }) => {
 
               <div className="col">
                 <div className="card border bg-primary-50 left-line line-bg-primary position-relative overflow-hidden">
-                  <div className="card-body px-20">
+                  <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -215,7 +215,7 @@ const RoomStatus = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card border bg-cyan-50 left-line line-bg-cyan position-relative overflow-hidden">
-                  <div className="card-body px-20">
+                  <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -245,7 +245,7 @@ const RoomStatus = ({ data }) => {
 
               <div className="col">
                 <div className="card border bg-warning-50 left-line line-bg-warning position-relative overflow-hidden">
-                  <div className="card-body px-20">
+                  <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">

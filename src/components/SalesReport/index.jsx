@@ -42,8 +42,8 @@ const DailySalesReport = () => {
 
   return (
     <div className="dashboard-main-body">
-      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-        <h6 className="fw-semibold mb-0">Daily sales report</h6>
+      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <h6 className="fw-semibold mb-0 mob-title">Daily sales report</h6>
       </div>
       {hideLoading && <ReportTable data={reportData} onFilter={updateTable} />}
     </div>
