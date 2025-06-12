@@ -199,4 +199,4 @@ const RoomStats = ({ data }) => {
   );
 };
 
-export default RoomStats;
+export default RoomStats
