@@ -11,6 +11,7 @@ const Dashboard = () => {
   const { showLoading, hideLoading } = useSpinner();
   const [roomStatusData, setRoomStatusData] = useState({});
   const [collectionsData, setCollectionsData] = useState({});
+  const [checkin, setCheckin] = useState({});
 
   const getDashboardData = async () => {
     try {
@@ -36,6 +37,12 @@ const Dashboard = () => {
           CashInHand = 0,
           BillsOnHold = 0,
           TotalCollection = 0,
+          previousDayCheckin = 0,
+          TodayCheckin = 10,
+          TodayCheckout = 20,
+          TodayArrival = 10,
+          TodayRoomCancel = 10,
+          TodayHouseGuest = 30,
         } = response;
         setRoomStatusData({
           Vacant,
@@ -58,6 +65,14 @@ const Dashboard = () => {
           BillsOnHold,
           TotalCollection,
         });
+        setCheckin({
+          previousDayCheckin,
+          TodayCheckin,
+          TodayCheckout,
+          TodayArrival,
+          TodayRoomCancel,
+          TodayHouseGuest,
+        })
         return true;
       }
 
@@ -79,7 +94,7 @@ const Dashboard = () => {
         <h6 className="fw-semibold mb-0 mob-title">Dashboard</h6>
       </div>
       <RoomStatus data={roomStatusData} />
-      <TotalCollections data={collectionsData} />
+      <TotalCollections data={collectionsData} checkin={checkin} />
     </div>
   );
 };

@@ -20,6 +20,14 @@ const RoomStatus = ({ data }) => {
       chart: {
         type: "donut",
       },
+      colors: [
+        "rgb(24, 144, 255)",
+        "rgb(0, 227, 150)",
+        "rgb(254, 176, 25)",
+        "rgb(255, 69, 96)",
+        "rgb(119, 93, 208)",
+        "rgb(205, 220, 57)",
+      ],
       legend: {
         position: "bottom",
         width: '100%',
@@ -99,7 +107,7 @@ const RoomStatus = ({ data }) => {
           <div className="card-body p-24 px-10">
             <div className="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-4 row-cols-sm-2 row-cols-3 gy-3 gx-2">
               <div className="col">
-                <div className="card shadow-none border bg-success-50 left-line line-bg-success position-relative overflow-hidden">
+                <div className="card shadow-none border bg-custom-color1 line-bg-color1 custom-color1 left-line position-relative overflow-hidden">
                   <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -110,13 +118,13 @@ const RoomStatus = ({ data }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="text-success text-2xl mb-0"
+                              className="custom-color1 text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{Vacant}</span>
                         </h6>
                       </div>
-                      <div className=" w-50-px h-50-px bg-success rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
+                      <div className=" w-50-px h-50-px icon-bg-custom-color1 rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -127,7 +135,7 @@ const RoomStatus = ({ data }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card border bg-danger-50 left-line line-bg-danger position-relative overflow-hidden">
+                <div className="card border bg-custom-color2 left-line custom-color2 line-bg-color2 position-relative overflow-hidden">
                   <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -138,13 +146,13 @@ const RoomStatus = ({ data }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="text-danger text-2xl mb-0"
+                              className="custom-color2 text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{Occupied}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-red rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px icon-bg-custom-color2 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -155,7 +163,7 @@ const RoomStatus = ({ data }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card  border bg-neutral-200 left-line line-bg-neutral position-relative overflow-hidden">
+                <div className="card  border bg-custom-color3 custom-color3 line-bg-color3 left-line position-relative overflow-hidden">
                   <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -167,13 +175,13 @@ const RoomStatus = ({ data }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="text-neutral text-2xl mb-0"
+                              className="custom-color3 text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{Dirty}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-neutral-900 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px icon-bg-custom-color3 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -185,7 +193,7 @@ const RoomStatus = ({ data }) => {
               </div>
 
               <div className="col">
-                <div className="card border bg-primary-50 left-line line-bg-primary position-relative overflow-hidden">
+                <div className="card bg-custom-color4 custom-color4 line-bg-color4 border left-line position-relative overflow-hidden">
                   <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -197,13 +205,13 @@ const RoomStatus = ({ data }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="text-primary text-2xl mb-0"
+                              className="custom-color4 text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{Blocked}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-primary rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px icon-bg-custom-color4 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -214,7 +222,7 @@ const RoomStatus = ({ data }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card border bg-cyan-50 left-line line-bg-cyan position-relative overflow-hidden">
+                <div className="card border left-line bg-custom-color5 custom-color5 line-bg-color5 position-relative overflow-hidden">
                   <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -226,13 +234,13 @@ const RoomStatus = ({ data }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="text-cyan text-2xl mb-0"
+                              className="custom-color5 text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{ManagementBlocked}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-cyan-900 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px icon-bg-custom-color5 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -244,7 +252,7 @@ const RoomStatus = ({ data }) => {
               </div>
 
               <div className="col">
-                <div className="card border bg-warning-50 left-line line-bg-warning position-relative overflow-hidden">
+                <div className="card border left-line bg-custom-color6 custom-color6 line-bg-color6 position-relative overflow-hidden">
                   <div className="card-body px-10">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -256,13 +264,13 @@ const RoomStatus = ({ data }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="text-warning-600 text-2xl mb-0"
+                              className="custom-color6 text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{Unsettled}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px bg-warning-900 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px icon-bg-custom-color6 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -285,7 +293,7 @@ const RoomStatus = ({ data }) => {
           </div>
 
           <div className="card-body p-10">
-            <div className="mx-auto">
+            <div className="mx-auto pe-none">
               <ReactApexChart
                 options={chartOptions.options}
                 series={chartOptions.series}

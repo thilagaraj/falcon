@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const Floors = ({ data, floorIndex }) => {
-  const [isAccordionOpen, setIsAccordionOpen] = useState(floorIndex === 0);
 
   // Status-to-style mapping
   const statusStyles = {
@@ -51,7 +50,6 @@ const Floors = ({ data, floorIndex }) => {
       <div className="card h-100 p-0 radius-12">
         <div
           className="card-header border-bottom bg-base py-16 px-24 cursor-pointer"
-          onClick={() => setIsAccordionOpen(!isAccordionOpen)}
         >
           <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
             <h6 className="text-lg fw-semibold mb-0 d-flex align-items-center gap-2">
@@ -63,15 +61,10 @@ const Floors = ({ data, floorIndex }) => {
               </span>
               <span> {toSentenceCase(data.FloorName)}</span>
             </h6>
-            <Icon
-              icon={isAccordionOpen ? "mdi:chevron-up" : "mdi:chevron-down"}
-              width="24"
-              height="24"
-            />
+        
           </div>
         </div>
 
-        {isAccordionOpen && (
           <div className="card-body p-24">
             <div className="floors-grid">
               {data?.rooms?.map((room, index) => {
@@ -106,7 +99,6 @@ const Floors = ({ data, floorIndex }) => {
               })}
             </div>
           </div>
-        )}
       </div>
     </div>
   );

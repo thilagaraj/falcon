@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import ReactApexChart from "react-apexcharts";
 import { formatCurrency } from "../../utils/formatter";
 
-const TotalCollections = ({ data }) => {
+const TotalCollections = ({ data, checkin }) => {
   const {
     TotalCollection,
     Cash,
@@ -110,6 +110,15 @@ const TotalCollections = ({ data }) => {
     },
   };
 
+  const {
+    previousDayCheckin,
+    TodayCheckin,
+    TodayCheckout,
+    TodayArrival,
+    TodayRoomCancel,
+    TodayHouseGuest,
+  } = checkin;
+
   return (
     <div className="row gy-4 gx-4 mt-16">
       <div className="col col-lg-9">
@@ -123,7 +132,7 @@ const TotalCollections = ({ data }) => {
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
                   <div className="card-body px-10 position-relative">
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div className="d-flex long-text-card flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
                           Total
@@ -151,7 +160,7 @@ const TotalCollections = ({ data }) => {
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
                   <div className="card-body px-10 position-relative">
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div className="d-flex long-text-card flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
                           Cash
@@ -177,7 +186,7 @@ const TotalCollections = ({ data }) => {
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
                   <div className="card-body px-10 position-relative">
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div className="d-flex long-text-card flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
                           Card
@@ -203,7 +212,7 @@ const TotalCollections = ({ data }) => {
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4   left-line line-bg-success position-relative overflow-hidden">
                   <div className="card-body px-10 position-relative">
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div className="d-flex flex-wrap long-text-card align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
                           Online
@@ -229,7 +238,7 @@ const TotalCollections = ({ data }) => {
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
                   <div className="card-body px-10 position-relative">
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div className="d-flex flex-wrap long-text-card align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
                           Wallet
@@ -255,7 +264,7 @@ const TotalCollections = ({ data }) => {
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
                   <div className="card-body px-10 position-relative">
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div className="d-flex flex-wrap long-text-card align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
                           Cheque
@@ -281,7 +290,7 @@ const TotalCollections = ({ data }) => {
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
                   <div className="card-body px-10 position-relative">
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div className="d-flex long-text-card flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
                           On-hold
@@ -307,7 +316,7 @@ const TotalCollections = ({ data }) => {
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
                   <div className="card-body px-10 position-relative">
-                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 long-text-card">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
                           Refund
@@ -384,7 +393,7 @@ const TotalCollections = ({ data }) => {
               </div>
               <div className="col">
                 <div className="card shadow-none border bg-gradient-start-4  left-line line-bg-success position-relative overflow-hidden">
-                  <div className="card-body px-10 position-relative">
+                  <div className="card-body px-10 position-relative long-text-card">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-8">
@@ -419,16 +428,207 @@ const TotalCollections = ({ data }) => {
           </div>
 
           <div className="card-body p-10">
-            <div className="mx-auto">
+            <div className="mx-auto pe-none">
               <ReactApexChart
                 options={chartOptions.options}
                 series={chartOptions.series}
                 type="donut"
               />
             </div>
+          </div> 
+        </div>
+      </div>
+
+      <div className="col col-lg-9">
+        <div className="card h-100 p-0 radius-12">
+          <div className="card-header border-bottom bg-base py-16 px-24">
+            <h6 className="text-lg fw-semibold mb-0">Continue checkin</h6>
+          </div>
+
+          <div className="card-body p-24 px-10 dashboard-collections">
+            <div className="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-4 row-cols-sm-2 row-cols-3 gy-3 gx-2">
+              <div className="col">
+                <div className="card shadow-none border bg-custom-color1 custom-color1 line-bg-color1 left-line  position-relative overflow-hidden">
+                  <div className="card-body px-10 long-text-height">
+                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                      <div>
+                        <p className="fw-medium text-primary-light mb-1">
+                        Previous Day Checkin
+                        </p>
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="material-symbols-light:hotel-rounded"
+                              className="custom-color1 text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{previousDayCheckin}</span>
+                        </h6>
+                      </div>
+                      <div className=" w-50-px h-50-px bg-custom-color1 rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
+                        <Icon
+                          icon="carbon:hotel"
+                          className="text-base text-2xl mb-0"
+                        ></Icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card border left-line bg-custom-color2 custom-color2 line-bg-color2 position-relative overflow-hidden">
+                  <div className="card-body px-10 long-text-height">
+                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                      <div>
+                        <p className="fw-medium text-primary-light mb-1">
+                        Today Checkin
+                        </p>
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="material-symbols-light:hotel-rounded"
+                              className="custom-color2 text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{TodayCheckin}</span>
+                        </h6>
+                      </div>
+                      <div className="w-50-px h-50-px icon-bg-custom-color2 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                        <Icon
+                          icon="carbon:hotel"
+                          className="text-base text-2xl mb-0"
+                        ></Icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card  border left-line bg-custom-color3 custom-color3 line-bg-color3 position-relative overflow-hidden">
+                  <div className="card-body px-10 long-text-height">
+                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                      <div>
+                        <p className="fw-medium text-primary-light mb-1">
+                        Today Checkout
+                        </p>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="material-symbols-light:hotel-rounded"
+                              className="custom-color3 text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{TodayCheckout}</span>
+                        </h6>
+                      </div>
+                      <div className="w-50-px h-50-px icon-bg-custom-color3 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                        <Icon
+                          icon="carbon:hotel"
+                          className="text-base text-2xl mb-0"
+                        ></Icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col">
+                <div className="card border bg-custom-color4 custom-color4 line-bg-color4 left-line position-relative overflow-hidden">
+                  <div className="card-body px-10 long-text-height">
+                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                      <div>
+                        <p className="fw-medium text-primary-light mb-1">
+                        Today Arrival
+                        </p>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="material-symbols-light:hotel-rounded"
+                              className="text-primary text-2xl mb-0 custom-color4"
+                            ></Icon>
+                          </span>
+                          <span>{TodayArrival}</span>
+                        </h6>
+                      </div>
+                      <div className="w-50-px h-50-px icon-bg-custom-color5 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                        <Icon
+                          icon="carbon:hotel"
+                          className="text-base text-2xl mb-0"
+                        ></Icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col">
+                <div className="card border bg-custom-color5 custom-color5 line-bg-color5 left-line position-relative overflow-hidden">
+                  <div className="card-body px-10 long-text-height">
+                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                      <div>
+                        <p className="fw-medium text-primary-light mb-1">
+                        Today Room Cancel
+                        </p>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="material-symbols-light:hotel-rounded"
+                              className="custom-color5 text-2xl mb-0"
+                            ></Icon>
+                          </span>
+                          <span>{TodayRoomCancel}</span>
+                        </h6>
+                      </div>
+                      <div className="w-50-px h-50-px icon-bg-custom-color5 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                        <Icon
+                          icon="carbon:hotel"
+                          className="text-base text-2xl mb-0"
+                        ></Icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col">
+                <div className="card border left-line bg-custom-color6 custom-color6 line-bg-color6 position-relative overflow-hidden">
+                  <div className="card-body px-10 long-text-height">
+                    <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                      <div>
+                        <p className="fw-medium text-primary-light mb-1">
+                        Today House Guest
+                        </p>
+
+                        <h6 className="mb-0 d-flex align-items-center gap-2">
+                          <span className="d-flex d-sm-none">
+                            <Icon
+                              icon="material-symbols-light:hotel-rounded"
+                              className="text-warning-600 text-2xl mb-0 custom-color6"
+                            ></Icon>
+                          </span>
+                          <span>{TodayHouseGuest}</span>
+                        </h6>
+                      </div>
+                      <div className="w-50-px h-50-px icon-bg-custom-color6 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                        <Icon
+                          icon="carbon:hotel"
+                          className="text-base text-2xl mb-0"
+                        ></Icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+            </div>
           </div>
         </div>
       </div>
+
+
     </div>
   );
 };
