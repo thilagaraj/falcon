@@ -19,6 +19,7 @@ import ReviewPage from "./pages/ReviewPage";
 import MenuCard from "./pages/MenuCard";
 import FlashReport from "./components/FlashReport";
 import CollectionReport from "./components/CollectionReport";
+import SalesSegment from "./components/SalesSegment";
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
               <Route exact path="/sales-report" element={<SalesReportPage />} />
               <Route exact path="/flash-report" element={<FlashReport />} />
               <Route exact path="/collection-report" element={<CollectionReport />} />
+              <Route exact path="/sales-segment" element={<SalesSegment />} />
+
             </Route>
 
             {/* Catch-all for 404 */}

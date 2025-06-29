@@ -8,7 +8,7 @@ const ReportTable = ({ data, onFilter }) => {
         <Filter onFilter={onFilter} />
       </div>
       <div className="card-body" style={{ maxHeight: 400, overflowY: 'auto' }}>
-        <table className="table table-bordered mb-0 dataTable" style={{ minWidth: 600 }}>
+        <table className="table table-bordered mb-0 flash-report-table" style={{ minWidth: 600 }}>
           <thead>
             <tr>
               <th>OutLet</th>

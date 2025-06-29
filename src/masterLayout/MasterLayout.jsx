@@ -199,11 +199,11 @@ const MasterLayout = ({ children }) => {
             </li>
             <li>
               <NavLink
-                to="/chat-message4"
+                to="/sales-segment"
                 className={(navData) => (navData.isActive ? "active-page" : "")}
               >
                 <Icon icon="ix:report-general" className="menu-icon" />
-                <span>Sales segment wise</span>
+                <span>Sales segment</span>
               </NavLink>
             </li>
           </ul>

@@ -1769,6 +1769,15 @@ background-color: rgb(var(--custom-color1)) !important;
   box-shadow: 2px 1px 7px 0px rgb(var(--custom-color6), var(--line-opacity)) !important;
 }
 
+.table th,
+.collection-table th {
+  vertical-align: middle !important;
+}
+
+.collection-table td, .sales-segment-table td{
+  font-size: 13px !important
+}
+
 .bg-success-100 {
   background-color: var(--success-100) !important;
 }
@@ -11194,19 +11203,19 @@ h6,
   border-color: var(--success-600) !important;
 }
 
-table.dataTable > tbody > tr:nth-child(even) > td,
-.table.dataTable > tbody > tr:nth-child(even) > th {
+table.flash-report-table > tbody > tr:nth-child(even) > td,
+.table.flash-report-table > tbody > tr:nth-child(even) > th {
   background-color: #f5f5f5 !important;
 }
 
 @media (max-width: 600px) {
-  .dataTable {
+  .flash-report-table {
     table-layout: fixed !important;
     width: 100% !important;
     min-width: unset !important;
   }
-  .dataTable th,
-  .dataTable td {
+  .flash-report-table th,
+  .flash-report-table td {
     padding: 2px 0.5px !important;
     font-size: 11px !important;
     white-space: normal !important;
@@ -11217,6 +11226,12 @@ table.dataTable > tbody > tr:nth-child(even) > td,
     height: 36px; 
     vertical-align: middle !important;
     font-size: 13px !important;
+  }
+
+  .collection-table {
+    td {
+      width: 150px;
+    }
   }
 }
 
