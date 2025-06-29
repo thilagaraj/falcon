@@ -3,11 +3,9 @@ import RouteScrollToTop from "./helper/RouteScrollToTop";
 import SignInPage from "./pages/SignInPage";
 import PropertySelectionPage from "./pages/PropertySelection";
 import ErrorPage from "./pages/ErrorPage";
-import FormValidationPage from "./pages/FormValidationPage";
 import DashboardPage from "./pages/DashboardPage";
 import SalesReportPage from "./pages/SalesReportPage";
 import Spinner from "./components/Common/Spinner";
-import Alerts from "./components/Common/Alerts";
 import { SpinnerProvider, useSpinner } from "./hook/SpinnerContext";
 import { AlertProvider } from "./hook/AlertContext";
 import ProtectedRoute from "./hook/ProtectedRoute";
@@ -17,9 +15,9 @@ import ReportListPage from "./pages/ReportListPage";
 import HMSDashboardPage from "./pages/HMSDashboardPage";
 import ReviewPage from "./pages/ReviewPage";
 import MenuCard from "./pages/MenuCard";
-import FlashReport from "./components/FlashReport";
-import CollectionReport from "./components/CollectionReport";
-import SalesSegment from "./components/SalesSegment";
+import FlashReportPage from "./pages/FlashReportPage";
+import CollectionReportPage from "./pages/CollectionReportPage";
+import SalesSegmentPage from "./pages/SalesSegmentPage";
 
 function App() {
   return (
@@ -47,9 +45,9 @@ function App() {
               <Route exact path="/dashboard" element={<DashboardPage />} />
               <Route exact path="/hms-dashboard" element={<HMSDashboardPage />} />
               <Route exact path="/sales-report" element={<SalesReportPage />} />
-              <Route exact path="/flash-report" element={<FlashReport />} />
-              <Route exact path="/collection-report" element={<CollectionReport />} />
-              <Route exact path="/sales-segment" element={<SalesSegment />} />
+              <Route exact path="/flash-report" element={<FlashReportPage />} />
+              <Route exact path="/collection-report" element={<CollectionReportPage />} />
+              <Route exact path="/sales-segment" element={<SalesSegmentPage />} />
 
             </Route>
 

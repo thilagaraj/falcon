@@ -36,10 +36,6 @@ const FlashReport = () => {
     getFlashReportData();
   }, [reportDate]);
 
-  useEffect(() => {
-    getFlashReportData();
-  }, []);
-
   return (
     <div className="dashboard-main-body">
       <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
