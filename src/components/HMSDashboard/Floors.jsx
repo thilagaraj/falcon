@@ -6,28 +6,28 @@ const Floors = ({ data, floorIndex }) => {
   // Status-to-style mapping
   const statusStyles = {
     O: {
-      bg: "bg-danger-50",
-      text: "text-danger",
+      bg: "bg-custom-color2",
+      text: "custom-color2",
     },
     V: {
-      bg: "bg-success-50",
-      text: "text-success",
+      bg: "bg-custom-color1",
+      text: "custom-color1",
     },
     D: {
-      bg: "bg-neutral-50",
-      text: "text-neutral",
+      bg: "bg-custom-color3",
+      text: "custom-color3",
     },
     U: {
-      bg: "bg-warning-50",
-      text: "text-warning-900",
+      bg: "bg-custom-color6",
+      text: "custom-color6",
     },
     B: {
-      bg: "bg-info-50",
-      text: "text-info-800",
+      bg: "bg-custom-color4",
+      text: "custom-color4",
     },
     M: {
-      bg: "bg-cyan-50",
-      text: "text-cyan-800",
+      bg: "bg-custom-color5",
+      text: "custom-color5",
     },
   };
 

@@ -17,6 +17,8 @@ import ReportListPage from "./pages/ReportListPage";
 import HMSDashboardPage from "./pages/HMSDashboardPage";
 import ReviewPage from "./pages/ReviewPage";
 import MenuCard from "./pages/MenuCard";
+import FlashReport from "./components/FlashReport";
+import CollectionReport from "./components/CollectionReport";
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
               <Route exact path="/dashboard" element={<DashboardPage />} />
               <Route exact path="/hms-dashboard" element={<HMSDashboardPage />} />
               <Route exact path="/sales-report" element={<SalesReportPage />} />
+              <Route exact path="/flash-report" element={<FlashReport />} />
+              <Route exact path="/collection-report" element={<CollectionReport />} />
             </Route>
 
             {/* Catch-all for 404 */}

@@ -9,10 +9,10 @@ const RoomStatus = ({ data }) => {
   const labels = [
     "Vacant",
     "Occupied",
-    "Unsettled",
     "Dirty",
     "Blocked",
     "Management Blocked",
+    "Unsettled",
   ];
   const chartOptions = {
     series,
@@ -21,12 +21,12 @@ const RoomStatus = ({ data }) => {
         type: "donut",
       },
       colors: [
-        "rgb(24, 144, 255)",
-        "rgb(0, 227, 150)",
-        "rgb(254, 176, 25)",
-        "rgb(255, 69, 96)",
-        "rgb(119, 93, 208)",
-        "rgb(205, 220, 57)",
+        "rgb(0, 200, 83)",
+        "rgb(229, 57, 53)",
+        "rgb(68, 68, 68)",
+        "rgb(255, 183, 77)",
+        "rgb(2, 119, 189)",
+        "rgb(255, 255, 0)",
       ],
       legend: {
         position: "bottom",

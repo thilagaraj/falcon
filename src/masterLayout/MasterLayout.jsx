@@ -179,6 +179,33 @@ const MasterLayout = ({ children }) => {
                 <span>House report</span>
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/flash-report"
+                className={(navData) => (navData.isActive ? "active-page" : "")}
+              >
+                <Icon icon="ix:report-general" className="menu-icon" />
+                <span>Flash report</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/collection-report"
+                className={(navData) => (navData.isActive ? "active-page" : "")}
+              >
+                <Icon icon="ix:report-general" className="menu-icon" />
+                <span>Collection report</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/chat-message4"
+                className={(navData) => (navData.isActive ? "active-page" : "")}
+              >
+                <Icon icon="ix:report-general" className="menu-icon" />
+                <span>Sales segment wise</span>
+              </NavLink>
+            </li>
           </ul>
         </div>
       </aside>
