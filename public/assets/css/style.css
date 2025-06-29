@@ -295,12 +295,12 @@
   --input-bg: var(--neutral-50);
   --input-stroke: var(--neutral-300);
   --border-color: #d1d5db80;
-  --custom-color1: 24, 144, 255;
-  --custom-color2: 0, 227, 150;
-  --custom-color3: 254, 176, 25;
-  --custom-color4: 255, 69, 96;
-  --custom-color5: 119, 93, 208;
-  --custom-color6: 205, 220, 57;
+  --custom-color1: 0, 200, 83;
+  --custom-color2: 229, 57, 53;
+  --custom-color3: 68, 68, 68;
+  --custom-color4: 255, 183, 77;
+  --custom-color5: 2, 119, 189;
+  --custom-color6: 255, 255, 0;
   --custom-opacity: 0.4;
   --line-opacity: 0.6
 }
@@ -11192,6 +11192,24 @@ h6,
   background-color: var(--success-600) !important;
   color: #fff !important;
   border-color: var(--success-600) !important;
+}
+
+@media (max-width: 600px) {
+  .dataTable {
+    table-layout: fixed !important;
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  .dataTable th,
+  .dataTable td {
+    padding: 2px 1px !important;
+    font-size: 11px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: center !important;
+    width: 25% !important;
+    max-width: 25% !important;
+  }
 }
 
 .btn-outline-success-600:active,
