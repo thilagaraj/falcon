@@ -1,0 +1,47 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Cursor Rules for Falcon Project
+
+## General Coding Rules
+- Use ES2020+ JavaScript and React 18+ (with JSX).
+- All source code should be placed in the `src/` directory.
+- Use functional components and React hooks for state and side effects.
+- Follow the ESLint rules defined in `eslint.config.js` (React, React Hooks, and recommended JS rules).
+- Use named exports for components and utilities where possible.
+- Use absolute or relative imports consistently within the project.
+- Use semantic HTML and accessible ARIA attributes where appropriate.
+
+## File & Folder Naming
+- Use PascalCase for React component files (e.g., `MyComponent.jsx`).
+- Use camelCase for utility/helper files (e.g., `dateUtils.js`).
+- Use lowercase and hyphens for asset and style files (e.g., `main.css`, `logo.png`).
+
+## Styling
+- Use the CSS files in `public/assets/css/` for global and component styles.
+- Prefer utility classes and variables defined in the main CSS files.
+- Use BEM or utility-first class naming for custom styles if needed.
+
+## Commit & Branching
+- Keep commits focused and atomic.
+- Use clear, descriptive commit messages.
+- Branch naming: `feature/`, `bugfix/`, `hotfix/`, etc.
+
+## Best Practices
+- Write reusable, modular components.
+- Avoid prop drilling; use context or state management where needed.
+- Validate props and use TypeScript or JSDoc for type safety if possible.
+- Document complex logic with comments or README updates.
+
+## Testing
+- Use React Testing Library and Jest for unit and integration tests.
+- Place test files alongside the components they test or in a `__tests__` folder.
+
+## Linting & Formatting
+- Run `npm run lint` before pushing changes.
+- Use Prettier or a consistent code formatter for JS/JSX/JSON.
+
+---
+For more details, see the project README and ESLint configuration.

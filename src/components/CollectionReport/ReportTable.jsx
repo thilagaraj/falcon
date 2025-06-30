@@ -25,20 +25,28 @@ const ReportTable = ({ data, onFilter }) => {
               </tr>
             </thead>
             <tbody>
-              {data.map((row, idx) => (
-                <tr key={idx}>
-                  <td className="text-nowrap">{row.TRDATE?.slice(0, 10)}</td>
-                  <td>{row.TRTIME}</td>
-                  <td>{row.BILLNO}</td>
-                  <td>{row.ROOMNO}</td>
-                  <td>{row.GUESTNAME}</td>
-                  <td>{row.AMOUNT}</td>
-                  <td>{row.moDE?.trim()}</td>
-                  <td>{(row.TEMP1 && row.TEMP1.trim() !== '0') ? row.TEMP1 : (row.TEMP2 || '')}</td>
-                  <td>{row.LOGER}</td>
-                  <td>{row.SEP}</td>
+              {data.length === 0 ? (
+                <tr>
+                  <td colSpan="10" className="text-center">
+                    No results found. This may be due to active filters or no available data
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                data.map((row, idx) => (
+                  <tr key={idx}>
+                    <td className="text-nowrap">{row.TRDATE?.slice(0, 10)}</td>
+                    <td>{row.TRTIME}</td>
+                    <td>{row.BILLNO}</td>
+                    <td>{row.ROOMNO}</td>
+                    <td>{row.GUESTNAME}</td>
+                    <td>{row.AMOUNT}</td>
+                    <td>{row.moDE?.trim()}</td>
+                    <td>{(row.TEMP1 && row.TEMP1.trim() !== '0') ? row.TEMP1 : (row.TEMP2 || '')}</td>
+                    <td>{row.LOGER}</td>
+                    <td>{row.SEP}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

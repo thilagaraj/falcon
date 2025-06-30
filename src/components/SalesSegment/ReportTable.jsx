@@ -22,17 +22,25 @@ const ReportTable = ({ data, onFilter }) => {
               </tr>
             </thead>
             <tbody>
-              {data.map((row, idx) => (
-                <tr key={idx}>
-                  <td>{row.Particualr}</td>
-                  <td>{row.Amount}</td>
-                  {/* <td>{row.Allowence}</td> */}
-                  {/* <td>{row.DayAmt}</td> */}
-                  <td>{row.YearNet}</td>
-                  <td>{row.Mode}</td>
-                  <td>{row.GRADE}</td>
+              {data.length === 0 ? (
+                <tr>
+                  <td colSpan="5" className="text-center">
+                    No results found. This may be due to active filters or no available data
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                data.map((row, idx) => (
+                  <tr key={idx}>
+                    <td>{row.Particualr}</td>
+                    <td>{row.Amount}</td>
+                    {/* <td>{row.Allowence}</td> */}
+                    {/* <td>{row.DayAmt}</td> */}
+                    <td>{row.YearNet}</td>
+                    <td>{row.Mode}</td>
+                    <td>{row.GRADE}</td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

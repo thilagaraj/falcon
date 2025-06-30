@@ -18,14 +18,22 @@ const ReportTable = ({ data, onFilter }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, idx) => (
-              <tr key={idx}>
-                <td>{row.Particulars}</td>
-                <td>{Number(row.DayTotal).toFixed(2)}</td>
-                <td>{Number(row.MonthTotal).toFixed(2)}</td>
-                <td>{Number(row.YearTotal).toFixed(2)}</td>
+            {data.length === 0 ? (
+              <tr>
+                <td colSpan="4" className="text-center">
+                  No results found. This may be due to active filters or no available data
+                </td>
               </tr>
-            ))}
+            ) : (
+              data.map((row, idx) => (
+                <tr key={idx}>
+                  <td>{row.Particulars}</td>
+                  <td>{Number(row.DayTotal).toFixed(2)}</td>
+                  <td>{Number(row.MonthTotal).toFixed(2)}</td>
+                  <td>{Number(row.YearTotal).toFixed(2)}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
