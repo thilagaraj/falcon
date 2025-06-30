@@ -15986,3 +15986,12 @@ body .form-control.is-valid,
   border-bottom-right-radius: 3px;
   height: 20px !important;
 }
+
+.check-in-status {
+  color: blue;
+}
+
+.check-in-bg {
+  background-color: blue;
+}
+

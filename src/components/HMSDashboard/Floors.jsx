@@ -75,7 +75,7 @@ const Floors = ({ data, floorIndex }) => {
                       <div className="card-body p-8">
                         <div className="text-center">
                           <h6 className={`mb-4 text-md `}>{room.RoomNo}</h6>
-                          <div className={`text-xxs mt-0 p-6`}>
+                          <div className={`text-xxs mt-0 p-6 fw-medium text-black`}>
                             {room.RoomCode}
                           </div>
                         </div>
@@ -89,7 +89,7 @@ const Floors = ({ data, floorIndex }) => {
                               icon="material-symbols:hotel"
                               className={`${styles.text} text-l`}
                             />
-                            <span>{statusMapping[room.Status]}</span>
+                            <span className='fw-semibold'>{statusMapping[room.Status]}</span>
                           </p>
                         </div>
                       </div>

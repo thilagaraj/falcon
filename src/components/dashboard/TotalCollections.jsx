@@ -448,7 +448,7 @@ const TotalCollections = ({ data, checkin }) => {
           <div className="card-body p-24 px-10 dashboard-collections">
             <div className="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-4 row-cols-sm-2 row-cols-3 gy-3 gx-2">
               <div className="col">
-                <div className="card shadow-none border bg-custom-color1 custom-color1 line-bg-color1 left-line  position-relative overflow-hidden">
+                <div className="card shadow-none border left-line position-relative overflow-hidden bg-light-600">
                   <div className="card-body px-10 long-text-height">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -459,13 +459,13 @@ const TotalCollections = ({ data, checkin }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="custom-color1 text-2xl mb-0"
+                              className="check-in-status text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{previousDayCheckin}</span>
                         </h6>
                       </div>
-                      <div className=" w-50-px h-50-px bg-custom-color1 rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
+                      <div className=" w-50-px h-50-px check-in-bg rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -476,7 +476,7 @@ const TotalCollections = ({ data, checkin }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card border left-line bg-custom-color2 custom-color2 line-bg-color2 position-relative overflow-hidden">
+                <div className="card border left-line bg-light-600 position-relative overflow-hidden">
                   <div className="card-body px-10 long-text-height">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -487,13 +487,13 @@ const TotalCollections = ({ data, checkin }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="custom-color2 text-2xl mb-0"
+                              className="check-in-status text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{TodayCheckin}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px icon-bg-custom-color2 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px check-in-bg rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -504,7 +504,7 @@ const TotalCollections = ({ data, checkin }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card  border left-line bg-custom-color3 custom-color3 line-bg-color3 position-relative overflow-hidden">
+                <div className="card  border left-line bg-light-600 position-relative overflow-hidden">
                   <div className="card-body px-10 long-text-height">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -516,13 +516,13 @@ const TotalCollections = ({ data, checkin }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="custom-color3 text-2xl mb-0"
+                              className="check-in-status text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{TodayCheckout}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px icon-bg-custom-color3 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px check-in-bg rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -534,7 +534,7 @@ const TotalCollections = ({ data, checkin }) => {
               </div>
 
               <div className="col">
-                <div className="card border bg-custom-color4 custom-color4 line-bg-color4 left-line position-relative overflow-hidden">
+                <div className="card border bg-light-600 left-line position-relative overflow-hidden">
                   <div className="card-body px-10 long-text-height">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -546,13 +546,13 @@ const TotalCollections = ({ data, checkin }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="text-primary text-2xl mb-0 custom-color4"
+                              className="text-primary text-2xl mb-0 check-in-status"
                             ></Icon>
                           </span>
                           <span>{TodayArrival}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px icon-bg-custom-color5 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px check-in-bg rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -563,7 +563,7 @@ const TotalCollections = ({ data, checkin }) => {
                 </div>
               </div>
               <div className="col">
-                <div className="card border bg-custom-color5 custom-color5 line-bg-color5 left-line position-relative overflow-hidden">
+                <div className="card border bg-light-600 left-line position-relative overflow-hidden">
                   <div className="card-body px-10 long-text-height">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -575,13 +575,13 @@ const TotalCollections = ({ data, checkin }) => {
                           <span className="d-flex d-sm-none">
                             <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="custom-color5 text-2xl mb-0"
+                              className="check-in-status text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{TodayRoomCancel}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px icon-bg-custom-color5 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px check-in-bg rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
@@ -593,7 +593,7 @@ const TotalCollections = ({ data, checkin }) => {
               </div>
 
               <div className="col">
-                <div className="card border left-line bg-custom-color6 custom-color6 line-bg-color6 position-relative overflow-hidden">
+                <div className="card border bg-light-600 line-bg-color6 position-relative overflow-hidden">
                   <div className="card-body px-10 long-text-height">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
@@ -603,15 +603,15 @@ const TotalCollections = ({ data, checkin }) => {
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
                           <span className="d-flex d-sm-none">
-                            <Icon
+                          <Icon
                               icon="material-symbols-light:hotel-rounded"
-                              className="text-warning-600 text-2xl mb-0 custom-color6"
+                              className="check-in-status text-2xl mb-0"
                             ></Icon>
                           </span>
                           <span>{TodayHouseGuest}</span>
                         </h6>
                       </div>
-                      <div className="w-50-px h-50-px icon-bg-custom-color6 rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
+                      <div className="w-50-px h-50-px check-in-bg rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
                           icon="carbon:hotel"
                           className="text-base text-2xl mb-0"
