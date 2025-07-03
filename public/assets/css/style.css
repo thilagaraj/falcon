@@ -300,7 +300,7 @@
   --custom-color3: 68, 68, 68;
   --custom-color4: 255, 183, 77;
   --custom-color5: 2, 119, 189;
-  --custom-color6: 255, 255, 0;
+  --custom-color6: 255, 225, 64;
   --custom-opacity: 0.4;
   --line-opacity: 0.6
 }
@@ -6396,10 +6396,6 @@ html[data-theme="dark"] .dark-bg-neutral-200 {
 
 .gap-40 {
   gap: var(--size-40);
-}
-
-.gap-44 {
-  gap: var(--size-44);
 }
 
 .gap-48 {
@@ -15995,3 +15991,10 @@ body .form-control.is-valid,
   background-color: blue;
 }
 
+
+.long-text-height {
+  min-height: 180px; /* Adjust as needed for your design */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
