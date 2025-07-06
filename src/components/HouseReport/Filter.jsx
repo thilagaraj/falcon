@@ -28,6 +28,7 @@ const Filter = (tableData = [], columns) => {
                   type="date"
                   name="reportDate"
                   value={values.reportDate}
+                  className="ps-1"
                   readOnly
                 />
               </Form.Group>
@@ -40,7 +41,7 @@ const Filter = (tableData = [], columns) => {
                   className="radius-8 px-16 py-9 d-flex align-items-center gap-2 mt-36"
                   id="download-dropdown"
                 >
-                  Download as
+                  Download As
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={handleDownloadPDF}>PDF</Dropdown.Item>

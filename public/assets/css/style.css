@@ -4332,6 +4332,9 @@ html[data-theme="dark"] .dark-bg-neutral-200 {
     width: 80px !important;
     height: 80px !important;
   }
+  .row .btn-ps-0 {
+    padding-left: 0;
+  }
 }
 @media (max-width: 424px) {
   .countdown-item {
@@ -14311,7 +14314,7 @@ td.fc-header-center {
   }
 }
 @media (max-width: 768px) {
-  .auth-right > div {
+  .auth-right>div {
     max-width: 100%;
     width: 100%;
   }
@@ -15998,3 +16001,8 @@ body .form-control.is-valid,
   flex-direction: column;
   justify-content: space-between;
 }
+
+.d-contents {
+  display: contents;
+}
+
