@@ -4,7 +4,17 @@ import ReactApexChart from "react-apexcharts";
 const RoomStatus = ({ data }) => {
   const { Vacant, Occupied, Unsettled, Dirty, Blocked, ManagementBlocked } =
     data;
-  const series = Object.values(data);
+  //const series = Object.values(data);
+  const seriesOrder = [
+    "Vacant",
+    "Occupied",
+    "Dirty",
+    "Blocked",
+    "ManagementBlocked",
+    "Unsettled",
+  ];
+  const series = seriesOrder.map((key) => data[key]);
+
   const total = series.reduce((sum, val) => sum + (val || 0), 0);
   const labels = [
     "Vacant",
@@ -14,6 +24,7 @@ const RoomStatus = ({ data }) => {
     "Management Blocked",
     "Unsettled",
   ];
+
   const chartOptions = {
     series,
     options: {
@@ -30,7 +41,7 @@ const RoomStatus = ({ data }) => {
       ],
       legend: {
         position: "bottom",
-        width: '100%',
+        width: "100%",
       },
       labels,
       responsive: [
@@ -52,7 +63,7 @@ const RoomStatus = ({ data }) => {
             },
           },
         },
-        
+
         {
           breakpoint: 390,
           options: {
@@ -91,6 +102,12 @@ const RoomStatus = ({ data }) => {
               },
             },
           },
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        style: {
+          colors: ["#a3e1ff"],
         },
       },
     },
@@ -280,8 +297,6 @@ const RoomStatus = ({ data }) => {
                   </div>
                 </div>
               </div>
-
-              
             </div>
           </div>
         </div>
@@ -293,13 +308,15 @@ const RoomStatus = ({ data }) => {
           </div>
 
           <div className="card-body p-10">
-            <div className="mx-auto pe-none">
-              <ReactApexChart
-                options={chartOptions.options}
-                series={chartOptions.series}
-                type="donut"
-              />
-            </div>
+            {chartOptions.series[0] !== undefined && (
+              <div className="mx-auto pe-none">
+                <ReactApexChart
+                  options={chartOptions.options}
+                  series={chartOptions.series}
+                  type="donut"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

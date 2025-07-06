@@ -13,7 +13,7 @@ const ReportTable = ({ data, onFilter }) => {
   return (
     <div className="card basic-data-table">
       <div className="card-header">
-        <Filter onFilter={onFilter} />
+        <Filter onFilter={onFilter} tableData={data} columns={columns} />
       </div>
       <div className="card-body">
         <DataGrid data={data} columns={columns} />

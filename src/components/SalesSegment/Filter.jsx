@@ -1,9 +1,10 @@
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Dropdown } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { getCurrentDate } from "../../utils/date";
+import { downloadExcel, downloadPDF } from "../../utils/download";
 
-const Filter = ({ onFilter }) => {
+const Filter = ({ onFilter, tableData = [], columns }) => {
   const schema = yup.object().shape({
     reportDate: yup
       .date()
@@ -17,6 +18,15 @@ const Filter = ({ onFilter }) => {
     onFilter(values.reportDate, values.toDate);
     handleClose();
   };
+
+  const handleDownloadPDF = () => {
+    downloadPDF(columns, tableData);
+  };
+
+  const handleDownloadExcel = () => {
+    downloadExcel(columns, tableData);
+  };
+
 
   return (
     <Formik
@@ -78,6 +88,23 @@ const Filter = ({ onFilter }) => {
               >
                 Apply Filter
               </Button>
+            </Col>
+            <Col>
+              <Dropdown align="end">
+                <Dropdown.Toggle
+                  as={Button}
+                  variant="warning-900"
+                  className="radius-8 px-16 py-9 d-flex align-items-center gap-2 mt-36"
+                  id="download-dropdown"
+                >
+                  Download as
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={handleDownloadPDF}>PDF</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item onClick={handleDownloadExcel}>Excel</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Col>
           </Row>
         </Form>

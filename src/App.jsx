@@ -18,6 +18,8 @@ import MenuCard from "./pages/MenuCard";
 import FlashReportPage from "./pages/FlashReportPage";
 import CollectionReportPage from "./pages/CollectionReportPage";
 import SalesSegmentPage from "./pages/SalesSegmentPage";
+import HouseReportPage from "./pages/HouseReportPage";
+import OccupancyReportPage from "./pages/OccupancytPage";
 
 function App() {
   return (
@@ -45,9 +47,11 @@ function App() {
               <Route exact path="/dashboard" element={<DashboardPage />} />
               <Route exact path="/hms-dashboard" element={<HMSDashboardPage />} />
               <Route exact path="/sales-report" element={<SalesReportPage />} />
+              <Route exact path="/house-report" element={<HouseReportPage />} />
               <Route exact path="/flash-report" element={<FlashReportPage />} />
               <Route exact path="/collection-report" element={<CollectionReportPage />} />
               <Route exact path="/sales-segment" element={<SalesSegmentPage />} />
+              <Route exact path="/guest-occupancy" element={<OccupancyReportPage />} />
 
             </Route>
 

@@ -1,20 +1,28 @@
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Dropdown } from "react-bootstrap";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { getCurrentDate } from "../../utils/date";
+import { downloadExcel, downloadPDF } from "../../utils/download";
 
-const Filter = ({ onFilter }) => {
+const Filter = ({ onFilter, tableData = [], columns }) => {
   const schema = yup.object().shape({
     reportDate: yup
       .date()
       .required("From date is required")
       .typeError("From date is required"),
-  
   });
 
   const onSubmit = (values) => {
     onFilter(values.reportDate);
     handleClose();
+  };
+  
+  const handleDownloadPDF = () => {
+    downloadPDF(columns, tableData);
+  };
+
+  const handleDownloadExcel = () => {
+    downloadExcel(columns, tableData);
   };
 
   return (
@@ -22,7 +30,7 @@ const Filter = ({ onFilter }) => {
       validationSchema={schema}
       onSubmit={onSubmit}
       initialValues={{
-        reportDate: getCurrentDate('YYYY-MM-DD'),
+        reportDate: getCurrentDate("YYYY-MM-DD"),
       }}
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
@@ -38,7 +46,7 @@ const Filter = ({ onFilter }) => {
                   onChange={handleChange}
                   isInvalid={!!errors.reportDate && touched.reportDate}
                   onClick={(e) => {
-                    if (typeof e.target.showPicker === 'function') {
+                    if (typeof e.target.showPicker === "function") {
                       e.target.showPicker();
                     }
                   }}
@@ -48,7 +56,7 @@ const Filter = ({ onFilter }) => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
-           
+
             <Col>
               <Button
                 type="submit"
@@ -56,6 +64,23 @@ const Filter = ({ onFilter }) => {
               >
                 Apply Filter
               </Button>
+            </Col>
+            <Col>
+              <Dropdown align="end">
+                <Dropdown.Toggle
+                  as={Button}
+                  variant="warning-900"
+                  className="radius-8 px-16 py-9 d-flex align-items-center gap-2 mt-36"
+                  id="download-dropdown"
+                >
+                  Download as
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={handleDownloadPDF}>PDF</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item onClick={handleDownloadExcel}>Excel</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Col>
           </Row>
         </Form>

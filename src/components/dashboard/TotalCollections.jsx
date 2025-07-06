@@ -10,16 +10,28 @@ const TotalCollections = ({ data, checkin }) => {
     Online,
     Wallet,
     Cheque,
-    BillsOnHold,
-    Refund,
+    Outstanding,
+    PaidOut,
     CashExpense,
     OtherExpense,
     CashInHand,
   } = data;
-  const series = Object.values(data);
+
+  const seriesOrder = [
+    "Cash",
+    "Card",
+    "Online",
+    "Wallet",
+    "Cheque",
+    "Outstanding",
+    "PaidOut",
+    "CashExpense",
+    "OtherExpense",
+    "CashInHand",
+  ];
+  const series = seriesOrder.map((key) => data[key]);
   const total = series.reduce((sum, val) => sum + (val || 0), 0);
   const labels = [
-    "Total Collection",
     "Cash",
     "Card",
     "Online",
@@ -39,7 +51,6 @@ const TotalCollections = ({ data, checkin }) => {
         type: "donut",
       },
       colors: [
-        "#1E88E5",
         "#43A047",
         "#FB8C00",
         "#E53935",
@@ -111,7 +122,7 @@ const TotalCollections = ({ data, checkin }) => {
   };
 
   const {
-    previousDayCheckin,
+    ContinueCheckin,
     TodayCheckin,
     TodayCheckout,
     TodayArrival,
@@ -295,7 +306,7 @@ const TotalCollections = ({ data, checkin }) => {
                         <p className="fw-medium text-primary-light mb-8">
                           On-hold
                         </p>
-                        <h6 className="mb-0">{formatCurrency(BillsOnHold)}</h6>
+                        <h6 className="mb-0">{formatCurrency(Outstanding)}</h6>
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
@@ -321,7 +332,7 @@ const TotalCollections = ({ data, checkin }) => {
                         <p className="fw-medium text-primary-light mb-8">
                           Refund
                         </p>
-                        <h6 className="mb-0">{formatCurrency(Refund)}</h6>
+                        <h6 className="mb-0">{formatCurrency(PaidOut)}</h6>
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
@@ -442,7 +453,7 @@ const TotalCollections = ({ data, checkin }) => {
       <div className="col col-lg-9">
         <div className="card h-100 p-0 radius-12">
           <div className="card-header border-bottom bg-base py-16 px-24">
-            <h6 className="text-lg fw-semibold mb-0">Continue checkin</h6>
+            <h6 className="text-lg fw-semibold mb-0">Hotel Current Status</h6>
           </div>
 
           <div className="card-body p-24 px-10 dashboard-collections">
@@ -453,7 +464,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                        Previous Day Checkin
+                        Continue Checkin
                         </p>
                         <h6 className="mb-0 d-flex align-items-center gap-2">
                           <span className="d-flex d-sm-none">
@@ -462,7 +473,7 @@ const TotalCollections = ({ data, checkin }) => {
                               className="check-in-status text-2xl mb-0"
                             ></Icon>
                           </span>
-                          <span>{previousDayCheckin}</span>
+                          <span>{ContinueCheckin}</span>
                         </h6>
                       </div>
                       <div className=" w-50-px h-50-px check-in-bg rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
