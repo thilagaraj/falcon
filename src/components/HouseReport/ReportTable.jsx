@@ -6,14 +6,14 @@ const ReportTable = ({ data, onFilter }) => {
   const columns = [
     { accessorKey: "RoomNo", header: "RoomNo", formatType: "TEXT" },
     { accessorKey: "GuestName", header: "GuestName", formatType: "TEXT" },
-    { accessorKey: "MonthTotal", header: "Segment", formatType: "AMOUNT" },
+    { accessorKey: "Segment", header: "Segment", formatType: "TEXT" },
     { accessorKey: "Pax", header: "Pax", formatType: "TEXT" },
     { accessorKey: "Plan", header: "Plan", formatType: "TEXT" },
-    { accessorKey: "TrDate", header: "TrDate", formatType: "DaTE"},
+    { accessorKey: "TrDate", header: "TrDate", formatType: "DATE"},
     { accessorKey: "Days", header: "Days", formatType: "TEXT" },
     { accessorKey: "Tariff", header: "Tariff", formatType: "AMOUNT" },
     { accessorKey: "RoomTax", header: "RoomTax", formatType: "AMOUNT" },
-    { accessorKey: "PlanAmt", header: "PalnAmt", formatType: "AMOUNT" },
+    { accessorKey: "PalnAmt", header: "PlanAmt", formatType: "AMOUNT" },
     { accessorKey: "PlanTax", header: "PlanTax", formatType: "AMOUNT" },
     { accessorKey: "ExtraBed", header: "ExtraBed", formatType: "AMOUNT" },
     { accessorKey: "FoodBill", header: "FoodBill", formatType: "AMOUNT" },
@@ -28,7 +28,7 @@ const ReportTable = ({ data, onFilter }) => {
   return (
     <div className="card basic-data-table">
       <div className="card-header">
-        <Filter onFilter={onFilter} />
+        <Filter onFilter={onFilter} tableData={data} columns={columns} />
       </div>
       <div className="card-body">
         <DataGrid data={data} columns={columns} />

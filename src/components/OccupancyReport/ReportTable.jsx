@@ -11,7 +11,7 @@ const ReportTable = ({ data, onFilter }) => {
     { accessorKey: "ChildPax", header: "C-Pax", formatType: "TEXT" },
     { accessorKey: "CompanyName", header: "CompanyName", formatType: "TEXT" },
     { accessorKey: "ArrivalDate", header: "ArrivalDate", formatType: "DATE" },
-    { accessorKey: "Arivaltime", header: "ArivalTime", formatType: "TEXT" },
+    { accessorKey: "Arivaltime", header: "ArivalTime", formatType: "TIME" },
     { accessorKey: "DepatureDate", header: "Dep.Date", formatType: "DATE" },
     { accessorKey: "PlanName", header: "Plan", formatType: "TEXT" },
     { accessorKey: "SourceType", header: "Source", formatType: "TEXT" },

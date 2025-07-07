@@ -16,8 +16,8 @@ const HouseReport = () => {
       const response = await $axios.get("Falconreport/HouseReport", {
         params: payload,
       });
-      if (response?.flashModel) {
-        setReportData(response?.flashModel);
+      if (response?.HouseReportList) {
+        setReportData(response?.HouseReportList);
         return true;
       }
       throw response;

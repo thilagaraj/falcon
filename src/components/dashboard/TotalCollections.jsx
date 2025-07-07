@@ -4,7 +4,7 @@ import { formatCurrency } from "../../utils/formatter";
 
 const TotalCollections = ({ data, checkin }) => {
   const {
-    TotalCollection,
+    DayTotalCollection,
     Cash,
     Card,
     Online,
@@ -13,8 +13,8 @@ const TotalCollections = ({ data, checkin }) => {
     Outstanding,
     PaidOut,
     CashExpense,
-    OtherExpense,
-    CashInHand,
+    OtherExpences,
+    HandCash,
   } = data;
 
   const seriesOrder = [
@@ -26,11 +26,11 @@ const TotalCollections = ({ data, checkin }) => {
     "Outstanding",
     "PaidOut",
     "CashExpense",
-    "OtherExpense",
-    "CashInHand",
+    "OtherExpences",
+    "HandCash",
   ];
   const series = seriesOrder.map((key) => data[key]);
-  const total = series.reduce((sum, val) => sum + (val || 0), 0);
+  // const total = series.reduce((sum, val) => sum + (val || 0), 0);
   const labels = [
     "Cash",
     "Card",
@@ -149,7 +149,7 @@ const TotalCollections = ({ data, checkin }) => {
                           Total
                         </p>
                         <h6 className="mb-0 ">
-                          {formatCurrency(TotalCollection + 100000)}
+                          {formatCurrency(DayTotalCollection)}
                         </h6>
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center d-none d-sm-flex">
@@ -384,7 +384,7 @@ const TotalCollections = ({ data, checkin }) => {
                         <p className="fw-medium text-primary-light mb-8">
                           Other Expense
                         </p>
-                        <h6 className="mb-0">{formatCurrency(OtherExpense)}</h6>
+                        <h6 className="mb-0">{formatCurrency(OtherExpences)}</h6>
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
@@ -410,7 +410,7 @@ const TotalCollections = ({ data, checkin }) => {
                         <p className="fw-medium text-primary-light mb-8">
                           Hand Cash
                         </p>
-                        <h6 className="mb-0">{formatCurrency(CashInHand)}</h6>
+                        <h6 className="mb-0">{formatCurrency(HandCash)}</h6>
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon

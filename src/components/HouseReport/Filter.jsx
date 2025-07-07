@@ -3,14 +3,14 @@ import { Formik } from "formik";
 import { getCurrentDate } from "../../utils/date";
 import { downloadExcel, downloadPDF } from "../../utils/download";
 
-const Filter = (tableData = [], columns) => {
+const Filter = ({tableData = [], columns}) => {
   
   const handleDownloadPDF = () => {
-    downloadPDF(exportColumns, tableData);
+    downloadPDF(columns, tableData);
   };
 
   const handleDownloadExcel = () => {
-    downloadExcel(exportColumns, tableData);
+    downloadExcel(columns, tableData);
   };
   return (
     <Formik

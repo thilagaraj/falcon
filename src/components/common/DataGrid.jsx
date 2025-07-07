@@ -25,6 +25,9 @@ const formatCellValue = (value, formatType) => {
 
     case "DATE":
       return value ? new Date(value).toLocaleDateString("en-IN") : "";
+    
+    case "TIME":
+      return value ? value?.split('.')?.[0] : "";
 
     case "TEXT":
     default:

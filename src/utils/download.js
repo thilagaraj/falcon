@@ -3,7 +3,7 @@ import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
 
 const downloadPDF = (headers, tableData) => {
-  const doc = new jsPDF();
+  const doc = new jsPDF({ orientation: "landscape", format: "a4" });
   if (tableData.length === 0) {
     doc.text("No data to export", 10, 10);
   } else {
@@ -12,7 +12,8 @@ const downloadPDF = (headers, tableData) => {
     const rows = tableData.map((row) =>
       exportColumns.map((col) => row[col.key])
     );
-    autoTable(doc, { head: [columns], body: rows });
+    autoTable(doc, { head: [columns], body: rows,  styles: { fontSize: 8 },       tableWidth: "auto",      // let table auto-fit
+    });
   }
   doc.save("table-data.pdf");
 };
