@@ -71,7 +71,7 @@ const Floors = ({ data, floorIndex }) => {
                 const styles = statusStyles[room.Status] || statusStyles["D"];
                 return (
                   <div key={index}>
-                    <div className={`card border cursor-pointer ${styles.bg} `}>
+                    <div className={`floor-text-height card border cursor-pointer ${styles.bg} `}>
                       <div className="card-body p-8">
                         <div className="text-center">
                           <h6 className={`mb-4 text-md `}>{room.RoomNo}</h6>

@@ -460,7 +460,7 @@ const TotalCollections = ({ data, checkin }) => {
             <div className="row row-cols-xxxl-5 row-cols-xxl-4 row-cols-xl-4 row-cols-lg-4 row-cols-sm-2 row-cols-3 gy-3 gx-2">
               <div className="col">
                 <div className="card shadow-none border left-line position-relative overflow-hidden bg-light-600">
-                  <div className="card-body px-10 long-text-height">
+                  <div className="card-body px-10 long-text-height-collection">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -488,7 +488,7 @@ const TotalCollections = ({ data, checkin }) => {
               </div>
               <div className="col">
                 <div className="card border left-line bg-light-600 position-relative overflow-hidden">
-                  <div className="card-body px-10 long-text-height">
+                  <div className="card-body px-10 long-text-height-collection">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -516,7 +516,7 @@ const TotalCollections = ({ data, checkin }) => {
               </div>
               <div className="col">
                 <div className="card  border left-line bg-light-600 position-relative overflow-hidden">
-                  <div className="card-body px-10 long-text-height">
+                  <div className="card-body px-10 long-text-height-collection">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -546,7 +546,7 @@ const TotalCollections = ({ data, checkin }) => {
 
               <div className="col">
                 <div className="card border bg-light-600 left-line position-relative overflow-hidden">
-                  <div className="card-body px-10 long-text-height">
+                  <div className="card-body px-10 long-text-height-collection">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -575,7 +575,7 @@ const TotalCollections = ({ data, checkin }) => {
               </div>
               <div className="col">
                 <div className="card border bg-light-600 left-line position-relative overflow-hidden">
-                  <div className="card-body px-10 long-text-height">
+                  <div className="card-body px-10 long-text-height-collection">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
@@ -605,7 +605,7 @@ const TotalCollections = ({ data, checkin }) => {
 
               <div className="col">
                 <div className="card border bg-light-600 line-bg-color6 position-relative overflow-hidden">
-                  <div className="card-body px-10 long-text-height">
+                  <div className="card-body px-10 long-text-height-collection">
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">

@@ -15995,11 +15995,13 @@ body .form-control.is-valid,
 }
 
 
-.long-text-height {
-  min-height: 180px; /* Adjust as needed for your design */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.long-text-height-collection {
+  min-height: 118px;
+}
+
+.floor-text-height {
+  min-height: 116px;
+
 }
 
 .d-contents {
