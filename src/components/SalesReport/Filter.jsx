@@ -23,7 +23,6 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
 
   const onSubmit = (values) => {
     onFilter(values.reportDate);
-    handleClose();
   };
 
   return (

@@ -16,7 +16,6 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
 
   const onSubmit = (values) => {
     onFilter(values.reportDate, values.toDate);
-    handleClose();
   };
 
   const handleDownloadPDF = () => {

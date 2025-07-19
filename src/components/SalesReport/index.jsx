@@ -16,8 +16,12 @@ const DailySalesReport = () => {
       const response = await $axios.get("Falconreport/dailysales", {
         params: payload,
       });
-      if (response?.DailyModelList) {
-        setReportData(response?.DailyModelList);
+
+      if (response && response.DailyModelList) {
+        setReportData([
+          ...response.DailyModelList,
+          response.DailysaleModelSummary,
+        ]);
         return true;
       }
       throw response;

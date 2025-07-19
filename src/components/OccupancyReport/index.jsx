@@ -16,8 +16,12 @@ const OccupancyReport = () => {
       const response = await $axios.get("Falconreport/GuestOccupanyReport", {
         params: payload,
       });
-      if (response?.GuestOccupancyList) {
-        setReportData(response?.GuestOccupancyList);
+
+      if (response && response.GuestOccupancyList) {
+        setReportData([
+          ...response.GuestOccupancyList,
+          response.GuestOccupancytSummary,
+        ]);
         return true;
       }
       throw response;

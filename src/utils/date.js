@@ -40,6 +40,10 @@ const getLastMonthDates = () => {
   return { startDate, endDate };
 };
 
+const addDays = (stDay, noOfDays) => {
+  return moment(stDay).add(noOfDays, "days");
+};
+
 export {
   formatDateForDisplay,
   formatDateForDb,
@@ -50,5 +54,6 @@ export {
   getLastWeekDates,
   getThisMonthDates,
   getLastMonthDates,
+  addDays,
   moment,
 };
