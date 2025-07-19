@@ -1,8 +1,20 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import ReactApexChart from "react-apexcharts";
 import { formatCurrency } from "../../utils/formatter";
+import { useState, useEffect } from "react";
+import $axios from "../../utils/axios";
+import { addDays, formatDateForDb, getCurrentDate } from "../../utils/date";
+import { useSpinner } from "../../hook/SpinnerContext";
+import ReportTable from "./ReportTable";
+
+
 
 const TotalCollections = ({ data, checkin }) => {
+  const { showLoading, hideLoading } = useSpinner();
+  const [fromDate, setFromDate] = useState(getCurrentDate("MM/DD/YYYY"));
+  const [toDate, setToDate] = useState(addDays(getCurrentDate("MM/DD/YYYY"), 5));
+  const [reportData, setReportData] = useState([]);
+
+
   const {
     DayTotalCollection,
     Cash,
@@ -17,110 +29,6 @@ const TotalCollections = ({ data, checkin }) => {
     HandCash,
   } = data;
 
-  const seriesOrder = [
-    "Cash",
-    "Card",
-    "Online",
-    "Wallet",
-    "Cheque",
-    "Outstanding",
-    "PaidOut",
-    "CashExpense",
-    "OtherExpences",
-    "HandCash",
-  ];
-  const series = seriesOrder.map((key) => data[key]);
-  // const total = series.reduce((sum, val) => sum + (val || 0), 0);
-  const labels = [
-    "Cash",
-    "Card",
-    "Online",
-    "Wallet",
-    "Cheque",
-    "Bills on hold",
-    "Refund",
-    "Cash Expense",
-    "Other Expense",
-    "Cash in hand",
-  ];
-
-  const chartOptions = {
-    series,
-    options: {
-      chart: {
-        type: "donut",
-      },
-      colors: [
-        "#43A047",
-        "#FB8C00",
-        "#E53935",
-        "#8E24AA",
-        "#00ACC1",
-        "#947a06",
-        "#6D4C41",
-        "#3949AB",
-        "#F06292",
-        "#00E676",
-      ],
-    legend: {
-        position: "bottom",
-      },
-      labels,
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: "100%",
-            },
-            legend: {
-              position: "bottom",
-               width: '100%',
-            },
-            plotOptions: {
-              pie: {
-                donut: {
-                  size: "55%",
-                },
-              },
-            },
-          },
-        },
-        {
-          breakpoint: 390,
-          options: {
-            chart: {
-              width: "100%",
-            },
-            legend: {
-              position: "bottom",
-            },
-            plotOptions: {
-              pie: {
-                donut: {
-                  size: "25%",
-                  labels: {
-                    show: false,
-                  },
-                },
-              },
-            },
-          },
-        },
-      ],
-      plotOptions: {
-        pie: {
-          donut: {
-            size: "55%",
-            labels: {
-              show: true,
-            },
-          },
-        },
-      },
-    },
-  };
-
   const {
     ContinueCheckin,
     TodayCheckin,
@@ -130,9 +38,40 @@ const TotalCollections = ({ data, checkin }) => {
     TodayHouseGuest,
   } = checkin;
 
+  const getRoomAvialability = async () => {
+    showLoading();
+    try {
+      const formattedFromDate = formatDateForDb(fromDate, "MM/DD/YYYY");
+      let formattedToDate = toDate;
+      if (toDate && typeof toDate === 'object' && typeof toDate.format === 'function') {
+        formattedToDate = toDate.format("MM/DD/YYYY");
+      } else if (typeof toDate === 'string') {
+        formattedToDate = formatDateForDb(toDate, "MM/DD/YYYY");
+      }
+      const response = await $axios.get(
+        `/Falconreport/GetRoomAvailabilityChart?BranchCode=HMS_1001&PropertyId=10001&HotelId=THAI_1001&fromdt=${formattedFromDate}&Todt=${formattedToDate}`
+      );
+      console.log(response);
+      setReportData(response)
+    } catch (e) {
+      console.log(e);
+    } finally {
+      hideLoading();
+    }
+  };
+
+  useEffect(() => {
+    getRoomAvialability();
+  }, [fromDate, toDate]);
+
+  const updateTable = (fromDate, toDate) => {
+    setFromDate(formatDateForDb(fromDate, "MM/DD/YYYY"));
+    setToDate(formatDateForDb(toDate, "MM/DD/YYYY"));
+  };
+  
   return (
     <div className="row gy-4 gx-4 mt-16">
-      <div className="col col-lg-9">
+      <div className="col col-12">
         <div className="card h-100 p-0 radius-12 ">
           <div className="card-header border-bottom bg-base py-16 px-24">
             <h6 className="text-lg fw-semibold mb-0">Collections</h6>
@@ -384,7 +323,9 @@ const TotalCollections = ({ data, checkin }) => {
                         <p className="fw-medium text-primary-light mb-8">
                           Other Expense
                         </p>
-                        <h6 className="mb-0">{formatCurrency(OtherExpences)}</h6>
+                        <h6 className="mb-0">
+                          {formatCurrency(OtherExpences)}
+                        </h6>
                       </div>
                       <div className="w-50-px h-50-px bg-success-main rounded-circle d-flex justify-content-center align-items-center  d-none d-sm-flex">
                         <Icon
@@ -432,25 +373,8 @@ const TotalCollections = ({ data, checkin }) => {
           </div>
         </div>
       </div>
-      <div className="col col-lg-3 ">
-        <div className="card h-100 p-0 radius-12 ">
-          <div className="card-header border-bottom bg-base py-16 px-24">
-            <h6 className="text-lg fw-semibold mb-0">Overall Collections</h6>
-          </div>
 
-          <div className="card-body p-10">
-            <div className="mx-auto pe-none">
-              <ReactApexChart
-                options={chartOptions.options}
-                series={chartOptions.series}
-                type="donut"
-              />
-            </div>
-          </div> 
-        </div>
-      </div>
-
-      <div className="col col-lg-9">
+      <div className="col col-12">
         <div className="card h-100 p-0 radius-12">
           <div className="card-header border-bottom bg-base py-16 px-24">
             <h6 className="text-lg fw-semibold mb-0">Hotel Current Status</h6>
@@ -464,7 +388,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                        Continue Checkin
+                          Continue Checkin
                         </p>
                         <h6 className="mb-0 d-flex align-items-center gap-2">
                           <span className="d-flex d-sm-none">
@@ -492,7 +416,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                        Today Checkin
+                          Today Checkin
                         </p>
                         <h6 className="mb-0 d-flex align-items-center gap-2">
                           <span className="d-flex d-sm-none">
@@ -520,7 +444,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                        Today Checkout
+                          Today Checkout
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
@@ -550,7 +474,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                        Today Arrival
+                          Today Arrival
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
@@ -579,7 +503,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                        Today Room Cancel
+                          Today Room Cancel
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
@@ -609,12 +533,12 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                        Today House Guest
+                          Today House Guest
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
                           <span className="d-flex d-sm-none">
-                          <Icon
+                            <Icon
                               icon="material-symbols-light:hotel-rounded"
                               className="check-in-status text-2xl mb-0"
                             ></Icon>
@@ -632,14 +556,17 @@ const TotalCollections = ({ data, checkin }) => {
                   </div>
                 </div>
               </div>
-
-              
             </div>
           </div>
         </div>
       </div>
 
-
+      <div className="col col-12">
+        <div className="card-header border-bottom bg-base py-16 px-24">
+          <h6 className="text-lg fw-semibold mb-0">Room Availability</h6>
+        </div>
+        {hideLoading && <ReportTable data={reportData} onFilter={updateTable} toDate={toDate} />}
+      </div>
     </div>
   );
 };

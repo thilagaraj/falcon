@@ -17,7 +17,9 @@ const HouseReport = () => {
         params: payload,
       });
       if (response?.HouseReportList) {
-        setReportData(response?.HouseReportList);
+        if(response?.HouseReportList) {
+        setReportData([...response.HouseReportList, response?.HouseReportSummary]);
+      }
         return true;
       }
       throw response;

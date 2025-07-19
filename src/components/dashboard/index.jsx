@@ -15,7 +15,6 @@ const Dashboard = () => {
 
   const getDashboardData = async () => {
     try {
-      const payload = {};
       showLoading();
       const response = await $axios.get("FalconHome/dashboard");
       if (response) {
