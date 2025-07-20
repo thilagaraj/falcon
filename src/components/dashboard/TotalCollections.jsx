@@ -51,7 +51,6 @@ const TotalCollections = ({ data, checkin }) => {
       const response = await $axios.get(
         `/Falconreport/GetRoomAvailabilityChart?BranchCode=HMS_1001&PropertyId=10001&HotelId=THAI_1001&fromdt=${formattedFromDate}&Todt=${formattedToDate}`
       );
-      console.log(response);
       setReportData(response)
     } catch (e) {
       console.log(e);
