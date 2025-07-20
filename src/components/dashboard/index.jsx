@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TotalCollections from "./TotalCollections";
 import RoomStatus from "./RoomStatus";
-import Filters from "./Filters";
-import { useNavigate } from "react-router-dom";
 import { useSpinner } from "../../hook/SpinnerContext";
 import $axios from "../../utils/axios";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
   const { showLoading, hideLoading } = useSpinner();
   const [roomStatusData, setRoomStatusData] = useState({});
   const [collectionsData, setCollectionsData] = useState({});

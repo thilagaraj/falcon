@@ -44,6 +44,18 @@ const addDays = (stDay, noOfDays) => {
   return moment(stDay).add(noOfDays, "days");
 };
 
+const formatHeaderDate = (dateStr) => {
+  const d = new Date(dateStr);
+  const day = d.getDate().toString().padStart(2, '0');
+  const month = d.toLocaleString('default', { month: 'short' });
+  const weekday = d.toLocaleString('default', { weekday: 'short' });
+  return { month, day,weekday };
+};
+
+const toIsoDate = (dateStr) => {
+  return moment(dateStr).format('YYYY-MM-DD');
+};
+
 export {
   formatDateForDisplay,
   formatDateForDb,
@@ -56,4 +68,6 @@ export {
   getLastMonthDates,
   addDays,
   moment,
+  formatHeaderDate,
+  toIsoDate
 };

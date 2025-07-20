@@ -3,10 +3,12 @@ import { Formik } from "formik";
 import { getCurrentDate } from "../../utils/date";
 import * as yup from "yup";
 
- const RoomAvailabilityFilter = ({ onFilter, tableData = [], columns, toDate }) => {
+const RoomAvailabilityFilter = ({
+  onFilter,
+  toDate,
+}) => {
   const schema = yup.object().shape({
-    startDate: yup
-      .date(),
+    startDate: yup.date(),
     toDate: yup
       .date()
       .required("To date is required")
@@ -17,11 +19,14 @@ import * as yup from "yup";
     onFilter(values.startDate, values.toDate);
   };
 
-  // Get current date for initial values
   const currentDate = getCurrentDate("YYYY-MM-DD");
   // Format toDate if it's a moment object
   let initialToDate = toDate;
-  if (toDate && typeof toDate === 'object' && typeof toDate.format === 'function') {
+  if (
+    toDate &&
+    typeof toDate === "object" &&
+    typeof toDate.format === "function"
+  ) {
     initialToDate = toDate.format("YYYY-MM-DD");
   }
 
@@ -87,3 +92,14 @@ import * as yup from "yup";
   );
 };
 export default RoomAvailabilityFilter;
+
+// PropTypes validation
+import PropTypes from "prop-types";
+
+RoomAvailabilityFilter.propTypes = {
+  onFilter: PropTypes.func.isRequired,
+  toDate: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
+};

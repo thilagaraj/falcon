@@ -1,11 +1,17 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { DataGrid } from "../common/DataGrid";
 import RoomAvailabilityFilter from "./RoomAvailabilityFilter";
+import { formatHeaderDate, toIsoDate } from "../../utils/date";
+import PropTypes from "prop-types";
 
-// Helper to format date as YYYY-MM-DD
-const formatDate = (dateStr) => {
-  const d = new Date(dateStr);
-  return d.toISOString().slice(0, 10);
+const headerDate = (dateStr) => {
+  const {day, month, weekday} = formatHeaderDate(dateStr);
+  return (
+    <span>
+      {`${day} ${month}`}<br />
+      <span style={{ color: '#b0b7c3', fontSize: '12px' }}>{weekday}</span>
+    </span>
+  );
 };
 
 const ReportTable = ({ data = [], onFilter, toDate }) => {
@@ -24,7 +30,7 @@ const ReportTable = ({ data = [], onFilter, toDate }) => {
     const dateSet = new Set();
     data.forEach((item) => {
       item.Rooms.forEach((room) => {
-        dateSet.add(formatDate(room.ProcessDate));
+        dateSet.add(toIsoDate(room.ProcessDate));
       });
     });
     const dates = Array.from(dateSet).sort();
@@ -34,7 +40,7 @@ const ReportTable = ({ data = [], onFilter, toDate }) => {
       { accessorKey: "RoomType", header: "Room Type" },
       ...dates.map((date) => ({
         accessorKey: date,
-        header: date,
+        header: headerDate(date),
         formatType: "TEXT",
       })),
     ];
@@ -43,7 +49,7 @@ const ReportTable = ({ data = [], onFilter, toDate }) => {
     const rows = data.map((item) => {
       const row = { RoomType: item.RoomType };
       item.Rooms.forEach((room) => {
-        row[formatDate(room.ProcessDate)] = room.Rooms;
+        row[toIsoDate(room.ProcessDate)] = room.Rooms;
       });
       // Fill missing dates with 0 or ""
       dates.forEach((date) => {
@@ -62,9 +68,15 @@ const ReportTable = ({ data = [], onFilter, toDate }) => {
       </div>
       <div className="card-body">
         <DataGrid data={rows} columns={columns} />
-      </div>
+    </div>
     </div>
   );
+};
+
+ReportTable.propTypes = {
+  data: PropTypes.array,
+  onFilter: PropTypes.func,
+  toDate: PropTypes.any,
 };
 
 export default ReportTable;

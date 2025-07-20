@@ -8,6 +8,7 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { Icon } from "@iconify/react";
+import PropTypes from "prop-types";
 
 const formatCellValue = (value, formatType) => {
   switch (formatType) {
@@ -150,35 +151,39 @@ export function DataGrid({ columns, data, pageSize = 10 }) {
               </tbody>
             ) : (
               <tbody>
-                {table.getRowModel().rows.map((row) => (
-                  <tr key={row.id}>
-                    {row.getVisibleCells().map((cell) => {
-                      const { columnDef } = cell.column;
-                      const value = cell.getValue();
+                {table.getRowModel().rows.map((row) => {
+                  // Check if this is the summary row (PlanName === 'Total Summary')
+                  const isSummaryRow = row.original && (row.original.PlanName === 'Total Summary' || row.original.GuestName === 'Total Pax');
+                  return (
+                    <tr key={row.id} className={isSummaryRow ? 'summary-row-bg' : ''}>
+                      {row.getVisibleCells().map((cell) => {
+                        const { columnDef } = cell.column;
+                        const value = cell.getValue();
 
-                      const formatted = columnDef.formatType
-                        ? formatCellValue(value, columnDef.formatType)
-                        : flexRender(columnDef.cell, cell.getContext());
+                        const formatted = columnDef.formatType
+                          ? formatCellValue(value, columnDef.formatType)
+                          : flexRender(columnDef.cell, cell.getContext());
 
-                      const isHighlightedAmount =
-                        columnDef.formatType === "AMOUNT" &&
-                        columnDef.highlightAmount === true &&
-                        typeof value === "number";
+                        const isHighlightedAmount =
+                          columnDef.formatType === "AMOUNT" &&
+                          columnDef.highlightAmount === true &&
+                          typeof value === "number";
 
-                      const textColorClass = isHighlightedAmount
-                        ? value < 0
-                          ? "text-danger-700 font-semibold"
-                          : "text-success-700 font-semibold"
-                        : "";
+                        const textColorClass = isHighlightedAmount
+                          ? value < 0
+                            ? "text-danger-700 font-semibold"
+                            : "text-success-700 font-semibold"
+                          : "";
 
-                      return (
-                        <td key={cell.id} className={textColorClass}>
-                          {formatted}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
+                        return (
+                          <td key={cell.id} className={textColorClass}>
+                            {formatted}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
               </tbody>
             )}
           </table>
@@ -283,3 +288,9 @@ export function DataGrid({ columns, data, pageSize = 10 }) {
     </div>
   );
 }
+
+DataGrid.propTypes = {
+  columns: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
+  pageSize: PropTypes.number,
+};
