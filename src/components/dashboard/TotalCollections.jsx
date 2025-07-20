@@ -5,7 +5,7 @@ import $axios from "../../utils/axios";
 import { addDays, formatDateForDb, getCurrentDate } from "../../utils/date";
 import { useSpinner } from "../../hook/SpinnerContext";
 import ReportTable from "./ReportTable";
-
+import PropTypes from "prop-types";
 
 
 const TotalCollections = ({ data, checkin }) => {
@@ -375,9 +375,16 @@ const TotalCollections = ({ data, checkin }) => {
       </div>
 
       <div className="col col-12">
+        <div className="card-header border-bottom bg-base py-16 px-24">
+          <h6 className="text-lg fw-semibold mb-0">Room Availability</h6>
+        </div>
+        {hideLoading && <ReportTable data={reportData} onFilter={updateTable} toDate={toDate} />}
+      </div>
+
+      <div className="col col-12">
         <div className="card h-100 p-0 radius-12">
           <div className="card-header border-bottom bg-base py-16 px-24">
-            <h6 className="text-lg fw-semibold mb-0">Hotel Current Status</h6>
+            <h6 className="text-lg fw-semibold mb-0">Hotel Current Status</h6>
           </div>
 
           <div className="card-body p-24 px-10 dashboard-collections">
@@ -561,14 +568,33 @@ const TotalCollections = ({ data, checkin }) => {
         </div>
       </div>
 
-      <div className="col col-12">
-        <div className="card-header border-bottom bg-base py-16 px-24">
-          <h6 className="text-lg fw-semibold mb-0">Room Availability</h6>
-        </div>
-        {hideLoading && <ReportTable data={reportData} onFilter={updateTable} toDate={toDate} />}
-      </div>
+
     </div>
   );
+};
+
+TotalCollections.propTypes = {
+  data: PropTypes.shape({
+    DayTotalCollection: PropTypes.number,
+    Cash: PropTypes.number,
+    Card: PropTypes.number,
+    Online: PropTypes.number,
+    Wallet: PropTypes.number,
+    Cheque: PropTypes.number,
+    Outstanding: PropTypes.number,
+    PaidOut: PropTypes.number,
+    CashExpense: PropTypes.number,
+    OtherExpences: PropTypes.number,
+    HandCash: PropTypes.number,
+  }).isRequired,
+  checkin: PropTypes.shape({
+    ContinueCheckin: PropTypes.number,
+    TodayCheckin: PropTypes.number,
+    TodayCheckout: PropTypes.number,
+    TodayArrival: PropTypes.number,
+    TodayRoomCancel: PropTypes.number,
+    TodayHouseGuest: PropTypes.number,
+  }).isRequired,
 };
 
 export default TotalCollections;
