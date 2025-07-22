@@ -67,7 +67,7 @@ const ReportTable = ({ data = [], onFilter, toDate }) => {
         <RoomAvailabilityFilter onFilter={onFilter} tableData={rows} columns={columns} toDate={toDate} />
       </div>
       <div className="card-body">
-        <DataGrid data={rows} columns={columns} />
+        <DataGrid data={rows} columns={columns} disablePaginationAndSearch={true} disableSorting={true} />
     </div>
     </div>
   );

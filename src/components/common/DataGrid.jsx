@@ -36,7 +36,7 @@ const formatCellValue = (value, formatType) => {
   }
 };
 
-export function DataGrid({ columns, data, pageSize = 10 }) {
+export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSearch = false, disableSorting = false }) {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -61,37 +61,39 @@ export function DataGrid({ columns, data, pageSize = 10 }) {
 
   return (
     <div className="dt-container dt-empty-footer">
-      <div className="dt-layout-row">
-        <div className="dt-layout-cell dt-layout-start">
-          <div className="dt-length">
-            <select
-              className="dt-input"
-              value={table.getState().pagination.pageSize}
-              onChange={(e) => table.setPageSize(Number(e.target.value))}
-            >
-              {[10, 25, 50, 100].map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </select>
-            <label> entries per page</label>
+      {!disablePaginationAndSearch && (
+        <div className="dt-layout-row">
+          <div className="dt-layout-cell dt-layout-start">
+            <div className="dt-length">
+              <select
+                className="dt-input"
+                value={table.getState().pagination.pageSize}
+                onChange={(e) => table.setPageSize(Number(e.target.value))}
+              >
+                {[10, 25, 50, 100].map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
+              <label> entries per page</label>
+            </div>
+          </div>
+          <div className="dt-layout-cell dt-layout-end">
+            <div className="dt-search">
+              <label htmlFor="dt-search-0">Search:</label>
+              <input
+                id="dt-search-0"
+                className="dt-input"
+                type="search"
+                value={globalFilter ?? ""}
+                onChange={(e) => setGlobalFilter(e.target.value)}
+                placeholder=""
+              />
+            </div>
           </div>
         </div>
-        <div className="dt-layout-cell dt-layout-end">
-          <div className="dt-search">
-            <label htmlFor="dt-search-0">Search:</label>
-            <input
-              id="dt-search-0"
-              className="dt-input"
-              type="search"
-              value={globalFilter ?? ""}
-              onChange={(e) => setGlobalFilter(e.target.value)}
-              placeholder=""
-            />
-          </div>
-        </div>
-      </div>
+      )}
 
       <div className="dt-layout-row dt-layout-table">
         <div className="dt-layout-cell dt-layout-full overflow-auto">
@@ -100,6 +102,18 @@ export function DataGrid({ columns, data, pageSize = 10 }) {
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
+                    if (disableSorting) {
+                      return (
+                        <th key={header.id} className="" tabIndex={-1} role="columnheader">
+                          <span className="dt-column-title">
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                          </span>
+                        </th>
+                      );
+                    }
                     const isSorted = header.column.getIsSorted();
                     const sortClass =
                       isSorted === "asc"
@@ -189,102 +203,103 @@ export function DataGrid({ columns, data, pageSize = 10 }) {
           </table>
         </div>
       </div>
-
-      <div className="dt-layout-row">
-        <div className="dt-layout-cell dt-layout-start">
-          <div className="dt-info" aria-live="polite" role="status">
-            Showing{" "}
-            {table.getRowModel().rows.length
-              ? `${
-                  table.getState().pagination.pageIndex *
-                    table.getState().pagination.pageSize +
-                  1
-                }
-         to
-         ${
-           table.getState().pagination.pageIndex *
-             table.getState().pagination.pageSize +
-           table.getRowModel().rows.length
-         }
-         of
-         ${table.getPrePaginationRowModel().rows.length}`
-              : "0"}{" "}
-            entries
-          </div>
-        </div>
-
-        <div className="dt-layout-cell dt-layout-end">
-          <div className="dt-paging">
-            <nav aria-label="pagination">
-              <button
-                type="button"
-                className={`dt-paging-button first ${
-                  !table.getCanPreviousPage() ? "disabled" : ""
-                }`}
-                onClick={() => table.setPageIndex(0)}
-                disabled={!table.getCanPreviousPage()}
-                aria-label="First"
-              >
-                «
-              </button>
-
-              <button
-                type="button"
-                className={`dt-paging-button previous ${
-                  !table.getCanPreviousPage() ? "disabled" : ""
-                }`}
-                onClick={() => table.previousPage()}
-                disabled={!table.getCanPreviousPage()}
-                aria-label="Previous"
-              >
-                ‹
-              </button>
-
-              {Array.from({ length: table.getPageCount() }).map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  className={`dt-paging-button ${
-                    table.getState().pagination.pageIndex === i ? "current" : ""
-                  }`}
-                  onClick={() => table.setPageIndex(i)}
-                  aria-current={
-                    table.getState().pagination.pageIndex === i
-                      ? "page"
-                      : undefined
+      {!disablePaginationAndSearch && (
+        <div className="dt-layout-row">
+          <div className="dt-layout-cell dt-layout-start">
+            <div className="dt-info" aria-live="polite" role="status">
+              Showing{" "}
+              {table.getRowModel().rows.length
+                ? `${
+                    table.getState().pagination.pageIndex *
+                      table.getState().pagination.pageSize +
+                    1
                   }
+           to
+           ${
+             table.getState().pagination.pageIndex *
+               table.getState().pagination.pageSize +
+             table.getRowModel().rows.length
+           }
+           of
+           ${table.getPrePaginationRowModel().rows.length}`
+                : "0"}{" "}
+              entries
+            </div>
+          </div>
+
+          <div className="dt-layout-cell dt-layout-end">
+            <div className="dt-paging">
+              <nav aria-label="pagination">
+                <button
+                  type="button"
+                  className={`dt-paging-button first ${
+                    !table.getCanPreviousPage() ? "disabled" : ""
+                  }`}
+                  onClick={() => table.setPageIndex(0)}
+                  disabled={!table.getCanPreviousPage()}
+                  aria-label="First"
                 >
-                  {i + 1}
+                  «
                 </button>
-              ))}
 
-              <button
-                type="button"
-                className={`dt-paging-button next ${
-                  !table.getCanNextPage() ? "disabled" : ""
-                }`}
-                onClick={() => table.nextPage()}
-                disabled={!table.getCanNextPage()}
-                aria-label="Next"
-              >
-                ›
-              </button>
+                <button
+                  type="button"
+                  className={`dt-paging-button previous ${
+                    !table.getCanPreviousPage() ? "disabled" : ""
+                  }`}
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                  aria-label="Previous"
+                >
+                  ‹
+                </button>
 
-              <button
-                type="button"
-                className={`dt-paging-button last ${
-                  !table.getCanNextPage() ? "disabled" : ""
-                }`}
-                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                disabled={!table.getCanNextPage()}
-                aria-label="Last"
-              >
-                »
-              </button>
-            </nav>
+                {Array.from({ length: table.getPageCount() }).map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    className={`dt-paging-button ${
+                      table.getState().pagination.pageIndex === i ? "current" : ""
+                    }`}
+                    onClick={() => table.setPageIndex(i)}
+                    aria-current={
+                      table.getState().pagination.pageIndex === i
+                        ? "page"
+                        : undefined
+                    }
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+
+                <button
+                  type="button"
+                  className={`dt-paging-button next ${
+                    !table.getCanNextPage() ? "disabled" : ""
+                  }`}
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                  aria-label="Next"
+                >
+                  ›
+                </button>
+
+                <button
+                  type="button"
+                  className={`dt-paging-button last ${
+                    !table.getCanNextPage() ? "disabled" : ""
+                  }`}
+                  onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                  disabled={!table.getCanNextPage()}
+                  aria-label="Last"
+                >
+                  »
+                </button>
+              </nav>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -293,4 +308,6 @@ DataGrid.propTypes = {
   columns: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
   pageSize: PropTypes.number,
+  disablePaginationAndSearch: PropTypes.bool,
+  disableSorting: PropTypes.bool,
 };

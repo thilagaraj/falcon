@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const TotalCollections = ({ data, checkin }) => {
   const { showLoading, hideLoading } = useSpinner();
   const [fromDate, setFromDate] = useState(getCurrentDate("MM/DD/YYYY"));
-  const [toDate, setToDate] = useState(addDays(getCurrentDate("MM/DD/YYYY"), 5));
+  const [toDate, setToDate] = useState(addDays(getCurrentDate("MM/DD/YYYY"), 2));
   const [reportData, setReportData] = useState([]);
 
 

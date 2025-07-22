@@ -3,15 +3,13 @@ import { Formik } from "formik";
 import { getCurrentDate } from "../../utils/date";
 import * as yup from "yup";
 
-const RoomAvailabilityFilter = ({
-  onFilter,
-  toDate,
-}) => {
+const RoomAvailabilityFilter = ({ onFilter, toDate }) => {
   const schema = yup.object().shape({
     startDate: yup.date(),
     toDate: yup
       .date()
       .required("To date is required")
+      .min(yup.ref("startDate"), "To date cannot be before from date")
       .typeError("To date is required"),
   });
 
@@ -49,7 +47,13 @@ const RoomAvailabilityFilter = ({
                   type="date"
                   name="startDate"
                   value={values.startDate}
-                  readOnly
+                  onChange={handleChange}
+                  isInvalid={!!errors.toDate && touched.toDate}
+                  onClick={(e) => {
+                    if (typeof e.target.showPicker === "function") {
+                      e.target.showPicker();
+                    }
+                  }}
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.startDate}
@@ -98,8 +102,5 @@ import PropTypes from "prop-types";
 
 RoomAvailabilityFilter.propTypes = {
   onFilter: PropTypes.func.isRequired,
-  toDate: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  toDate: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
