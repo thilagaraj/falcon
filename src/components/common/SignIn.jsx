@@ -80,7 +80,7 @@ const SignInLayer = () => {
               password: "",
             }}
           >
-            {({ handleSubmit, handleChange, values, touched, errors }) => (
+            {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => (
               <Form noValidate onSubmit={handleSubmit} autoComplete="off">
                 <Row className="mb-3">
                   <Col>
@@ -94,7 +94,7 @@ const SignInLayer = () => {
                         <span
                           className={
                             "icon translate-middle-y" +
-                            (errors.username ? " top-35 " : " top-50 ")
+                            (touched.username && errors.username ? " top-35 " : " top-50 ")
                           }
                         >
                           <Icon icon="mage:user" />
@@ -102,10 +102,12 @@ const SignInLayer = () => {
                         <Form.Control
                           required
                           type="Username"
+                          name="username"
                           placeholder="username"
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           isValid={touched.username && !errors.username}
-                          isInvalid={!!errors.username}
+                          isInvalid={touched.username && !!errors.username}
                           className="form-control h-56-px bg-neutral-50 radius-12"
                           autoComplete="off"
                         />
@@ -131,10 +133,12 @@ const SignInLayer = () => {
                         <Form.Control
                           required
                           type="password"
+                          name="password"
                           placeholder="Password"
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           isValid={touched.password && !errors.password}
-                          isInvalid={!!errors.password}
+                          isInvalid={touched.password && !!errors.password}
                           className="form-control h-56-px bg-neutral-50 radius-12"
                           autoComplete="off"
                         />
@@ -160,10 +164,12 @@ const SignInLayer = () => {
                         <Form.Control
                           required
                           type="text"
+                          name="propertyId"
                           placeholder="Property Id"
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           isValid={touched.propertyId && !errors.propertyId}
-                          isInvalid={!!errors.propertyId}
+                          isInvalid={touched.propertyId && !!errors.propertyId}
                           className="form-control h-56-px bg-neutral-50 radius-12"
                           autoComplete="off"
                         />
