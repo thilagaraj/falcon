@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSpinner } from "../hook/SpinnerContext";
 import $axios from "../utils/axios";
 
@@ -59,6 +59,7 @@ const ReportListPage = () => {
   const [searchParams] = useSearchParams();
   const { showLoading, hideLoading } = useSpinner();
   const [guestInfoDashboard, setGuestInfoDashboard] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getGuestDashboard();
@@ -92,6 +93,16 @@ const ReportListPage = () => {
 
   const handleCardClick = (item) => {
     console.log("Card clicked:", item);
+    switch (item.value) {
+      case "BillDetail":
+        navigate(`/checkout-details?${searchParams.toString()}`);
+        break;
+      case "Feedback":
+        navigate(`/review?${searchParams.toString()}`);
+        break;
+      default:
+        break;
+    }
   };
 
   return (

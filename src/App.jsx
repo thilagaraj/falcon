@@ -13,6 +13,8 @@ import GuestInformationForm from "./pages/GuestInformationForm";
 import { CheckoutDetails } from "./pages/CheckoutDetails";
 import ReportListPage from "./pages/ReportListPage";
 import HMSDashboardPage from "./pages/HMSDashboardPage";
+import HMSDashboardPage1 from "./pages/HMSDashboardPage1";
+
 import ReviewPage from "./pages/ReviewPage";
 import MenuCard from "./pages/MenuCard";
 import FlashReportPage from "./pages/FlashReportPage";
@@ -46,6 +48,7 @@ function App() {
               <Route exact path="/" element={<DashboardPage />} />
               <Route exact path="/dashboard" element={<DashboardPage />} />
               <Route exact path="/hms-dashboard" element={<HMSDashboardPage />} />
+              <Route exact path="/hms-dashboard1" element={<HMSDashboardPage1 />} />
               <Route exact path="/sales-report" element={<SalesReportPage />} />
               <Route exact path="/house-report" element={<HouseReportPage />} />
               <Route exact path="/flash-report" element={<FlashReportPage />} />

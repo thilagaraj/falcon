@@ -422,7 +422,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Today Checkin
+                          Checkin
                         </p>
                         <h6 className="mb-0 d-flex align-items-center gap-2">
                           <span className="d-flex d-sm-none">
@@ -450,7 +450,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Today Checkout
+                          Checkout
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
@@ -480,7 +480,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Today Arrival
+                          Arrival
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
@@ -509,7 +509,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Today Room Cancel
+                          Room Cancel
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
@@ -539,7 +539,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Today House Guest
+                          House Guest
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">

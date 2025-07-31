@@ -155,6 +155,13 @@ const MasterLayout = ({ children }) => {
                 <Icon icon="carbon:hotel" className="menu-icon" />
                 <span>HMS Dashboard</span>
               </NavLink>
+              <NavLink
+                to="/hms-dashboard1"
+                className={(navData) => (navData.isActive ? "active-page" : "")}
+              >
+                <Icon icon="carbon:hotel" className="menu-icon" />
+                <span>HMS Dashboard1</span>
+              </NavLink>
             </li>
 
             <li className="sidebar-menu-group-title">Reports</li>
