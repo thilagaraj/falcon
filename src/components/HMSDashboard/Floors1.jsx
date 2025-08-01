@@ -22,7 +22,7 @@ const Floors1 = ({ data, floorIndex }) => {
 
   return (
     <>     
-    <div className="mt-2 px-2 py-4 ">
+    <div className="mt-2 py-4 ">
 
       <h4 className="mb-6 mt-6 text-xxs">{data.FloorName}</h4>
       <div className="d-flex flex-wrap gap-1">
@@ -32,7 +32,7 @@ const Floors1 = ({ data, floorIndex }) => {
           return (
             <div key={index} className="room-container">
               <div className={`border-0 `} style={styles.style}>
-                <div className=" py-2 px-2">
+                <div className=" py-2 px-1">
                   <div
                     className="text-center text-white text-xxs"
                   >

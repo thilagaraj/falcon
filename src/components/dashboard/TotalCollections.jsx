@@ -422,7 +422,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Checkin
+                          Today Checkin
                         </p>
                         <h6 className="mb-0 d-flex align-items-center gap-2">
                           <span className="d-flex d-sm-none">
@@ -450,7 +450,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Checkout
+                          Today Checkout
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">
@@ -480,7 +480,7 @@ const TotalCollections = ({ data, checkin }) => {
                     <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
                       <div>
                         <p className="fw-medium text-primary-light mb-1">
-                          Arrival
+                          Today Arrival
                         </p>
 
                         <h6 className="mb-0 d-flex align-items-center gap-2">

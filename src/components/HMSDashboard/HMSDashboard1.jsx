@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Floors from "./Floors1";
-import { useNavigate } from "react-router-dom";
 import { useSpinner } from "../../hook/SpinnerContext";
 import $axios from "../../utils/axios";
 import RoomStats from "./RoomStats1";
 
 const HMSDashboard1 = () => {
-  const navigate = useNavigate();
   const { showLoading, hideLoading } = useSpinner();
   const [floorsData, setFloorsData] = useState([]);
   const [roomStatusData, setRoomStatusData] = useState({});
@@ -70,7 +68,7 @@ const HMSDashboard1 = () => {
 
   return (
     <div className="dashboard-main-body bg-white ">
-      <div className="ps-10 pe-6">
+      <div className="px-16">
       <RoomStats data={roomStatusData} />
       <hr className="mt-2" />
 

@@ -1,20 +1,16 @@
-import { Row, Col, Card } from 'react-bootstrap';
-import { Icon } from "@iconify/react/dist/iconify.js";
-import ReactApexChart from "react-apexcharts";
+import { Row, Col } from 'react-bootstrap';
 
 const StatusBar = ({ label, value, color }) => (
-  <Col xs={4} className="px-1">
+  <Col xs={4}>
     <div 
-      className="d-flex align-items-center justify-content-center h-100 px-1 py-6" 
+      className="d-flex align-items-center justify-content-center h-100 py-6" 
       style={{ 
         backgroundColor: color,
-        height: '40px',
-        borderRadius: '1px',
         color: 'white',
         textAlign: 'center',
       }}
     >
-      <span className="fw-medium" style={{ fontSize: '12px' }}>{label} ({value})</span>
+      <span className="fw-medium  px-1 " style={{ fontSize: '12px' }}>{label} ({value})</span>
     </div>
   </Col>
 );
@@ -48,11 +44,10 @@ const RoomStats1 = ({ data }) => {
   ];
 
   return (
-    <div className=''>
-      <div className="border-bottom bg-base py-16 px-24">
+    <>
+      <div className="bg-base py-16 px-2">
         <h6 className="text-lg fw-semibold mb-0">HMS Dashboard</h6>
       </div>
-      <div className="p-4">
         <div className="d-flex flex-column gap-2">
           {rows.map((row, rowIndex) => (
             <Row key={rowIndex} className='mt-1'>
@@ -62,8 +57,7 @@ const RoomStats1 = ({ data }) => {
             </Row>
           ))}
         </div>
-      </div>
-    </div>
+    </>
   );
 };
 
