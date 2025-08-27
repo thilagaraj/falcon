@@ -65,25 +65,25 @@ const Floors = ({ data, floorIndex }) => {
           </div>
         </div>
 
-          <div className="card-body p-24">
-            <div className="floors-grid">
+          <div className="p-6">
+            <div className="floors-grid gap-1">
               {data?.rooms?.map((room, index) => {
                 const styles = statusStyles[room.Status] || statusStyles["D"];
                 return (
                   <div key={index}>
                     <div className={`floor-text-height card border cursor-pointer ${styles.bg} `}>
-                      <div className="card-body p-8">
+                      <div className="p-1">
                         <div className="text-center">
-                          <h6 className={`mb-4 text-md `}>{room.RoomNo}</h6>
-                          <div className={`text-xxs mt-0 p-6 fw-medium text-black`}>
+                          <h6 className={`mb-0 text-sm`}>{room.RoomNo}</h6>
+                          <div className={`text-xxs mt-0 p-1 fw-medium text-black`}>
                             {room.RoomCode}
                           </div>
                         </div>
                         <div
-                          className={`w-full  d-flex justify-content-center align-items-center  mt-2 border-top pt-2`}
+                          className={`w-full d-flex justify-content-center align-items-center border-top pt-1`}
                         >
                           <p
-                            className={`text-xxs ${styles.text} d-flex align-items-center gap-1 mb-0 pt-2`}
+                            className={`text-xxs ${styles.text} d-flex align-items-center gap-1 mb-0 pt-1`}
                           >
                             <Icon
                               icon="material-symbols:hotel"

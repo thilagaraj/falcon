@@ -4,6 +4,7 @@ import SignInPage from "./pages/SignInPage";
 import PropertySelectionPage from "./pages/PropertySelection";
 import ErrorPage from "./pages/ErrorPage";
 import DashboardPage from "./pages/DashboardPage";
+import ExtraBedRequest from "./pages/ExtraBedRequest";
 import SalesReportPage from "./pages/SalesReportPage";
 import Spinner from "./components/Common/Spinner";
 import { SpinnerProvider, useSpinner } from "./hook/SpinnerContext";
@@ -22,6 +23,7 @@ import CollectionReportPage from "./pages/CollectionReportPage";
 import SalesSegmentPage from "./pages/SalesSegmentPage";
 import HouseReportPage from "./pages/HouseReportPage";
 import OccupancyReportPage from "./pages/OccupancytPage";
+import Facillities from "./pages/Facillities";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
             <Route path="/report-list" element={<ReportListPage />} />
             <Route path="/review" element={<ReviewPage />} />
             <Route path="/menu-card" element={<MenuCard />} />
+            <Route path="/extrabed-request" element={<ExtraBedRequest />} />
+            <Route path="/facilities" element={<Facillities />} />
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
