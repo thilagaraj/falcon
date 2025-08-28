@@ -60,18 +60,19 @@ const ReportListPage = () => {
   const { showLoading, hideLoading } = useSpinner();
   const [guestInfoDashboard, setGuestInfoDashboard] = useState([]);
   const navigate = useNavigate();
-
+  const branchCode = searchParams.get("BranchCode");
+  const propertyId = searchParams.get("PropertyId");
+  const hotelId = searchParams.get("HotelId");
   useEffect(() => {
-    getGuestDashboard();
+    getReportList();
   }, []);
 
-  const getGuestDashboard = async () => {
+  const getReportList = async () => {
     try {
       showLoading();
       const response = await $axios.get(
         `/FalconQRScan/GetGuestDashboard?${searchParams.toString()}`
       );
-      console.log(response);
       setDashboard(response);
       const arr = Object.entries(response?.GuestInfoDashboard).map(
         ([key, enabled]) => ({ key, enabled })
@@ -92,13 +93,21 @@ const ReportListPage = () => {
   };
 
   const handleCardClick = (item) => {
-    console.log("Card clicked:", item);
     switch (item.value) {
       case "BillDetail":
         navigate(`/checkout-details?${searchParams.toString()}`);
         break;
       case "Feedback":
         navigate(`/review?${searchParams.toString()}`);
+        break;
+      case "ExtrabedRequest":
+        navigate(`/extrabed-request?${searchParams.toString()}`);
+        break;
+      case "Facilities":
+        navigate(`/facilities?BranchCode=${branchCode}&PropertyId=${propertyId}&HotelId=${hotelId}`);
+        break;
+      case "ViewMenu":
+        navigate(`/menu-card`);
         break;
       default:
         break;
@@ -123,7 +132,7 @@ const ReportListPage = () => {
                     item.enabled ? "cursor-pointer" : "disabled"
                   }`}
                   onClick={
-                    item.enabled ? () => handleCardClick(item) : undefined
+                    item.enabled ? () => handleCardClick(item) : () => handleCardClick(item)
                   }
                 >
                   <div className="card-icon">

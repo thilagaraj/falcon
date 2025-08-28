@@ -24,6 +24,8 @@ import SalesSegmentPage from "./pages/SalesSegmentPage";
 import HouseReportPage from "./pages/HouseReportPage";
 import OccupancyReportPage from "./pages/OccupancytPage";
 import Facillities from "./pages/Facillities";
+import RestaurantMenuList from "./pages/RestaurantMenuList";
+import CarouselPage from "./pages/CarouselPage";
 
 function App() {
   return (
@@ -39,9 +41,12 @@ function App() {
             <Route path="/report-list" element={<ReportListPage />} />
             <Route path="/review" element={<ReviewPage />} />
             <Route path="/menu-card" element={<MenuCard />} />
+            <Route path="/restaurant-menu" element={<RestaurantMenuList />} />
             <Route path="/extrabed-request" element={<ExtraBedRequest />} />
             <Route path="/facilities" element={<Facillities />} />
+            <Route path="/carousel" element={<CarouselPage />} />
 
+      
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route

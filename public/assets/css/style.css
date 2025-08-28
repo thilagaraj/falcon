@@ -16008,3 +16008,16 @@ body .form-control.is-valid,
   display: contents;
 }
 
+.menu-card {
+
+.slick-arrow.slick-next {
+  right: 0;
+    top: 0;
+  transform: none;
+}
+ .slick-prev {
+  left: 0;
+  top: 0;
+  transform: none;
+}
+} 

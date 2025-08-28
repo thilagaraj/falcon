@@ -24,3 +24,6 @@ dist-ssr
 *.sln
 *.sw?
 .gemini
+copilot-instructions.md
+editor-settings.md
+project-requirements.md

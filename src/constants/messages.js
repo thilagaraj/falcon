@@ -6,7 +6,7 @@ export default {
   },
   LOGIN: {
     title: "Login error",
-    message: "Please check your email and password.",
+    message: "Please check your username and password.",
     type: 'error'
   },
 };

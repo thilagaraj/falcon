@@ -34,15 +34,15 @@ const SignInLayer = () => {
           "/FalconLogin/authenticate",
           payload
         );
-        if (response.TokenId) {
+        if (response?.TokenId) {
           localStorage.setItem("FALCON_TOKEN", response.TokenId);
           localStorage.setItem("FALCON_BRANCH_CODE", response.BranchCode);
           localStorage.setItem("FALCON_PROPERTY_ID", response.PropertyId);
           navigate("/property-selection");
-        }
-        return true;
+          return true;
+        } 
       }
-      throw response;
+      throw new Error("Please fill in all required fields");
     } catch (error) {
       showAlert('LOGIN');
     } finally {
@@ -78,6 +78,7 @@ const SignInLayer = () => {
             initialValues={{
               username: "",
               password: "",
+              propertyId: "",
             }}
           >
             {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => (

@@ -24,6 +24,10 @@ const PropertySelection = () => {
       });
       if (response?.length) {
         setProperties(response);
+        if (response.length === 1) {
+          localStorage.setItem("FALCON_HOTEL_ID", response[0].HotelId);
+          navigate("/dashboard");
+        }
         return true;
       }
 
