@@ -36,7 +36,7 @@ const formatCellValue = (value, formatType) => {
   }
 };
 
-export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSearch = false, disableSorting = false }) {
+export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSearch = false, disableSorting = false, showPagination = true }) {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -51,17 +51,22 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    initialState: {
-      pagination: {
-        pageSize,
+    ...(showPagination ? {
+      getPaginationRowModel: getPaginationRowModel(),
+      initialState: {
+        pagination: {
+          pageSize,
+        },
       },
-    },
+    } : {
+      getRowModel: getCoreRowModel(),
+    }),
   });
 
+  
   return (
     <div className="dt-container dt-empty-footer">
-      {!disablePaginationAndSearch && (
+      {!disablePaginationAndSearch && showPagination && (
         <div className="dt-layout-row">
           <div className="dt-layout-cell dt-layout-start">
             <div className="dt-length">
@@ -203,7 +208,7 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
           </table>
         </div>
       </div>
-      {!disablePaginationAndSearch && (
+      {!disablePaginationAndSearch && showPagination &&(
         <div className="dt-layout-row">
           <div className="dt-layout-cell dt-layout-start">
             <div className="dt-info" aria-live="polite" role="status">

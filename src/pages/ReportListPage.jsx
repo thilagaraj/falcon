@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useSpinner } from "../hook/SpinnerContext";
 import $axios from "../utils/axios";
+import ExtraBedRequestLayer from "../components/ExtraBedRequestLayer";
+import FacilitiesLayer from "../components/FacilitiesLayer";
 
 const dashboardList = [
   {
@@ -59,6 +61,8 @@ const ReportListPage = () => {
   const [searchParams] = useSearchParams();
   const { showLoading, hideLoading } = useSpinner();
   const [guestInfoDashboard, setGuestInfoDashboard] = useState([]);
+  const [showExtraBedRequest, setShowExtraBedRequest] = useState(false);
+  const [showFacilities, setShowFacilities] = useState(false);
   const navigate = useNavigate();
   const branchCode = searchParams.get("BranchCode");
   const propertyId = searchParams.get("PropertyId");
@@ -101,10 +105,10 @@ const ReportListPage = () => {
         navigate(`/review?${searchParams.toString()}`);
         break;
       case "ExtrabedRequest":
-        navigate(`/extrabed-request?${searchParams.toString()}`);
+        setShowExtraBedRequest(true);
         break;
       case "Facilities":
-        navigate(`/facilities?BranchCode=${branchCode}&PropertyId=${propertyId}&HotelId=${hotelId}`);
+        setShowFacilities(true);
         break;
       case "ViewMenu":
         navigate(`/menu-card`);
@@ -156,6 +160,14 @@ const ReportListPage = () => {
           </div>
         </div>
       </div>
+      <ExtraBedRequestLayer 
+        show={showExtraBedRequest}
+        handleClose={() => setShowExtraBedRequest(false)}
+      />
+      <FacilitiesLayer
+        show={showFacilities}
+        handleClose={() => setShowFacilities(false)}
+      />
     </div>
   );
 };

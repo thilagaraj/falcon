@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import RouteScrollToTop from "./helper/RouteScrollToTop";
 import SignInPage from "./pages/SignInPage";
 import PropertySelectionPage from "./pages/PropertySelection";
 import ErrorPage from "./pages/ErrorPage";
 import DashboardPage from "./pages/DashboardPage";
-import ExtraBedRequest from "./pages/ExtraBedRequest";
 import SalesReportPage from "./pages/SalesReportPage";
 import Spinner from "./components/Common/Spinner";
 import { SpinnerProvider, useSpinner } from "./hook/SpinnerContext";
@@ -23,7 +24,6 @@ import CollectionReportPage from "./pages/CollectionReportPage";
 import SalesSegmentPage from "./pages/SalesSegmentPage";
 import HouseReportPage from "./pages/HouseReportPage";
 import OccupancyReportPage from "./pages/OccupancytPage";
-import Facillities from "./pages/Facillities";
 import RestaurantMenuList from "./pages/RestaurantMenuList";
 import CarouselPage from "./pages/CarouselPage";
 
@@ -42,8 +42,6 @@ function App() {
             <Route path="/review" element={<ReviewPage />} />
             <Route path="/menu-card" element={<MenuCard />} />
             <Route path="/restaurant-menu" element={<RestaurantMenuList />} />
-            <Route path="/extrabed-request" element={<ExtraBedRequest />} />
-            <Route path="/facilities" element={<Facillities />} />
             <Route path="/carousel" element={<CarouselPage />} />
 
       
@@ -71,6 +69,17 @@ function App() {
             <Route exact path="*" element={<ErrorPage />} />
           </Routes>
           <GlobalSpinner />
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </BrowserRouter>
       </AlertProvider>
     </SpinnerProvider>

@@ -16021,3 +16021,23 @@ body .form-control.is-valid,
   transform: none;
 }
 } 
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.pt-68 {
+  padding-top: 68px;
+}
+
+.dotted-line {
+  /* width: 40px;
+  height: 2px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #bab3a6 0,
+    #bab3a6 4px,
+    transparent 4px,
+    transparent 8px
+  ); */
+}

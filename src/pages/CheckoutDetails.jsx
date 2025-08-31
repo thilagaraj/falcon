@@ -116,7 +116,10 @@ BillInformation.propTypes = {
   summary: PropTypes.object.isRequired
 };
 
-export const CheckoutDetails = () => {
+export const CheckoutDetails = ({RoomNo}) => {
+  CheckoutDetails.propTypes = {
+    RoomNo: PropTypes.string
+  };
   const [searchParams] = useSearchParams();
   const { showLoading, hideLoading } = useSpinner();
   const [checkoutData, setCheckoutData] = useState({});
@@ -130,8 +133,12 @@ export const CheckoutDetails = () => {
   const getCheckoutDetails = async () => {
     showLoading();
     try {
+      const params = new URLSearchParams(searchParams);
+      if (!params.has('RoomNo') && RoomNo) {
+        params.append('RoomNo', RoomNo);
+      }
       const response = await $axios.get(
-        `/FalconQRScan/GetGuestBillInformation?${searchParams.toString()}`
+        `/FalconQRScan/GetGuestBillInformation?${params.toString()}`
       );
       setCheckoutData(response);
       setBillData(response.Details);
@@ -148,7 +155,7 @@ export const CheckoutDetails = () => {
     [
       "Name",checkoutData?.GuestTittle ? `${checkoutData.GuestTittle}. ${checkoutData?.GuestName || ""}` : checkoutData.GuestName || "",
     ],
-    ["Room No", searchParams.get("RoomNo")],
+    ["Room No", searchParams.get("RoomNo") || RoomNo],
     ["Room Code", checkoutData.RoomCode],
     ["Booking No", checkoutData.OrgCheckInNo],
     ["Arrival Date", formatDateForDisplay(checkoutData.ArrivalDate, 'DD/MM/yyyy'),],
@@ -196,9 +203,9 @@ export const CheckoutDetails = () => {
   return (
     <div className="container-fluid py-4">
       <ToastContainer />
-      <header className="text-center my-4 bg-secondary text-white p-3 rounded">
-        <p className="fs-4 fw-bold">{UI_STRINGS.CHECKOUT_TITLE}</p>
-      </header>
+      <div className="my-4 bg-secondary text-white px-3 py-2 rounded d-flex align-items-center justify-content-center">
+        <div className="fs-4 fw-bold">{UI_STRINGS.CHECKOUT_TITLE}</div>
+      </div>
 
       <div className="row">
         <div className="col-12 col-lg-6 mb-4">
