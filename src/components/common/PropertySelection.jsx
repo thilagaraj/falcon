@@ -1,43 +1,16 @@
 import { useState, useEffect } from "react";
 import $axios from "../../utils/axios";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 import { useNavigate } from "react-router-dom";
 import { useSpinner } from "../../hook/SpinnerContext";
+import { useProperty } from "../../hook/PropertyContext";
 
 const PropertySelection = () => {
   const navigate = useNavigate();
   const { showLoading, hideLoading } = useSpinner();
+  const { setPropertiesList } = useProperty();
   const [properties, setProperties] = useState([]);
-
-  const loadProperties = async () => {
-    try {
-      const payload = {
-        BranchCode: localStorage.getItem("FALCON_BRANCH_CODE"),
-        PropertyId: localStorage.getItem("FALCON_PROPERTY_ID"),
-      };
-      showLoading();
-      const response = await $axios.get("/FalconLogin/GetPropertyDetail", {
-        params: payload,
-      });
-      if (response?.length) {
-        setProperties(response);
-        if (response.length === 1) {
-          localStorage.setItem("FALCON_HOTEL_ID", response[0].HotelId);
-          navigate("/dashboard");
-        }
-        return true;
-      }
-
-      throw response;
-    } catch (error) {
-      console.error(error);
-    } finally {
-      hideLoading();
-    }
-  };
 
   const onPropertySelect = (hotelId) => {
     localStorage.setItem("FALCON_HOTEL_ID", hotelId);
@@ -45,8 +18,38 @@ const PropertySelection = () => {
   };
 
   useEffect(() => {
+    const loadProperties = async () => {
+      try {
+        const payload = {
+          BranchCode: localStorage.getItem("FALCON_BRANCH_CODE"),
+          PropertyId: localStorage.getItem("FALCON_PROPERTY_ID"),
+        };
+        showLoading();
+        const response = await $axios.get("/FalconLogin/GetPropertyDetail", {
+          params: payload,
+        });
+        if (response?.length) {
+         // response = [response[0]]
+          setProperties(response);
+          setPropertiesList(response); // Store in context
+          if (response.length === 1) {
+            localStorage.setItem("FALCON_HOTEL_ID", response[0].HotelId);
+            navigate("/dashboard");
+          }
+          return true;
+        }
+
+        throw response;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        hideLoading();
+      }
+    };
+
     loadProperties();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array to run only once
 
   return (
     <section className="auth bg-base d-flex align-items-center justify-content-center p-28">

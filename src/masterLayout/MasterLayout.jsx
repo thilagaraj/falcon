@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import ThemeToggleButton from "../helper/ThemeToggleButton";
-import Alerts from "../components/Common/Alerts";
+import Alerts from "../components/common/Alerts";
+import PropertyDropdown from "../components/common/PropertyDropdown";
 import { useNavigate } from "react-router-dom";
 
 const MasterLayout = ({ children }) => {
@@ -265,6 +265,8 @@ const MasterLayout = ({ children }) => {
             </div>
             <div className="col-auto">
               <div className="d-flex flex-wrap align-items-center gap-3">
+                {/* Property dropdown */}
+                <PropertyDropdown />
                 {/* Language dropdown end */}
                 <div className="dropdown">
                   <div className="dropdown-menu to-top dropdown-menu-lg p-0">

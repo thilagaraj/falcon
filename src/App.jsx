@@ -10,6 +10,7 @@ import SalesReportPage from "./pages/SalesReportPage";
 import Spinner from "./components/Common/Spinner";
 import { SpinnerProvider, useSpinner } from "./hook/SpinnerContext";
 import { AlertProvider } from "./hook/AlertContext";
+import { PropertyProvider } from "./hook/PropertyContext";
 import ProtectedRoute from "./hook/ProtectedRoute";
 import GuestInformationForm from "./pages/GuestInformationForm";
 import { CheckoutDetails } from "./pages/CheckoutDetails";
@@ -31,7 +32,8 @@ function App() {
   return (
     <SpinnerProvider>
       <AlertProvider>
-        <BrowserRouter>
+        <PropertyProvider>
+          <BrowserRouter>
           <RouteScrollToTop />
           <Routes>
             {/* Public Routes */}
@@ -80,7 +82,8 @@ function App() {
             draggable
             pauseOnHover
           />
-        </BrowserRouter>
+          </BrowserRouter>
+        </PropertyProvider>
       </AlertProvider>
     </SpinnerProvider>
   );

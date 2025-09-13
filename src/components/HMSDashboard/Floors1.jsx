@@ -1,17 +1,19 @@
-import { useState } from 'react';
-import { CheckoutDetails } from '../../pages/CheckoutDetails';
-import { Modal } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { useRoomContextMenu } from '../../hook/useRoomContextMenu';
+import RoomContextMenu from './RoomContextMenu';
 
-const Floors1 = ({ data, floorIndex }) => {
-  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState(null);
+const Floors1 = ({ data }) => {
+  const {
+    showCheckoutModal,
+    selectedRoom,
+    showContextMenu,
+    contextMenuPosition,
+    contextMenuRef,
+    handleRoomClick,
+    handleGuestInfoClick,
+    closeModal
+  } = useRoomContextMenu();
 
-  const handleRoomClick = (room) => {
-    if (room.Status === 'O') {
-      setSelectedRoom(room);
-      setShowCheckoutModal(true);
-    }
-  };
 
   const roomTypeStyles = {
     O: {
@@ -47,7 +49,7 @@ const Floors1 = ({ data, floorIndex }) => {
             <div 
                 key={index} 
                 className="room-container" 
-                onClick={() => handleRoomClick(room)}
+                onClick={(event) => handleRoomClick(room, event)}
                 style={{ cursor: room.Status === 'O' ? 'pointer' : 'default' }}
               >
                 <div className={`border-0 `} style={styles.style}>
@@ -66,33 +68,29 @@ const Floors1 = ({ data, floorIndex }) => {
       </div>
     </div>
      <hr className="mt-2" />
-      <Modal
-        show={showCheckoutModal}
-        onHide={() => {
-          setShowCheckoutModal(false);
-          setSelectedRoom(null);
-        }}
-        size="lg"
-        centered
-      >
-        <Modal.Header closeButton>
 
-          {/* <Modal.Title>Checkout Details</Modal.Title> */}
-        </Modal.Header>
-        <Modal.Body>
-          {selectedRoom && (
-            <CheckoutDetails
-              RoomNo={selectedRoom.RoomNo}
-              onClose={() => {
-                setShowCheckoutModal(false);
-                setSelectedRoom(null);
-              }}
-            />
-          )}
-        </Modal.Body>
-      </Modal>
+      <RoomContextMenu
+        showContextMenu={showContextMenu}
+        contextMenuPosition={contextMenuPosition}
+        contextMenuRef={contextMenuRef}
+        onGuestInfoClick={handleGuestInfoClick}
+        showCheckoutModal={showCheckoutModal}
+        selectedRoom={selectedRoom}
+        onCloseModal={closeModal}
+      />
     </>
   );
+};
+
+Floors1.propTypes = {
+  data: PropTypes.shape({
+    FloorName: PropTypes.string.isRequired,
+    rooms: PropTypes.arrayOf(PropTypes.shape({
+      RoomNo: PropTypes.string.isRequired,
+      RoomDesc: PropTypes.string,
+      Status: PropTypes.string.isRequired,
+    })).isRequired,
+  }).isRequired,
 };
 
 export default Floors1;
