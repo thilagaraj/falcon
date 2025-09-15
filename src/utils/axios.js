@@ -2,7 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const $axios = axios.create({
-  baseURL: "http://reactapi.falconsoftware.in/api",
+  baseURL: "/api",
   timeout: 1000000,
   headers: {
     "Content-Type": "application/json",
