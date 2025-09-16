@@ -26,7 +26,6 @@ import SalesSegmentPage from "./pages/SalesSegmentPage";
 import HouseReportPage from "./pages/HouseReportPage";
 import OccupancyReportPage from "./pages/OccupancytPage";
 import RestaurantMenuList from "./pages/RestaurantMenuList";
-import CarouselPage from "./pages/CarouselPage";
 
 function App() {
   return (
@@ -36,15 +35,16 @@ function App() {
           <BrowserRouter>
           <RouteScrollToTop />
           <Routes>
-            {/* Public Routes */}
-            <Route exact path="/sign-in" element={<SignInPage />} />
-            <Route path="/guest-registration" element={<GuestInformationForm />} />
-            <Route path="/checkout-details" element={<CheckoutDetails />} />
-            <Route path="/report-list" element={<ReportListPage />} />
-            <Route path="/review" element={<ReviewPage />} />
-            <Route path="/menu-card" element={<MenuCard />} />
-            <Route path="/restaurant-menu" element={<RestaurantMenuList />} />
-            <Route path="/carousel" element={<CarouselPage />} />
+            {/* Public Routes - Consider a wrapper layout if they share common UI */}
+            <Route path="/sign-in" element={<SignInPage />} />
+            <Route>
+              <Route path="/guest-registration" element={<GuestInformationForm />} />
+              <Route path="/checkout-details" element={<CheckoutDetails />} />
+              <Route path="/report-list" element={<ReportListPage />} />
+              <Route path="/review" element={<ReviewPage />} />
+              <Route path="/menu-card" element={<MenuCard />} />
+              <Route path="/restaurant-menu" element={<RestaurantMenuList />} />
+            </Route>
 
       
             {/* Protected Routes */}

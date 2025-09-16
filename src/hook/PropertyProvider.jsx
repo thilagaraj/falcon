@@ -34,8 +34,14 @@ const PropertyProvider = ({ children }) => {
   const setPropertiesList = useCallback((propertiesList) => {
     setProperties(propertiesList);
     localStorage.setItem('FALCON_PROPERTIES', JSON.stringify(propertiesList));
-    if (propertiesList.length === 1) {
-      setCurrentProperty(propertiesList[0]);
+    // If there's only one property, it's automatically the current one.
+    // Otherwise, check localStorage for a previously selected one.
+    if (propertiesList.length > 0) {
+      const hotelId = localStorage.getItem('FALCON_HOTEL_ID');
+      const current = hotelId
+        ? propertiesList.find(prop => prop.HotelId === hotelId)
+        : propertiesList[0];
+      setCurrentProperty(current || null);
     }
   }, []);
 
@@ -48,13 +54,21 @@ const PropertyProvider = ({ children }) => {
     }
   }, [properties]);
 
+  const clearProperties = useCallback(() => {
+    setProperties([]);
+    setCurrentProperty(null);
+    localStorage.removeItem('FALCON_PROPERTIES');
+    localStorage.removeItem('FALCON_HOTEL_ID');
+  }, []);
+
   const value = useMemo(() => ({
     properties,
     currentProperty,
     setPropertiesList,
     switchProperty,
     isLoading,
-  }), [properties, currentProperty, setPropertiesList, switchProperty, isLoading]);
+    clearProperties,
+  }), [properties, currentProperty, setPropertiesList, switchProperty, isLoading, clearProperties]);
 
   return (
     <PropertyContext.Provider value={value}>
@@ -68,5 +82,3 @@ PropertyProvider.propTypes = {
 };
 
 export default PropertyProvider;
-
-

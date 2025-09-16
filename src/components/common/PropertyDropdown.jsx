@@ -74,11 +74,12 @@ const PropertyDropdown = () => {
           </span>
         </div>
         <div className="flex-grow-1 text-start">
-          <div className="fw-semibold text-sm text-truncate">
+          {/* <div className="fw-semibold text-sm text-truncate">
             {currentProperty?.HotelName || 'Select Property'}
-          </div>
+          </div> */}
           <div className="text-xs text-secondary-light text-truncate">
-            {currentProperty?.HotelLocation || ''}
+           <div>{currentProperty?.HotelName }</div>
+          <div>{currentProperty?.HotelLocation }</div>
           </div>
         </div>
         <Icon

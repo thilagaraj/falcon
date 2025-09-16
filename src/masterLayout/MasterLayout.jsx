@@ -5,12 +5,14 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import Alerts from "../components/common/Alerts";
 import PropertyDropdown from "../components/common/PropertyDropdown";
 import { useNavigate } from "react-router-dom";
+import useProperty from "../hook/useProperty";
 
 const MasterLayout = ({ children }) => {
   let [sidebarActive, seSidebarActive] = useState(false);
   let [mobileMenu, setMobileMenu] = useState(false);
   const location = useLocation(); // Hook to get the current route
   const navigate = useNavigate();
+  const { clearProperties } = useProperty();
 
   useEffect(() => {
     const handleDropdownClick = (event) => {
@@ -90,11 +92,8 @@ const MasterLayout = ({ children }) => {
   };
 
   const logout = () => {
+    clearProperties();
     localStorage.removeItem("FALCON_TOKEN");
-    localStorage.removeItem("FALCON_BRANCH_CODE");
-    localStorage.removeItem("FALCON_PROPERTY_ID");
-    localStorage.removeItem("FALCON_HOTEL_ID");
-    localStorage.removeItem("FALCON_PROPERTIES");
     navigate("/sign-in");
   };
 
