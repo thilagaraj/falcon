@@ -5,6 +5,7 @@ import { useSpinner } from "../hook/SpinnerContext";
 import $axios from "../utils/axios";
 import { useSearchParams } from "react-router-dom";
 import Slider from "react-slick";
+import PropTypes from "prop-types";
 
 const settings = {
   dots: false,
@@ -67,7 +68,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-const GenericMenuList = ({ endpoint, title }) => {
+const GenericMenuList = ({ endpoint }) => {
   const [menu, setMenu] = useState([]);
   const [falconOutletMasterModel, setFalconOutletMasterModel] = useState({});
   const [search, setSearch] = useState("");
@@ -89,28 +90,31 @@ const GenericMenuList = ({ endpoint, title }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const getMenu = async () => {
-    try {
-      showLoading();
-      const response = await $axios.get(
-        `${endpoint}${searchParams.toString()}`
-      );
-      setTabs([
-        { CategoryCode: null, CategoryName: "All" },
-        ...(response?.falconPOSCategoryModel || []),
-      ]);
-      setMenu(response?.falconPOSItemsModellist || []);
-      setFalconOutletMasterModel(response?.falconOutletMasterModel || {});
-    } catch (error) {
-      console.error("Error loading menu:", error);
-    } finally {
-      hideLoading();
-    }
-  };
-
   useEffect(() => {
-    getMenu();
-  }, [endpoint]);
+    const loadMenu = async () => {
+      try {
+        showLoading();
+        const sanitizedEndpoint = (endpoint || "").replace(/[?&]+$/, "");
+        const response = await $axios.get(sanitizedEndpoint, {
+          params: Object.fromEntries(searchParams.entries()),
+        });
+        setTabs([
+          { CategoryCode: null, CategoryName: "All" },
+          ...(response?.falconPOSCategoryModel || []),
+        ]);
+        setMenu(response?.falconPOSItemsModellist || []);
+        setFalconOutletMasterModel(response?.falconOutletMasterModel || {});
+      } catch (error) {
+        console.error("Error loading menu:", error);
+      } finally {
+        hideLoading();
+      }
+    };
+
+    if (endpoint) {
+      loadMenu();
+    }
+  }, []);
 
   const filteredMenu = menu.filter((item) => {
     // First apply category filter
@@ -463,3 +467,17 @@ const GenericMenuList = ({ endpoint, title }) => {
 };
 
 export default GenericMenuList;
+
+SampleNextArrow.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+SamplePrevArrow.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+GenericMenuList.propTypes = {
+  endpoint: PropTypes.string.isRequired,
+};

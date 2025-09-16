@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { useProperty } from '../../hook/PropertyContext';
+import useProperty from '../../hook/useProperty';
 
 const PropertyDropdown = () => {
   const { properties, currentProperty, switchProperty, isLoading } = useProperty();

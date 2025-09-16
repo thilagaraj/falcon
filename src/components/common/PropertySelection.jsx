@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 import { useNavigate } from "react-router-dom";
 import { useSpinner } from "../../hook/SpinnerContext";
-import { useProperty } from "../../hook/PropertyContext";
+import useProperty from "../../hook/useProperty";
 
 const PropertySelection = () => {
   const navigate = useNavigate();

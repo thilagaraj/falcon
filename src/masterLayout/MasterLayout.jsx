@@ -94,6 +94,7 @@ const MasterLayout = ({ children }) => {
     localStorage.removeItem("FALCON_BRANCH_CODE");
     localStorage.removeItem("FALCON_PROPERTY_ID");
     localStorage.removeItem("FALCON_HOTEL_ID");
+    localStorage.removeItem("FALCON_PROPERTIES");
     navigate("/sign-in");
   };
 

@@ -16,6 +16,7 @@ const ReportTable = ({ data, onFilter }) => {
       header: "Guest Name",
       formatType: "TEXT",
     },
+    { accessorKey: "PlanName", header: "Plan Name", formatType: "TEXT" },
     { accessorKey: "Pax", header: "Pax", formatType: "TEXT" },
     {
       accessorKey: "Tariff",
@@ -52,7 +53,6 @@ const ReportTable = ({ data, onFilter }) => {
       header: "Plan Tax",
       formatType: "AMOUNT",
     },
-    { accessorKey: "PlanName", header: "Plan Name", formatType: "TEXT" },
     {
       accessorKey: "Advance",
       header: "Advance",
