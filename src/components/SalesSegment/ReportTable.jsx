@@ -12,7 +12,7 @@ const ReportTable = ({ data, onFilter }) => {
       highlightAmount: true,
     },
     { accessorKey: "YearNet", header: "YearNet", formatType: "AMOUNT" },
-    { accessorKey: "Mode", header: "Mode", formatType: "TEXT" },
+    // { accessorKey: "Mode", header: "Mode", formatType: "TEXT" },
     { accessorKey: "GRADE", header: "GRADE", formatType: "TEXT" },
     { accessorKey: "Allowence", header: "Allowence", formatType: "AMOUNT" },
     { accessorKey: "DayAmt", header: "DayAmt", formatType: "AMOUNT" },
