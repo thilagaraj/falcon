@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const $axios = axios.create({
   baseURL: "/api",
@@ -33,11 +32,11 @@ $axios.interceptors.response.use(
   (error) => {
     if (error.response) {
       const status = error.response.status;
-      const navigate = useNavigate();
 
       if (status === 401) {
-        localStorage.removeItem("token");
-        navigate("/sign-in", { replace: true });
+        localStorage.removeItem("FALCON_TOKEN");
+        // Redirect to sign-in page on 401 error
+        window.location.href = "/sign-in";
       }
     }
 
