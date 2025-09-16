@@ -32,19 +32,21 @@ const ReportTable = ({ data, onFilter }) => {
     }, {});
   }, [data]);
 
+  const flattenedData = useMemo(() => {
+    return Object.entries(groupedData).flatMap(([flag, groupData]) => [
+      { isGroupHeader: true, groupName: flag, id: `header-${flag}` },
+      ...groupData,
+    ]);
+  }, [groupedData]);
+
   return (
     <div className="card basic-data-table">
       <div className="card-header">
         <Filter onFilter={onFilter} columns={columns} tableData={data} />
       </div>
-      {Object.entries(groupedData).map(([flag, groupData]) => (
-        <div className="card-body" key={flag}>
-          <h5 className="fw-semibold mb-3 p-2 bg-light border rounded-2 text-center text-primary-dark">
-            {flag}
-          </h5>
-          <DataGrid data={groupData} columns={columns} showPagination={false} />
-        </div>
-      ))}
+      <div className="card-body">
+        <DataGrid data={flattenedData} columns={columns} showPagination={false} disableSorting={true} />
+      </div>
     </div>
   );
 };

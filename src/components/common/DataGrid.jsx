@@ -172,6 +172,21 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
               <tbody>
                 {table.getRowModel().rows.map((row) => {
                   // Check if this is the summary row (PlanName === 'Total Summary')
+                  if (row.original.isGroupHeader) {
+                    return (
+                      <tr key={row.id} className="group-header-row">
+                        <td
+                          colSpan={table.getAllLeafColumns().length}
+                          className="p-0"
+                        >
+                          <p className="fw-bold m-0 text-primary-dark text-decoration-underline">
+                            {row.original.groupName}
+                          </p>
+                        </td>
+                      </tr>
+                    );
+                  }
+
                   const isSummaryRow = row.original && (row.original.PlanName === 'Total Summary' || row.original.GuestName === 'Total Pax');
                   return (
                     <tr key={row.id} className={isSummaryRow ? 'summary-row-bg' : ''}>
