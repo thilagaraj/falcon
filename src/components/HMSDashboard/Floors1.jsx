@@ -5,12 +5,16 @@ import RoomContextMenu from './RoomContextMenu';
 const Floors1 = ({ data }) => {
   const {
     showCheckoutModal,
+    showHouseGuestModal,
+    showExtraPaxModal,
     selectedRoom,
     showContextMenu,
     contextMenuPosition,
     contextMenuRef,
     handleRoomClick,
     handleGuestInfoClick,
+    handleHouseGuestClick,
+    handleExtraPaxClick,
     closeModal
   } = useRoomContextMenu();
 
@@ -74,7 +78,11 @@ const Floors1 = ({ data }) => {
         contextMenuPosition={contextMenuPosition}
         contextMenuRef={contextMenuRef}
         onGuestInfoClick={handleGuestInfoClick}
+        onHouseGuestClick={handleHouseGuestClick}
+        onExtraPaxClick={handleExtraPaxClick}
         showCheckoutModal={showCheckoutModal}
+        showHouseGuestModal={showHouseGuestModal}
+        showExtraPaxModal={showExtraPaxModal}
         selectedRoom={selectedRoom}
         onCloseModal={closeModal}
       />

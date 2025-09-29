@@ -16030,14 +16030,15 @@ body .form-control.is-valid,
   padding-top: 68px;
 }
 
-.dotted-line {
-  /* width: 40px;
-  height: 2px;
-  background-image: repeating-linear-gradient(
-    to right,
-    #bab3a6 0,
-    #bab3a6 4px,
-    transparent 4px,
-    transparent 8px
-  ); */
+.context-menu-item {
+  cursor: 'pointer';
+  font-size: '14px';
+  color: '#333';
+  margin-left: 8px;
+}
+.context-menu-item:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+.context-menu-item:hover {
+  background-color: #f5f5f5;
 }
