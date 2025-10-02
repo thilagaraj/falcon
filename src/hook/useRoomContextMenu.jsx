@@ -5,6 +5,7 @@ export const useRoomContextMenu = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [showHouseGuestModal, setShowHouseGuestModal] = useState(false);
   const [showExtraPaxModal, setShowExtraPaxModal] = useState(false);
+  const [showGracePeriodModal, setShowGracePeriodModal] = useState(false);
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [contextMenuPosition, setContextMenuPosition] = useState({
     x: 0,
@@ -70,10 +71,18 @@ export const useRoomContextMenu = () => {
       setContextMenuRoom(null);
   };
 
+  const handleGracePeriodClick = () => {
+      setSelectedRoom(contextMenuRoom);
+      setShowGracePeriodModal(true);
+      setShowContextMenu(false);
+      setContextMenuRoom(null);
+  };
+
   const closeModal = () => {
     setShowCheckoutModal(false);
     setShowHouseGuestModal(false);
     setShowExtraPaxModal(false);
+    setShowGracePeriodModal(false);
     setSelectedRoom(null);
   };
 
@@ -87,6 +96,7 @@ export const useRoomContextMenu = () => {
     showCheckoutModal,
     showHouseGuestModal,
     showExtraPaxModal,
+    showGracePeriodModal,
     selectedRoom,
     showContextMenu,
     contextMenuPosition,
@@ -98,6 +108,7 @@ export const useRoomContextMenu = () => {
     handleGuestInfoClick,
     handleHouseGuestClick,
     handleExtraPaxClick,
+    handleGracePeriodClick,
     closeModal,
     closeContextMenu,
 
@@ -107,5 +118,6 @@ export const useRoomContextMenu = () => {
     setShowContextMenu,
     setContextMenuRoom,
     setShowExtraPaxModal,
+    setShowGracePeriodModal,
   };
 };

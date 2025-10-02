@@ -34,7 +34,7 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
         <Form noValidate onSubmit={handleSubmit} autoComplete="off">
-          <Row xs={1} md={4} lg={6} className="mb-3">
+          <Row xs={2} md={4} lg={6} className="align-items-end">
             <Col>
               <Form.Group controlId="reportDate">
                 <Form.Label>Report date</Form.Label>
@@ -43,6 +43,7 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                   name="reportDate"
                   value={values.reportDate}
                   onChange={handleChange}
+                  style={{ paddingRight: 0, paddingLeft: '2px' }}
                   isInvalid={!!errors.reportDate && touched.reportDate}
                   onClick={(e) => {
                     if (typeof e.target.showPicker === "function") {
@@ -55,21 +56,23 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
-
-            <Col className="d-contents">
+            <Col>
+              <div className="w-[100px]">
               <Button
                 type="submit"
-                className="btn btn-warning-900 radius-8 px-16 py-9 d-flex align-items-center gap-2 mt-36"
-              >
+                className="btn btn-warning-900 radius-8 px-4 py-9"
+              > 
                 Apply Filter
               </Button>
+              </div>
             </Col>
-            <Col className="btn-ps-0">
+            <Col>
+              <div className="mt-3 mt-md-0 ">
               <Dropdown align="end">
                 <Dropdown.Toggle
                   as={Button}
                   variant="warning-900"
-                  className="radius-8 px-16 py-9 d-flex align-items-center mt-36"
+                  className="radius-8 px-4 py-9 d-flex align-items-center"
                   id="download-dropdown"
                 >
                   Download As
@@ -80,6 +83,7 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                   <Dropdown.Item onClick={handleDownloadExcel}>Excel</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
+              </div>
             </Col>
           </Row>
         </Form>

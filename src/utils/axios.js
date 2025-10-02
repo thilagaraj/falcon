@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const $axios = axios.create({
-  baseURL: "http://reactapi.falconsoftware.in/api",
+  baseURL: "https://reactapi.falconsoftware.in/api",
   timeout: 1000000,
   headers: {
     "Content-Type": "application/json",

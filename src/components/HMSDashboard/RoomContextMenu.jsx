@@ -3,6 +3,8 @@ import { CheckoutDetails } from "../../pages/CheckoutDetails";
 import { Modal } from "react-bootstrap";
 import HouseGuestForm from "../Form/HouseGuestForm";
 import ExtraPaxForm from "../Form/ExtraPaxForm";
+import GracePeriodForm from "../Form/GracePeriodForm";
+
 
 const RoomContextMenu = ({
   showContextMenu,
@@ -11,9 +13,11 @@ const RoomContextMenu = ({
   onGuestInfoClick = () => {},
   onHouseGuestClick = () => {},
   onExtraPaxClick = () => {},
+  onGracePeriodClick = () => {},
   showCheckoutModal,
   showHouseGuestModal,
   showExtraPaxModal,
+  showGracePeriodModal,
   selectedRoom,
   onCloseModal,
 }) => {
@@ -54,6 +58,12 @@ const RoomContextMenu = ({
           >
             Extra Pax
           </div>
+          <div
+            className="context-menu-item cursor-pointer"
+            onClick={onGracePeriodClick}
+          >
+            Grace Period
+          </div>
         </div>
       )}
 
@@ -85,6 +95,13 @@ const RoomContextMenu = ({
           <ExtraPaxForm roomNo={selectedRoom?.RoomNo} onSave={onCloseModal} />
         </Modal.Body>
       </Modal>
+
+      <Modal show={showGracePeriodModal} onHide={onCloseModal} centered>
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          <GracePeriodForm roomNo={selectedRoom?.RoomNo} onSave={onCloseModal} />
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
@@ -99,8 +116,10 @@ RoomContextMenu.propTypes = {
   onGuestInfoClick: PropTypes.func.isRequired,
   onHouseGuestClick: PropTypes.func,
   onExtraPaxClick: PropTypes.func.isRequired,
+  onGracePeriodClick: PropTypes.func.isRequired,
   showHouseGuestModal: PropTypes.bool,
   showExtraPaxModal: PropTypes.bool,
+  showGracePeriodModal: PropTypes.bool,
   showCheckoutModal: PropTypes.bool.isRequired,
   selectedRoom: PropTypes.shape({
     RoomNo: PropTypes.string.isRequired,

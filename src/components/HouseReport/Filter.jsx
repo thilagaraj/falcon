@@ -20,20 +20,16 @@ const Filter = ({tableData = [], columns}) => {
     >
       {({ handleSubmit, values}) => (
         <Form noValidate onSubmit={handleSubmit} autoComplete="off">
-          <Row xs={1} md={4} lg={6} className="mb-3">
-            <Col>
+          <div className="mb-3 d-flex align-items-center gap-2">
               <Form.Group controlId="reportDate">
                 <Form.Label>Report date</Form.Label>
                 <Form.Control
                   type="date"
                   name="reportDate"
                   value={values.reportDate}
-                  className="ps-1"
                   readOnly
                 />
               </Form.Group>
-            </Col>
-            <Col>
               <Dropdown align="end">
                 <Dropdown.Toggle
                   as={Button}
@@ -49,8 +45,7 @@ const Filter = ({tableData = [], columns}) => {
                   <Dropdown.Item onClick={handleDownloadExcel}>Excel</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-            </Col>
-          </Row>
+          </div>
         </Form>
       )}
     </Formik>

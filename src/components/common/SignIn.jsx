@@ -38,6 +38,7 @@ const SignInLayer = () => {
           localStorage.setItem("FALCON_TOKEN", response.TokenId);
           localStorage.setItem("FALCON_BRANCH_CODE", response.BranchCode);
           localStorage.setItem("FALCON_PROPERTY_ID", response.PropertyId);
+          localStorage.setItem("FALCON_USERNAME", response.UserName);
           navigate("/property-selection");
           return true;
         } 

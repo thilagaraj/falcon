@@ -35,7 +35,7 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
         <Form noValidate onSubmit={handleSubmit} autoComplete="off">
-          <Row xs={1} md={4} lg={6} className="mb-3">
+          <Row xs={2} md={4} lg={6} className="align-items-end">
             <Col>
               <Form.Group controlId="reportDate">
                 <Form.Label>Report date</Form.Label>
@@ -45,6 +45,7 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                   value={values.reportDate}
                   onChange={handleChange}
                   isInvalid={!!errors.reportDate && touched.reportDate}
+                  style={{ paddingRight: 0, paddingLeft: '2px' }}
                   onClick={(e) => {
                     if (typeof e.target.showPicker === 'function') {
                       e.target.showPicker();
@@ -65,7 +66,9 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                 Apply Filter
               </Button>
             </Col>
-            <Col className="btn-ps-0">
+            <Col>
+                        <div className="mt-3 mt-md-0 ">
+
               <Dropdown align="end">
                 <Dropdown.Toggle
                   as={Button}
@@ -81,6 +84,7 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                   <Dropdown.Item onClick={handleDownloadExcel}>Excel</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
+              </div>
             </Col>
           </Row>
         </Form>

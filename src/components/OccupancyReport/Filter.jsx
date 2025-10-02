@@ -20,8 +20,8 @@ const Filter = ({ tableData = [], columns }) => {
     >
       {({ handleSubmit, values }) => (
         <Form noValidate onSubmit={handleSubmit} autoComplete="off">
-          <Row xs={1} md={4} lg={6} className="mb-3">
-            <Col>
+          <div className="d-flex align-items-center gap-3 mb-3">
+            <div>
               <Form.Group controlId="reportDate">
                 <Form.Label>Report date</Form.Label>
                 <Form.Control
@@ -32,8 +32,8 @@ const Filter = ({ tableData = [], columns }) => {
                   readOnly
                 />
               </Form.Group>
-            </Col>
-            <Col>
+            </div>
+            <div>
               <Dropdown align="end">
                 <Dropdown.Toggle
                   as={Button}
@@ -51,8 +51,8 @@ const Filter = ({ tableData = [], columns }) => {
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Form>
       )}
     </Formik>

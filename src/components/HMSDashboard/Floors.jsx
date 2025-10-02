@@ -8,6 +8,7 @@ const Floors = ({ data }) => {
     showCheckoutModal,
     showHouseGuestModal,
     showExtraPaxModal,
+    showGracePeriodModal,
     selectedRoom,
     showContextMenu,
     contextMenuPosition,
@@ -16,6 +17,7 @@ const Floors = ({ data }) => {
     handleGuestInfoClick,
     handleHouseGuestClick,
     handleExtraPaxClick,
+    handleGracePeriodClick,
     closeModal,
   } = useRoomContextMenu();
 
@@ -181,9 +183,11 @@ const Floors = ({ data }) => {
         onGuestInfoClick={handleGuestInfoClick}
         onHouseGuestClick={handleHouseGuestClick}
         onExtraPaxClick={handleExtraPaxClick}
+        onGracePeriodClick={handleGracePeriodClick}
         showCheckoutModal={showCheckoutModal}
         showHouseGuestModal={showHouseGuestModal}
         showExtraPaxModal={showExtraPaxModal}
+        showGracePeriodModal={showGracePeriodModal}
         selectedRoom={selectedRoom}
         onCloseModal={closeModal}
       />

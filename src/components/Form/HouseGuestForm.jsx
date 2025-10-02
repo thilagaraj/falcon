@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 
 const HouseGuestForm = ({ roomNo, onSave = () => {}}) => {
   const [houseGuest, setHouseGuest] = useState();
-  const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [errors, setErrors] = useState({});
 
   const getHouseGuestMaster = async () => {
     const searchParams = {
@@ -35,15 +35,16 @@ const HouseGuestForm = ({ roomNo, onSave = () => {}}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setValidated(true);
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-      return;
-    }
+    setErrors({});
 
-    if (form.checkValidity() === false) {
+    const isReasonValid = houseGuest?.Reason?.trim();
+    const isTariffValid = !(houseGuest?.IsHouseGuest === 1 && (!houseGuest?.Tariff || houseGuest?.Tariff <= 0));
+
+    if (!isReasonValid || !isTariffValid) {
+      setErrors({
+        Reason: !isReasonValid ? "Reason is required." : "",
+        Tariff: !isTariffValid ? "Tariff must be greater than 0." : "",
+      });
       return;
     }
 
@@ -51,7 +52,7 @@ const HouseGuestForm = ({ roomNo, onSave = () => {}}) => {
       ...houseGuest,
       Reason: houseGuest?.Reason,
       Tariff: houseGuest?.Tariff,
-      IsHouseGuest: houseGuest?.IsHouseGuest,
+      IsHouseGuest: houseGuest?.IsHouseGuest === 1 ? 0 : 1,
     };
 
     try {
@@ -75,7 +76,7 @@ const HouseGuestForm = ({ roomNo, onSave = () => {}}) => {
   return (
     <div>
       <h6>House Guest Form</h6>
-      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form noValidate onSubmit={handleSubmit}>
         <Row className="gx-1">
           <Col md={8}>
             <Form.Group className="mb-2">
@@ -112,9 +113,10 @@ const HouseGuestForm = ({ roomNo, onSave = () => {}}) => {
               id="formHorizontalRadios1"
               className="form-check-input mt-0"
               checked={houseGuest?.IsHouseGuest === 0}
+              disabled={houseGuest?.IsHouseGuest === 1}
               onChange={() => setHouseGuest({ ...houseGuest, IsHouseGuest: 0 })}
             />
-            <label htmlFor="formHorizontalRadios1">Click to House Guest</label>
+            <label>Click to House Guest</label>
           </Col>
           <Col
             xs={7}
@@ -127,8 +129,9 @@ const HouseGuestForm = ({ roomNo, onSave = () => {}}) => {
               className="form-check-input mt-0"
               checked={houseGuest?.IsHouseGuest === 1}
               onChange={() => setHouseGuest({ ...houseGuest, IsHouseGuest: 1 })}
+              disabled={houseGuest?.IsHouseGuest === 0}
             />
-            <label htmlFor="formHorizontalRadios2">
+            <label>
               Click to remove House Guest
             </label>
           </Col>
@@ -143,18 +146,12 @@ const HouseGuestForm = ({ roomNo, onSave = () => {}}) => {
                 value={houseGuest.Tariff}
                 className="ri-sm"
                 disabled={houseGuest?.IsHouseGuest === 0}
-                isInvalid={
-                  validated &&
-                  houseGuest?.IsHouseGuest &&
-                  houseGuest?.Tariff <= 0
-                }
                 onChange={(e) =>
                   setHouseGuest({ ...houseGuest, Tariff: e.target.value })
                 }
+                isInvalid={!!errors?.Tariff}
               />
-              <Form.Control.Feedback type="invalid">
-                Tariff should be greater than zero
-              </Form.Control.Feedback>
+              {errors?.Tariff && <Form.Control.Feedback type="invalid">{errors?.Tariff}</Form.Control.Feedback>}
             </Form.Group>
           </Col>
           <Col>
@@ -177,15 +174,13 @@ const HouseGuestForm = ({ roomNo, onSave = () => {}}) => {
             as="textarea"
             rows={2}
             value={houseGuest?.Reason || ""}
-            isInvalid={validated && !houseGuest?.Reason?.trim()}
             required
             onChange={(e) =>
               setHouseGuest({ ...houseGuest, Reason: e.target.value })
             }
+            isInvalid={!!errors?.Reason}
           />
-          <Form.Control.Feedback type="invalid">
-            Reason should not be empty.
-          </Form.Control.Feedback>
+          {errors?.Reason && <Form.Control.Feedback type="invalid">{errors?.Reason}</Form.Control.Feedback>}
         </Form.Group>
 
         <div className="d-flex justify-content-end">

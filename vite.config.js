@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'http://reactapi.falconsoftware.in',
+      '/api1': {
+        target: 'https://reactapi.falconsoftware.in',
         changeOrigin: true,
         secure: false,
       },

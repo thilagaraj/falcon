@@ -4,7 +4,7 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
-  getPaginationRowModel,
+//   getPaginationRowModel,
   flexRender,
 } from "@tanstack/react-table";
 import { Icon } from "@iconify/react";
@@ -51,22 +51,22 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    ...(showPagination ? {
-      getPaginationRowModel: getPaginationRowModel(),
-      initialState: {
-        pagination: {
-          pageSize,
-        },
-      },
-    } : {
-      getRowModel: getCoreRowModel(),
-    }),
+    // ...(showPagination ? {
+    //   getPaginationRowModel: getPaginationRowModel(),
+    //   initialState: {
+    //     pagination: {
+    //       pageSize,
+    //     },
+    //   },
+    // } : {
+    //   getRowModel: getCoreRowModel(),
+    // }),
   });
 
   
   return (
     <div className="dt-container dt-empty-footer">
-      {!disablePaginationAndSearch && showPagination && (
+      {/* {!disablePaginationAndSearch && showPagination && (
         <div className="dt-layout-row">
           <div className="dt-layout-cell dt-layout-start">
             <div className="dt-length">
@@ -98,11 +98,11 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       <div className="dt-layout-row dt-layout-table">
         <div className="dt-layout-cell dt-layout-full overflow-auto">
-          <table className="table bordered-table mb-0 dataTable min-w-full">
+          <table className="table bordered-table mb-0 dataTable min-w-full ms-3 ms-sm-0">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
@@ -223,7 +223,7 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
           </table>
         </div>
       </div>
-      {!disablePaginationAndSearch && showPagination &&(
+      {/* {!disablePaginationAndSearch && showPagination &&(
         <div className="dt-layout-row">
           <div className="dt-layout-cell dt-layout-start">
             <div className="dt-info" aria-live="polite" role="status">
@@ -319,7 +319,7 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

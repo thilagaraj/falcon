@@ -39,7 +39,7 @@ const FlashReport = () => {
   return (
     <div className="dashboard-main-body">
       <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
-        <h6 className="fw-semibold mb-0 mob-title">Flash report</h6>
+        <h6 className="fw-semibold mb-0 mob-title mb-2">Flash report</h6>
       </div>
       {hideLoading && <ReportTable data={reportData} onFilter={updateTable} />}
     </div>

@@ -10,8 +10,10 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
       .date()
       .required("From date is required")
       .typeError("From date is required"),
-      toDate: yup.date().required("To date is required")
-      .typeError("From date is required")
+    toDate: yup
+      .date()
+      .required("To date is required")
+      .typeError("From date is required"),
   });
 
   const onSubmit = (values) => {
@@ -26,19 +28,18 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
     downloadExcel(columns, tableData);
   };
 
-
   return (
     <Formik
       validationSchema={schema}
       onSubmit={onSubmit}
       initialValues={{
-        reportDate: getCurrentDate('YYYY-MM-DD'),
-        toDate: getCurrentDate('YYYY-MM-DD'),
+        reportDate: getCurrentDate("YYYY-MM-DD"),
+        toDate: getCurrentDate("YYYY-MM-DD"),
       }}
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
         <Form noValidate onSubmit={handleSubmit} autoComplete="off">
-          <Row xs={1} md={4} lg={6} className="mb-3">
+          <Row xs={2} md={4} lg={6} className="mb-3">
             <Col>
               <Form.Group controlId="reportDate">
                 <Form.Label>From Date</Form.Label>
@@ -48,8 +49,9 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                   value={values.reportDate}
                   onChange={handleChange}
                   isInvalid={!!errors.reportDate && touched.reportDate}
+                  style={{ paddingRight: 0, paddingLeft: "2px" }}
                   onClick={(e) => {
-                    if (typeof e.target.showPicker === 'function') {
+                    if (typeof e.target.showPicker === "function") {
                       e.target.showPicker();
                     }
                   }}
@@ -65,11 +67,12 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                 <Form.Control
                   type="date"
                   name="toDate"
+                  style={{ paddingRight: 0, paddingLeft: "2px" }}
                   value={values.toDate}
                   onChange={handleChange}
                   isInvalid={!!errors.toDate && touched.toDate}
                   onClick={(e) => {
-                    if (typeof e.target.showPicker === 'function') {
+                    if (typeof e.target.showPicker === "function") {
                       e.target.showPicker();
                     }
                   }}
@@ -80,15 +83,17 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
               </Form.Group>
             </Col>
 
-            <Col className="d-contents">
+            <Col className="">
+            <div>
               <Button
                 type="submit"
                 className="btn btn-warning-900 radius-8 px-16 py-9 d-flex align-items-center gap-2 mt-36"
               >
                 Apply Filter
               </Button>
+              </div>
             </Col>
-            <Col className="btn-ps-0">
+            <Col className="btn-ps-0  ms-sm-0">
               <Dropdown align="end">
                 <Dropdown.Toggle
                   as={Button}
@@ -101,7 +106,9 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={handleDownloadPDF}>PDF</Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item onClick={handleDownloadExcel}>Excel</Dropdown.Item>
+                  <Dropdown.Item onClick={handleDownloadExcel}>
+                    Excel
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
