@@ -31,7 +31,7 @@ const ReportTable = ({ data, onFilter }) => {
         <Filter onFilter={onFilter} tableData={data} columns={columns} />
       </div>
       <div className="card-body">
-        <DataGrid data={data} columns={columns} />
+        <DataGrid data={data} columns={columns} disableSorting={true} />
       </div>
     </div>
   );
