@@ -26,6 +26,8 @@ import SalesSegmentPage from "./pages/SalesSegmentPage";
 import HouseReportPage from "./pages/HouseReportPage";
 import OccupancyReportPage from "./pages/OccupancytPage";
 import RestaurantMenuList from "./pages/RestaurantMenuList";
+import PropertyWiseFlashReportPage from "./pages/PropertyWiseFlashReporttPage";
+import PettyCashReportPage from "./pages/PettyCashReportPage";
 
 function App() {
   return (
@@ -64,7 +66,8 @@ function App() {
               <Route exact path="/collection-report" element={<CollectionReportPage />} />
               <Route exact path="/sales-segment" element={<SalesSegmentPage />} />
               <Route exact path="/guest-occupancy" element={<OccupancyReportPage />} />
-
+              <Route exact path="/property-wise-flash-report" element={<PropertyWiseFlashReportPage />} />
+              <Route exact path="/petty-cash-report" element={<PettyCashReportPage />} />
             </Route>
 
             {/* Catch-all for 404 */}

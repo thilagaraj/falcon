@@ -222,6 +222,30 @@ const MasterLayout = ({ children }) => {
                 <span>Guest Occupany List</span>
               </NavLink>
             </li>
+
+            <li>
+              <NavLink
+                to="/petty-cash-report"
+                className={(navData) => (navData.isActive ? "active-page" : "")}
+              >
+                <Icon icon="ix:report-general" className="menu-icon" />
+                <span>Petty Cash Report</span>
+              </NavLink>
+            </li>
+
+            <li className="sidebar-menu-group-title">Property Wise Report</li>
+            <li>
+              <NavLink
+                to="/property-wise-flash-report"
+                className={(navData) => (navData.isActive ? "active-page" : "")}
+              >
+                <Icon
+                  icon="fluent-mdl2:reservation-orders"
+                  className="menu-icon"
+                />
+                <span>Flash report</span>
+              </NavLink>
+            </li>
           </ul>
         </div>
       </aside>
