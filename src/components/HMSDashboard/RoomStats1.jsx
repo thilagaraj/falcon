@@ -17,8 +17,7 @@ const StatusBar = ({ label, value, color }) => (
 
 const RoomStats1 = ({ data }) => {
   if (!data) return null;
-  const { Vacant, Occupied, Unsettled, Dirty, Blocked, ManagementBlocked } = data;
-
+  const { Vacant, Occupied, Unsettled, Dirty, Blocked, ManagementBlocked, TodayCheckin, TodayCheckout} = data;
   const total = Vacant + Occupied + Dirty + Blocked + Unsettled + ManagementBlocked;
   const occPercentage = ((Occupied / total) * 100).toFixed(2);
 
@@ -38,8 +37,8 @@ const RoomStats1 = ({ data }) => {
     // Bottom Row
     [
       { label: 'OCC %', value: occPercentage, color: '#5d4037' },
-      { label: 'TodayCin', value: '0', color: '#bf360c' },
-      { label: 'TodayCout', value: '0', color: '#616161' }
+      { label: 'TodayCin', value: TodayCheckin, color: '#bf360c' },
+      { label: 'TodayCout', value: TodayCheckout, color: '#616161' }
     ]
   ];
 

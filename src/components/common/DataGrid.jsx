@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -36,7 +36,7 @@ const formatCellValue = (value, formatType) => {
   }
 };
 
-export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSearch = false, disableSorting = false, showPagination = true }) {
+export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSearch = false, disableSorting = false, showPagination = true, tableClassName = "" }) {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -102,7 +102,7 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
 
       <div className="dt-layout-row dt-layout-table">
         <div className="dt-layout-cell dt-layout-full overflow-auto">
-          <table className="table bordered-table mb-0 dataTable min-w-full ms-3 ms-sm-0">
+          <table className={`table bordered-table mb-0 dataTable min-w-full ms-3 ms-sm-0 ${tableClassName}`}>
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
@@ -330,4 +330,6 @@ DataGrid.propTypes = {
   pageSize: PropTypes.number,
   disablePaginationAndSearch: PropTypes.bool,
   disableSorting: PropTypes.bool,
+  showPagination: PropTypes.bool,
+  tableClassName: PropTypes.string,
 };

@@ -41,6 +41,10 @@ const TotalCollections = ({ data, checkin }) => {
   const getRoomAvialability = async () => {
     showLoading();
     try {
+      const branchCode = localStorage.getItem("FALCON_BRANCH_CODE");
+      const propertyId = localStorage.getItem("FALCON_PROPERTY_ID");
+      const hotelId = localStorage.getItem("FALCON_HOTEL_ID");
+      
       const formattedFromDate = formatDateForDb(fromDate, "MM/DD/YYYY");
       let formattedToDate = toDate;
       if (toDate && typeof toDate === 'object' && typeof toDate.format === 'function') {
@@ -49,7 +53,7 @@ const TotalCollections = ({ data, checkin }) => {
         formattedToDate = formatDateForDb(toDate, "MM/DD/YYYY");
       }
       const response = await $axios.get(
-        `/Falconreport/GetRoomAvailabilityChart?BranchCode=HMS_1001&PropertyId=10001&HotelId=THAI_1001&fromdt=${formattedFromDate}&Todt=${formattedToDate}`
+        `/Falconreport/GetRoomAvailabilityChart?BranchCode=${branchCode}&PropertyId=${propertyId}&HotelId=${hotelId}&fromdt=${formattedFromDate}&Todt=${formattedToDate}`
       );
       setReportData(response)
     } catch (e) {

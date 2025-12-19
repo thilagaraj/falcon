@@ -38,7 +38,7 @@ const flattenedData = useMemo(() => {
         <Filter onFilter={onFilter} tableData={data} columns={columns} />
       </div>
        <div className="card-body">
-               <DataGrid data={flattenedData} columns={columns} showPagination={false} disableSorting={true} />
+               <DataGrid data={flattenedData} columns={columns} showPagination={false} disableSorting={true} tableClassName="flash-report-table" />
              </div>
     </div>
   );
