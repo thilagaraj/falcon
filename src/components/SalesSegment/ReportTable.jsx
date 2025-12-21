@@ -11,11 +11,8 @@ const ReportTable = ({ data, onFilter }) => {
       formatType: "AMOUNT",
       highlightAmount: true,
     },
-    { accessorKey: "YearNet", header: "YearNet", formatType: "AMOUNT" },
-    // { accessorKey: "Mode", header: "Mode", formatType: "TEXT" },
-    { accessorKey: "GRADE", header: "GRADE", formatType: "TEXT" },
-    { accessorKey: "Allowence", header: "Allowence", formatType: "AMOUNT" },
-    { accessorKey: "DayAmt", header: "DayAmt", formatType: "AMOUNT" },
+    { accessorKey: "Allowence", header: "No of Nights", formatType: "TEXT" },
+    { accessorKey: "DayAmt", header: "Average revenue", formatType: "Amount" },
   ];
 
   const groupedData = useMemo(() => {

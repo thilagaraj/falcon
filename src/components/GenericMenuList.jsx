@@ -446,7 +446,7 @@ const GenericMenuList = ({ endpoint }) => {
                                   <div className="d-flex align-items-center">
                                     <div className="dotted-line me-2"></div>
                                     <span className="text-warning fw-bold pe-1">
-                                      ₹ {item.ItemRate}
+                                      {item.ItemRate}
                                     </span>
                                   </div>
                                 </div>

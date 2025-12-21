@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReportTable from "./ReportTable";
 import { useSpinner } from "../../hook/SpinnerContext";
 import $axios from "../../utils/axios";
@@ -7,6 +7,8 @@ import { getCurrentDate, formatDateForDb } from "../../utils/date";
 const CollectionReport = () => {
   const { showLoading, hideLoading } = useSpinner();
   const [reportData, setReportData] = useState([]);
+  const [collectionDetail, setCollectionDetail] = useState(null);
+  const [collectionSummary, setCollectionSummary] = useState(null);
   const [reportDate, setReportDate] = useState(getCurrentDate("MM/DD/YYYY"));
   const [toDate, setToDate] = useState(getCurrentDate("MM/DD/YYYY"));
 
@@ -19,6 +21,8 @@ const CollectionReport = () => {
       });
       if (response?.CollectionsModelList) {
         setReportData(response?.CollectionsModelList);
+        setCollectionDetail(response?.ColletionDetail || null);
+        setCollectionSummary(response?.ColletionSummary || null);
         return true;
       }
       throw response;
@@ -43,7 +47,14 @@ const CollectionReport = () => {
       <div className="d-flex flex-wrap align-items-center justify-content-between gap-3">
         <h6 className="fw-semibold mb-0 mob-title">Collection report</h6>
       </div>
-      {hideLoading && <ReportTable data={reportData} onFilter={updateTable} />}
+      {hideLoading && (
+        <ReportTable
+          data={reportData}
+          onFilter={updateTable}
+          collectionDetail={collectionDetail}
+          collectionSummary={collectionSummary}
+        />
+      )}
     </div>
   );
 };

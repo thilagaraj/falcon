@@ -15,9 +15,8 @@ const formatCellValue = (value, formatType) => {
     case "AMOUNT":
       return typeof value === "number"
         ? new Intl.NumberFormat("en-IN", {
-            style: "currency",
-            currency: "INR",
             minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
           }).format(value)
         : "";
 
@@ -102,7 +101,7 @@ export function DataGrid({ columns, data, pageSize = 10, disablePaginationAndSea
 
       <div className="dt-layout-row dt-layout-table">
         <div className="dt-layout-cell dt-layout-full overflow-auto">
-          <table className={`table bordered-table mb-0 dataTable min-w-full ms-3 ms-sm-0 ${tableClassName}`}>
+          <table className={`table bordered-table mb-0 dataTable min-w-full ms-sm-0 ${tableClassName}`}>
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>

@@ -56,15 +56,31 @@ const Floors1 = ({ data }) => {
                 key={index} 
                 className="room-container" 
                 onClick={(event) => handleRoomClick(room, event)}
-                style={{ cursor: room.Status === 'O' ? 'pointer' : 'default' }}
+                style={{ 
+                  cursor: room.Status === 'O' ? 'pointer' : 'default',
+                  width: '68px',
+                  height: '60px'
+                }}
               >
-                <div className={`border-0 `} style={styles.style}>
-                  <div className=" py-2 px-1">
+                <div className={`border-0 h-100`} style={styles.style}>
+                  <div className="py-2 h-100 d-flex flex-column justify-content-center">
                     <div
                       className="text-center text-white text-xxs"
                     >
-                      <div className={`${styles.text}`}>{room.RoomNo}</div>
-                      <div className={`${styles.text}`}>{room.RoomDesc}</div>
+                      <div className={`${styles.text}`} style={{ 
+                        overflow: 'hidden', 
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        lineHeight: '1.2'
+                      }}>{room.RoomNo}</div>
+                      <div className={`${styles.text}`} style={{ 
+                        overflow: 'hidden', 
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        lineHeight: '1.2',
+                        paddingLeft: '1px',
+                        paddingRight: '1px',
+                      }}>{room.RoomDesc}</div>
                     </div>
                   </div>
                 </div>
