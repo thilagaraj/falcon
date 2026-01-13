@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { getCurrentDate } from "../../utils/date";
 import { downloadExcel, downloadPDF } from "../../utils/download";
 
-const Filter = ({ onFilter, tableData = [], columns }) => {
+const Filter = ({ onFilter, tableData = [], columns, filter: initialFilter = "Day" }) => {
   const schema = yup.object().shape({
     reportDate: yup
       .date()
@@ -14,10 +14,14 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
       .date()
       .required("To date is required")
       .typeError("From date is required"),
+    filter: yup
+      .string()
+      .oneOf(["Day", "Month", "Year"], "Filter must be Day, Month, or Year")
+      .required("Filter is required"),
   });
 
   const onSubmit = (values) => {
-    onFilter(values.reportDate, values.toDate);
+    onFilter(values.reportDate, values.toDate, values.filter);
   };
 
   const handleDownloadPDF = () => {
@@ -35,6 +39,7 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
       initialValues={{
         reportDate: getCurrentDate("YYYY-MM-DD"),
         toDate: getCurrentDate("YYYY-MM-DD"),
+        filter: initialFilter,
       }}
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
@@ -79,6 +84,24 @@ const Filter = ({ onFilter, tableData = [], columns }) => {
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.toDate}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group controlId="filter">
+                <Form.Label>Filter</Form.Label>
+                <Form.Select
+                  name="filter"
+                  value={values.filter}
+                  onChange={handleChange}
+                  isInvalid={!!errors.filter && touched.filter}
+                >
+                  <option value="Day">Day</option>
+                  <option value="Month">Month</option>
+                  <option value="Year">Year</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.filter}
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>

@@ -31,7 +31,7 @@ const formatCellValue = (value, formatType) => {
   }
 };
 
-const ReportTable = ({ data, onFilter }) => {
+const ReportTable = ({ data, onFilter, filter }) => {
   // Transform data and generate columns dynamically
   const { transformedData, columns } = useMemo(() => {
     if (!data || data.length === 0) {
@@ -106,7 +106,7 @@ const ReportTable = ({ data, onFilter }) => {
   return (
     <div className="card basic-data-table">
       <div className="card-header">
-        <Filter onFilter={onFilter} columns={columns} tableData={transformedData} />
+        <Filter onFilter={onFilter} columns={columns} tableData={transformedData} filter={filter} />
       </div>
       <div className="card-body">
         <DataGrid data={transformedData} columns={columns} disableSorting={true} />
